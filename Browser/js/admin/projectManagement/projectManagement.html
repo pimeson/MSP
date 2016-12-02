@@ -1,10 +1,10 @@
 <div class="adminProject">
   <h1>{{projTitle}}</h1>
-  <input type="text" ng-model="projectTitle"><input>
+  <input type="text" ng-model="projForm.projectTitle"><input>
   <a ng-click="editTitle()">submit new title</a>
   <h4>Project Description</h4>
   <p>{{description}}</p>
-  <textarea id="adminProjDesc" ng-model="projDesc"></textarea>
+  <textarea id="adminProjDesc" ng-model="projForm.projectDesc"></textarea>
   <a ng-click="editDescContent()">submit new description</a>
   <label>Exhibit Title:<input type="text" name="exTitle" ng-model="exTitle"></label>
   <label>Exhibit Description:<textArea type="text" name="projDesc" ng-model="exDesc"></textarea></label>
@@ -12,9 +12,6 @@
   <div class="adminExhibit" ng-repeat="exhibit in exhibits">
     <img ui-sref="exhibitManagement({projId: projId, id: exhibit.id})" class="exhibitImages" ng-src="{{exhibit.imageSrc.slice(7)}}"></img>
   </div>
-
   <a ng-click="deleteProject()">Delete this project.</a>
-
   <a ui-sref="admin">Back to Admin Panel</a>
-
 </div>

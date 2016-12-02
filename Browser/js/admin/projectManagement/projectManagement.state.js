@@ -21,10 +21,11 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
   $scope.projTitle = project.title;
   $scope.description = project.description;
   $scope.projId = project.id;
+  $scope.projForm = {};
 
   $scope.upload = function (file) {
     Upload.upload({
-      url: 'https://matthewspiegelman.herokuapp.com/api/exhibit/',
+      url: 'http://localhost:1337/api/exhibit/',
       data: {
         title: $scope.exTitle,
         file: file,
@@ -70,11 +71,11 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
   }
 
   $scope.editTitle = () => {
-    if($scope.projectTitle){
-    projectFactory.updateById($stateParams.projectId, {title: $scope.projectTitle})
+    if($scope.projForm.projectTitle){
+    projectFactory.updateById($stateParams.projectId, {title: $scope.projForm.projectTitle})
     .then(() => {
-      $scope.projTitle = $scope.projectTitle;
-      $scope.projectTitle = "";
+      $scope.projTitle = $scope.projForm.projectTitle;
+      $scope.projForm.projectTitle = "";
     })
     } else {
       alert('No empty titles allowed.');
@@ -82,10 +83,10 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
   }
 
   $scope.editDescContent = () => {
-    projectFactory.updateById($stateParams.projectId, {description: $scope.projDesc})
+    projectFactory.updateById($stateParams.projectId, {description: $scope.projForm.projectDesc})
     .then(() => {
-      $scope.description = $scope.projDesc;
-      $scope.projDesc = "";
+      $scope.projDesc = $scope.projForm.projectDesc;
+      $scope.projForm.projectDesc = "";
     })
   }
 

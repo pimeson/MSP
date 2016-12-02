@@ -1,6 +1,7 @@
 'use strict';
 const Exhibit = require('../../../db/models/exhibit');
 const router = require('express').Router();
+const fs = require('fs');
 
 module.exports = router;
 
@@ -47,6 +48,21 @@ router.get('/:id', function (req, res, next) {
   Exhibit.findById(req.params.id)
     .then(findingExhibit => res.send(findingExhibit))
     .catch(next);
+})
+
+router.delete('/:id', function (req, res, next) {
+  Exhibit.findById(req.params.id)
+  .then(findingExhibit => {
+    fs.unlinkSync('./' + findingExhibit.imageSrc);
+    return;
+  })
+  .then(deletingExhibitFile => {
+     Exhibit.destroy({
+      where:{id: req.params.id}
+    })
+  })
+  .then(deletingExhibit => res.sendStatus(204))
+  .catch(next);
 })
 
 router.put('/:id', function(req, res, next) {

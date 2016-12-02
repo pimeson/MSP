@@ -42,7 +42,6 @@ router.delete('/:id', function (req, res, next) {
       findingExhibits.forEach(exhibit => {
         fs.unlinkSync('./' + exhibit.imageSrc);
       })
-      return;
     })
     .then(deletingExhibitFiles => {
       Exhibit.destroy({
@@ -50,7 +49,6 @@ router.delete('/:id', function (req, res, next) {
           projectId: req.params.id
         }
       })
-      return;
     })
     .then(deletingExhibits => {
       Project.destroy({
@@ -58,9 +56,8 @@ router.delete('/:id', function (req, res, next) {
           id: req.params.id
         }
       })
-      return;
     })
-    .then( () => res.sendStatus(204))
+    .then( deletingProject => res.sendStatus(204))
     .catch(next);
 
 })
