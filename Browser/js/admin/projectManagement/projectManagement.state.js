@@ -24,7 +24,7 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
 
   $scope.upload = function (file) {
     Upload.upload({
-      url: 'https://matthewspiegelman3.herokuapp.com/api/exhibit/',
+      url: 'https://matthewspiegelman.herokuapp.com/api/exhibit/',
       data: {
         title: $scope.exTitle,
         file: file,
