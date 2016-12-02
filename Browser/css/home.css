@@ -1,0 +1,75 @@
+#initialSpacer {
+  width: 15vw;
+}
+
+container {
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+.pattern {
+  display: flex;
+}
+
+.alone {
+  height: 90vh;
+  width: 30vw;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 25px;
+  margin-top: 7vh;
+  overflow-x: hidden;
+  cursor: pointer;
+}
+
+img.projects {
+  height: 90%;
+}
+
+img.projects2 {
+  height: 80%;
+}
+
+img.projects3 {
+  height: 80%;
+}
+
+.num {
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+body {
+  overflow: scroll;
+  height: 100vh;
+}
+
+#galleryTag {
+  margin-top: 2vh;
+}
+
+#galleryTag p {
+  text-align: center;
+}
+
+html {
+  background-color: white !important;
+}
+
+.selected {
+  box-shadow: -5px -5px #777777;
+}
+
+a {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

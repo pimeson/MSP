@@ -1,0 +1,14 @@
+<div id="admin" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+  <h1>Manage Projects</h1>
+
+  <form name="projectForm" id="projectForm">
+    <label>project title:<input type="text" name="projTitle" ng-model="projTitle"></label>
+    <label>project description:<textArea type="text" name="projDesc" ng-model="projDesc"></textarea></label>
+  </form>
+  <button ng-click="makeProject(projTitle, projDesc)">Make project</button>
+  <ul>
+    <li ng-repeat="project in projects">
+      <a ui-sref="adminProject({ projectId: project.id })">{{$index+1}} Title:{{project.title}}</a>
+    </li>
+  </ul>
+</div>

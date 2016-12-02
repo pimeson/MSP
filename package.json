@@ -1,0 +1,49 @@
+{
+  "name": "msp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/start.js",
+  "scripts": {
+    "start": "nodemon --watch server -e js,html ./start.js"
+  },
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "author": "naohito sadoshima",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-animate": "^1.5.8",
+    "angular-aria": "^1.5.8",
+    "angular-material": "^1.1.1",
+    "angular-ui-bootstrap": "^2.2.0",
+    "angular-ui-router": "^0.3.1",
+    "babel-register": "^6.18.0",
+    "bluebird": "^3.4.6",
+    "body-parser": "^1.15.2",
+    "bootstrap": "^3.3.7",
+    "connect-multiparty": "^2.0.0",
+    "connect-session-sequelize": "^4.0.0",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.1",
+    "express": "^4.14.0",
+    "express-session": "^1.14.2",
+    "fs": "0.0.1-security",
+    "istanbul": "^0.4.5",
+    "jquery": "^3.1.1",
+    "jquery-zoom": "^1.7.18",
+    "lodash": "^4.16.6",
+    "materialize": "^1.0.0",
+    "materialize-css": "^0.97.8",
+    "multer": "^1.2.0",
+    "ng-file-upload": "^12.2.13",
+    "nodemon": "^1.11.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "pg": "^6.1.0",
+    "pg-hstore": "^2.3.2",
+    "pg-native": "^1.10.0",
+    "sequelize": "^3.24.6",
+    "ui-bootstrap": "^0.1.5"
+  }
+}

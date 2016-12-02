@@ -1,0 +1,26 @@
+<container>
+  <h1 id="galTitle">{{project.title}}</h1>
+  <div id="gallery">
+    <table id="initialSpacer"></table>
+    <div id="galleryPics">
+      <table id="initialSpacer"></table>
+      <span class="galContainer "ng-repeat="exhibit in exhibits">
+      <div class="galImageContainer underlay underlay-0">
+      <div ng-mouseenter="exhibit.showTitle = true" ng-mouseleave="exhibit.showTitle = false" class="galImage first underlay underlay-0">
+      <img ui-sref="details({projTitle: project.title, projId: project.id, exhibitId: exhibit.id})" class="galImages" ng-src="{{exhibit.imageSrc.slice(7)}}">
+      <p class="exhibitTitle" ng-show="exhibit.showTitle">{{exhibit.title}}</p>
+      </div>
+      
+      </div>
+     
+      </span>
+      <div>
+        <div class="galDesc" ng-show="!hide">
+          <p id="galText">{{project.description}}</p>
+          <p ng-click="hide = true" class="hideGalDesc">hide</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p id="showGalDesc" ng-show="hide" ng-click="hide = false">Show Description</p>
+</container>

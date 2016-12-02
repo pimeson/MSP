@@ -1,0 +1,42 @@
+#test {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#test{
+  font-family: 'Geometric415'  
+}
+
+#projectForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.adminExhibit {
+  height: 25vh;
+}
+
+.exhibitImages {
+  height: 100%;
+}
+
+.adminProject{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#adminProjDesc {
+  width: 50vw;
+}
+
+#exhibitManagement{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}

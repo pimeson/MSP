@@ -1,0 +1,38 @@
+<div class="detailsSection">
+  
+  <div class=bar>
+
+  <div class="galleryBar">
+    
+    <div class="galleryImg" ng-repeat="picture in projPictures">
+      <img class="galleryPic" ngsrc=<img src="http://placehold.it/90x160">
+    </div>
+   
+  </div>
+   <a id="backToGallery" ng-click="backToGallery()">Back to {{projTitle}}</a>
+  </div>
+
+  
+  <div id="mainPicContainer" ng-mouseenter="hover = true" ng-mouseleave="hover = false">
+      <img class="zoom" id="mainPic" ng-src="{{exhibit.imageSrc.slice(7)}}">
+      <p>hover to zoom</p>
+  </div>
+  <div class="desc">
+    
+    <h2 id="projTitle" ng-show="!hover">PROJECT DESCRIPTION <a id="collapseDesc" ng-click="collapsed = !collapsed">{{collapsed ? '+' : '-'}}</a></h2>
+    <div id="projDesc">
+    <div id='target' ng-show="hover" style='height: 100vh; margin-top: 2.5vh;'></div>
+    <p ng-show="!hover && !collapsed">{{projDesc}}</p>
+    </div>
+    <div id=picDescContainer>
+    <p id="picDesc">{{exhibit.description}}</p>
+    <div id="picDetails">
+      <ul id="picSpecs">
+        <li>2010</li>
+        <li>C-Print</li>
+        <li>ed5+2ap</li>
+        <li>24" x 20"</li>
+      </ul>
+    </div>
+  </div>
+</div>

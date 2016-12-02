@@ -1,0 +1,13 @@
+#about, #bio, #CV {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-left: 10vw;
+}
+
+#CV {
+  width: 50vw;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+}

@@ -1,0 +1,81 @@
+.galImageContainer {
+  height: 95vh;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+.galImage {
+  align-items: center;
+  height: 95%;
+  margin-top: 8vh;
+  justify-content: center;
+}
+
+#galTitle {
+  position: fixed;
+  font-family: 'Geometric415'; 
+  font-size: 14px;
+  margin: 5% auto;
+  margin-top: 3vh;
+  width: 100%;
+  text-align: center;
+}
+
+#galleryPics {
+  display: flex;
+  flex-direction: row;
+}
+
+#gallery {
+  display: flex;
+  flex-direction: column;
+}
+
+.galDesc {
+    position: fixed;
+    font-family: 'Geometric415';
+    font-size: 14px;
+    width: 20vw;
+    margin-top: 8vh;
+    padding: 10px;
+    text-align: center;
+    right: 2%;
+    height: 82.6vh;
+    overflow-y: scroll;
+    background: white;
+    opacity: .87
+}
+
+.galImages {
+  height: 95%;
+  cursor: pointer;
+}
+
+p.hideGalDesc {
+    position: fixed;
+    top: 8.5vh;
+    right: 2.5vw;
+    cursor: pointer;
+}
+
+p#showGalDesc {
+    position: fixed;
+    margin-left: 85%;
+}
+
+#galText {
+  padding: 2vh;
+}
+
+.exhibitTitle {
+  position: absolute;
+}
+
+
+
+.galContainer {
+  width: initial;
+}

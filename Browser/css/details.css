@@ -1,0 +1,148 @@
+.detailsSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 100vh;
+}
+
+.galleryBar {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  height: 70vh;
+  width: 20vw;
+  align-items: center;
+  /* padding: 0vh 4vw 0vw 10vw; */
+  margin-top: 20vh;
+}
+
+#projDesc {
+  height: 65vh;
+  overflow-y: scroll;
+}
+
+.galleryImg {
+  width: 10vw;
+  margin: 1vh;
+}
+
+.galleryPic {
+  width: 100%;
+}
+
+#mainPicContainer {
+  height: 85vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-self: center;
+  overflow: hidden;
+  cursor: crosshair;
+}
+
+#picDesc {
+  width: 100%;
+  max-height: 10vh;
+  overflow-y: scroll;
+}
+
+#mainPic {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+h2 {
+  font-family: 'Geometric415';
+  font-size: 18px;
+}
+
+p {
+  font-family: 'Geometric415';
+  font-size: 12px;
+}
+
+li {
+  font-family: 'Geometric415';
+  font-size: 12px;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.desc {
+  width: 40vw;
+  display: flex;
+  flex-direction: column;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  padding-top: 5vh;
+  margin-bottom: 7.2vh;
+}
+
+h2#projTitle {
+  align-self: center;
+  font-size: 13px;
+}
+
+* {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+#picDescContainer {
+  margin-top: auto;
+}
+
+
+/* these styles are for the demo, but are not required for the plugin */
+
+.zoom {
+  display: inline-block;
+  position: relative;
+}
+
+
+/* magnifying glass icon */
+
+.zoom:after {
+  content: '';
+  display: block;
+  width: 33px;
+  height: 33px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: url(icon.png);
+}
+
+.zoom img {
+  display: block;
+}
+
+.zoomImg {
+  background-color: #f00;
+}
+
+.zoomimg {
+  background-color: green;
+}
+
+.zoom img::selection {
+  background-color: transparent;
+}
+
+a#backToGallery {
+  align-self: center;
+}
+
+.bar {
+  display: flex;
+  flex-direction: column;
+}
+
+#collapseDesc{
+  font-size: 15px;
+}
