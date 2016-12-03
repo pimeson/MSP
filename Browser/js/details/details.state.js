@@ -14,7 +14,7 @@ app.config($stateProvider => {
     onEnter: function () {
       //i hide header tabs, you can add your code here
       console.log('enter click');
-      $('#mainPic').zoom({
+      $('#mainPicContainer').zoom({
         target: '#target'
       });
     }

@@ -30,7 +30,8 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
         title: $scope.exTitle,
         file: file,
         projId: $stateParams.projectId,
-        description: $scope.exDesc
+        description: $scope.exDesc,
+        dirName: project.dirName
       }
     }).then(function (resp) {
       /*sample config:

@@ -1,6 +1,7 @@
-var Sequelize = require('sequelize');
+const Sequelize = require('sequelize');
+const fs = require('fs');
 
-var db = require('../_db');
+const db = require('../_db');
 
 module.exports = db.define('exhibit', {
   title: {
@@ -19,5 +20,16 @@ module.exports = db.define('exhibit', {
   },
   date: {
     type: Sequelize.DATEONLY
+  }
+}, {
+  hooks: {
+    // beforeBulkDestroy: (exhibit, options) => {
+    //   return console.log(exhibit);
+    // }
+    // ,
+    beforeDestroy: (exhibit) => {
+      console.log("cascading?")
+      fs.unlinkSync('./'+exhibit.dataValues.imageSrc);
+    }
   }
 });

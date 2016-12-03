@@ -14,8 +14,11 @@
 
   
   <div id="mainPicContainer" ng-mouseenter="hover = true" ng-mouseleave="hover = false">
+      <p id="exTitle">{{exhibit.title}}</p>
       <img class="zoom" id="mainPic" ng-src="{{exhibit.imageSrc.slice(7)}}">
-      <p>hover to zoom</p>
+      <div id="picBar">
+        <p>hover to zoom</p>
+      </div>
   </div>
   <div class="desc">
     

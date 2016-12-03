@@ -7,7 +7,12 @@ const _ = require('lodash');
 const fs = require('fs');
 
 router.post('/', function (req, res, next) {
-  Project.create(req.body)
+  let newDirPath = './public/uploads/' + req.body.title
+  req.body.dirName = req.body.title;
+  req.body.dirPath = newDirPath;
+  let makingDir = fs.mkdirSync(newDirPath)
+  let makingProjEntry = Project.create(req.body)
+  Promise.all([makingDir, makingProjEntry])
     .then(createdProject => res.send('okay'))
     .catch(next);
 })
@@ -33,31 +38,14 @@ router.get('/:id', function (req, res, next) {
 })
 
 router.delete('/:id', function (req, res, next) {
-  Exhibit.findAll({
-      where: {
-        projectId: req.params.id
-      }
-    })
-    .then(findingExhibits => {
-      findingExhibits.forEach(exhibit => {
-        fs.unlinkSync('./' + exhibit.imageSrc);
-      })
-    })
-    .then(deletingExhibitFiles => {
-      Exhibit.destroy({
-        where: {
-          projectId: req.params.id
-        }
-      })
-    })
-    .then(deletingExhibits => {
-      Project.destroy({
-        where: {
-          id: req.params.id
-        }
-      })
-    })
-    .then( deletingProject => res.sendStatus(204))
+  Project.destroy({
+    where: {
+      id: req.params.id
+    },
+    individualHooks: true
+  })
+
+  .then(deletingProject => res.sendStatus(204))
     .catch(next);
 
 })
@@ -65,12 +53,11 @@ router.delete('/:id', function (req, res, next) {
 
 router.put('/:id', function (req, res, next) {
   Project.update(
-    req.body,
-    {
-    where: {
-      id : req.params.id
-    }
-  })
-  .then(updatingProjects => res.sendStatus(201))
-  .catch(next);
+      req.body, {
+        where: {
+          id: req.params.id
+        }
+      })
+    .then(updatingProjects => res.sendStatus(201))
+    .catch(next);
 })

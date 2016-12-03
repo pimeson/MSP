@@ -5,6 +5,34 @@ module.exports = db;
 const User = require('./models/user');
 const Exhibit = require('./models/exhibit');
 const Project = require('./models/project');
+const AltView = require('./models/altView');
 
-Project.hasMany(Exhibit);
-Exhibit.belongsTo(Project);
+
+Exhibit.belongsTo(Project, {
+  foreignKeyConstraint: true,
+  onDelete: 'cascade',
+  hooks: true
+});
+
+Project.hasMany(Exhibit, {
+  onDelete: 'cascade',
+  hooks: true
+})
+
+
+Exhibit.hasMany(AltView, {
+  onDelete: 'cascade',
+  hooks: true
+});
+AltView.belongsTo(Exhibit, {
+  foreignKeyConstraint: true,
+  hooks: true
+});
+Project.hasMany(AltView, {
+  onDelete: 'cascade',
+  hooks: true
+});
+AltView.belongsTo(Project, {
+  foreignKeyConstraint: true,
+  hooks: true
+});

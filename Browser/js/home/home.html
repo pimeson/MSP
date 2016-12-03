@@ -5,7 +5,7 @@
       <span ng-repeat="project in allProjects">
       <div class="pattern" ui-sref="gallery({projId: project.id})">
       <div class="alone">
-        <img ng-mousemove="incrementer(project, project.exhibits.length)" class="projects" ng-src="{{project.exhibits[project.num].imageSrc.slice(7)}}">
+        <img ng-mousemove="incrementer(project, project.exhibits.length)" class="projects" ng-src="{{project.exhibits[project.num].imageSrc.slice(9)}}">
         <div id="galleryTag">
           <p>{{project.title}}</p>
         </div>

@@ -2,6 +2,7 @@
 const Exhibit = require('../../../db/models/exhibit');
 const router = require('express').Router();
 const fs = require('fs');
+const AltView = require('../../../db/models/altView');
 
 module.exports = router;
 
@@ -19,8 +20,10 @@ const storage = multer.diskStorage({
 })
 
 router.post('/',multer({storage: storage}).single('file'),  function (req, res, next) {
-  Exhibit.create({title: req.body.title, fileName: req.file.originalname, description: req.body.description, imageSrc: req.file.path, projectId: req.body.projId})
-    .then(createdExhibit => res.sendStatus(200))
+  Exhibit.create({title: req.body.title, fileName: req.file.originalname, description: req.body.description, imageSrc: './public/uploads/'+req.body.dirName+'/'+req.file.originalname, projectId: req.body.projId})
+    .then(createdExhibit => {
+      fs.renameSync(req.file.path, './public/uploads/'+req.body.dirName+'/'+req.file.originalname);
+    })
     .catch(next);
 
   // console.log(req.body); //form fields
@@ -44,6 +47,19 @@ router.get('/project/:id', function (req, res, next) {
     .catch(next);
 })
 
+router.get('/project/withAltViews/:id', function (req, res, next) {
+  Exhibit.findAll(
+    
+    {
+      include: [AltView],
+      where: {
+        projectId: req.params.id
+      }
+    })
+    .then(findingExhibits => res.send(findingExhibits))
+    .catch(next);
+})
+
 router.get('/:id', function (req, res, next) {
   Exhibit.findById(req.params.id)
     .then(findingExhibit => res.send(findingExhibit))
@@ -51,15 +67,14 @@ router.get('/:id', function (req, res, next) {
 })
 
 router.delete('/:id', function (req, res, next) {
-  Exhibit.findById(req.params.id)
-  .then(findingExhibit => {
-    fs.unlinkSync('./' + findingExhibit.imageSrc);
-    return;
-  })
-  .then(deletingExhibitFile => {
-     Exhibit.destroy({
-      where:{id: req.params.id}
-    })
+  // Exhibit.findById(req.params.id)
+  // .then(findingExhibit => {
+  //   fs.unlinkSync('./' + findingExhibit.imageSrc);
+  //   return;
+  // })
+  // .then(deletingExhibitFile => {
+  Exhibit.destroy({
+    where:{id: req.params.id}, individualHooks: true
   })
   .then(deletingExhibit => res.sendStatus(204))
   .catch(next);

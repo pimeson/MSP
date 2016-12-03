@@ -36,7 +36,6 @@
   justify-content: center;
   flex-direction: column;
   align-self: center;
-  overflow: hidden;
   cursor: crosshair;
 }
 
@@ -145,4 +144,12 @@ a#backToGallery {
 
 #collapseDesc{
   font-size: 15px;
+}
+
+#picBar{
+}
+
+#exTitle{
+  font-size: 12px;
+  text-align: center;
 }
