@@ -1,13 +1,13 @@
 <div id="exhibitManagement">
   <h1>{{exhibit.title}}</h1>
-  <input type="text" ng-model="exForm.exTitle"><input>
+  <input type="text" ng-model="exForm.exTitle"></input>
   <a ng-click="editTitle()">submit new title</a>
   <h4>Project Description</h4>
   <p>{{exhibit.description}}</p>
   <textarea id="adminProjDesc" ng-model="exForm.exDesc"></textarea>
   <a ng-click="editDesc()">submit new description</a>
 
-  <img class="exhibitImage" ng-src="{{exhibit.imageSrc.slice(7)}}"></img>
+  <img class="exhibitImage" ng-src="{{exhibit.imageSrc.slice(9)}}"></img>
 
   <a ng-click="deleteExhibit()">Delete this exhibit</a>
   <a ui-sref="adminProject({projectId: projId})">Back to Project View</a>

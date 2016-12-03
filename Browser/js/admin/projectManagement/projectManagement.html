@@ -1,9 +1,9 @@
 <div class="adminProject">
   <h1>{{projTitle}}</h1>
-  <input type="text" ng-model="projForm.projectTitle"><input>
+  <input type="text" ng-model="projForm.projectTitle"></input>
   <a ng-click="editTitle()">submit new title</a>
   <h4>Project Description</h4>
-  <p>{{description}}</p>
+  <p>{{projDesc}}</p>
   <textarea id="adminProjDesc" ng-model="projForm.projectDesc"></textarea>
   <a ng-click="editDescContent()">submit new description</a>
   <label>Exhibit Title:<input type="text" name="exTitle" ng-model="exTitle"></label>

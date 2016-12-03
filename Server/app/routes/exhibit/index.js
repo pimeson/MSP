@@ -23,6 +23,7 @@ router.post('/',multer({storage: storage}).single('file'),  function (req, res, 
   Exhibit.create({title: req.body.title, fileName: req.file.originalname, description: req.body.description, imageSrc: './public/uploads/'+req.body.dirName+'/'+req.file.originalname, projectId: req.body.projId})
     .then(createdExhibit => {
       fs.renameSync(req.file.path, './public/uploads/'+req.body.dirName+'/'+req.file.originalname);
+      res.send(204);
     })
     .catch(next);
 
