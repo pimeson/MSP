@@ -21,7 +21,7 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
   $scope.project = project;
   $scope.projForm = {};
 
-  $scope.upload = function (file) {
+  $scope.upload = (file) => {
     Upload.upload({
       url: 'http://localhost:1337/api/exhibit/',
       data: {
@@ -31,7 +31,7 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
         description: $scope.exDesc,
         dirName: project.dirName
       }
-    }).then(function (resp) {
+    }).then( (resp) => {
       /*sample config:
       { fieldname: 'file',
       originalname: 'tumblr_oe4cfyH9XA1qeh7fdo9_1280.jpg',
@@ -45,16 +45,16 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
       $scope.exDesc = "";
       $scope.getGalleries();
       console.log('Success ' + resp.config.data + 'uploaded. Response: ' + resp.data);
-    }, function (resp) {
+    }, (resp) => {
       console.log('Error status: ' + resp.status);
-    }, function (evt) {
+    }, (evt) => {
       var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
       console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
     });
   };
 
 
-  $scope.submit = function () {
+  $scope.submit = () => {
     if ($scope.form.file.$valid && $scope.file) {
       $scope.upload($scope.file)
     }

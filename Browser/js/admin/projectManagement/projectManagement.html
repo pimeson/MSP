@@ -8,7 +8,7 @@
   <a ng-click="editDescContent()">submit new description</a>
   <label>Exhibit Title:<input type="text" name="exTitle" ng-model="exTitle"></label>
   <label>Exhibit Description:<textArea type="text" name="projDesc" ng-model="exDesc"></textarea></label>
-  <div class="button" ngf-select="upload($file)" ngf-accept="'image/*'">Upload on file select</div>
+  <md-button class="md-raised" ngf-select="upload($file)" ngf-accept="'image/*'">Upload on file select</md-button>
   <div id="adminExhibits">
   <div class="adminExhibit" ng-repeat="exhibit in exhibits">
     <img ui-sref="exhibitManagement({projId: project.id, id: exhibit.id})" class="exhibitImages" ng-src="{{exhibit.imageSrc.slice(9)}}">

@@ -12,7 +12,7 @@ app.config($stateProvider => {
   })
 })
 
-app.controller('adminCtrl', function($scope, projectFactory, projects){
+app.controller('adminCtrl', function($scope, projectFactory, projects, Upload, $state){
 
   $scope.projects = projects;
 
@@ -32,4 +32,22 @@ app.controller('adminCtrl', function($scope, projectFactory, projects){
       $scope.getAll();
     })
   };
+
+  $scope.uploadAboutHtml = (file) => {
+    Upload.upload({
+      url: 'http://localhost:1337/api/about/aboutHtml',
+      data: {
+        file: file
+      }
+    }).then( (res) => {
+      alert("Updated new about page!");
+    })
+  }
+
+  $scope.submitAboutPage = () => {
+    if ($scope.form.file.$valid && $scope.file) {
+      $scope.uploadAboutHtml($scope.file)
+    }
+  };
+
 })

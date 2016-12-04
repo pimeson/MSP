@@ -6,7 +6,7 @@
       <label>project title:<input type="text" name="projTitle" ng-model="projTitle"></label>
       <label>project description:<textArea type="text" name="projDesc" ng-model="projDesc"></textarea></label>
     </form>
-    <button ng-click="makeProject(projTitle, projDesc)">Make project</button>
+    <md-button ng-click="makeProject(projTitle, projDesc)">Make project</md-button>
     <ul>
       <li ng-repeat="project in projects">
         <a ui-sref="adminProject({ projectId: project.id })">{{$index+1}} Title:{{project.title}}</a>
@@ -17,6 +17,7 @@
   <div id="aboutPanel">
     <h1>Manage About Page</h1>
     <a id="downloadLink" target="_self" href="/about/about.html" download="about.html">Download current about page</a>
+    <md-button class="md-raised" ngf-select="uploadAboutHtml($file)" ngf-accept="'.html'">Update About Page</md-button>
   </div>
 
 </div>
