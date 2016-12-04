@@ -2,6 +2,6 @@ app.config($stateProvider => {
   $stateProvider.state('about', {
     url: '/about',
     controller: 'AboutCtrl',
-    templateUrl: 'js/about/about.html'
+    templateUrl: '/about/about.html'
   })
 })
