@@ -5,8 +5,8 @@
   align-items: center;
 }
 
-#test{
-  font-family: 'Geometric415'  
+#test {
+  font-family: 'Geometric415'
 }
 
 #projectForm {
@@ -17,26 +17,57 @@
 
 .adminExhibit {
   height: 25vh;
+  margin: 2vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .exhibitImages {
   height: 100%;
 }
 
-.adminProject{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+.adminProject {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 #adminProjDesc {
   width: 50vw;
 }
 
-#exhibitManagement{
+#exhibitManagement {
   display: flex;
-  justify-content: center;
-  flex-direction: column;
+  justify-content: space-around;
+  flex-direction: row;
   align-items: center;
+  height: 100%;
+}
+
+#editExhibitContent {
+  flex-direction: column;
+  display: flex;
+}
+
+#exhibitMgmtDiv {
+  height: 70vh;
+}
+
+#exhibitMgmtImg {
+  height: 100%;
+}
+
+#adminExhibits {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: 10vh;
+}
+
+.titleInput,
+.adminProjDesc {
+  border: 2px black solid;
 }

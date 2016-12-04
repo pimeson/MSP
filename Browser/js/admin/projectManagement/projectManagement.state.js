@@ -18,9 +18,7 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
   // upload on file select or drop
 
   $scope.exhibits = exhibits;
-  $scope.projTitle = project.title;
-  $scope.description = project.description;
-  $scope.projId = project.id;
+  $scope.project = project;
   $scope.projForm = {};
 
   $scope.upload = function (file) {
@@ -75,7 +73,7 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
     if($scope.projForm.projectTitle){
     projectFactory.updateById($stateParams.projectId, {title: $scope.projForm.projectTitle})
     .then(() => {
-      $scope.projTitle = $scope.projForm.projectTitle;
+      $scope.project.title = $scope.projForm.projectTitle;
       $scope.projForm.projectTitle = "";
     })
     } else {
@@ -86,9 +84,14 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
   $scope.editDescContent = () => {
     projectFactory.updateById($stateParams.projectId, {description: $scope.projForm.projectDesc})
     .then(() => {
-      $scope.projDesc = $scope.projForm.projectDesc;
+      $scope.project.description = $scope.projForm.projectDesc;
       $scope.projForm.projectDesc = "";
     })
+  }
+
+  $scope.deleteExhibit = (id) => {
+    exhibitFactory.deleteById(id)
+    .then( (deletingExhibit) => $state.reload());
   }
 
   $scope.deleteProject = () => {

@@ -1,16 +1,20 @@
 <div class="adminProject">
-  <h1>{{projTitle}}</h1>
-  <input type="text" ng-model="projForm.projectTitle"></input>
+  <h1>{{project.title}}</h1>
+  <input class="titleInput" type="text" ng-model="projForm.projectTitle"></input>
   <a ng-click="editTitle()">submit new title</a>
   <h4>Project Description</h4>
-  <p>{{projDesc}}</p>
-  <textarea id="adminProjDesc" ng-model="projForm.projectDesc"></textarea>
+  <p>{{project.description}}</p>
+  <textarea class="adminProjDesc" ng-model="projForm.projectDesc"></textarea>
   <a ng-click="editDescContent()">submit new description</a>
   <label>Exhibit Title:<input type="text" name="exTitle" ng-model="exTitle"></label>
   <label>Exhibit Description:<textArea type="text" name="projDesc" ng-model="exDesc"></textarea></label>
   <div class="button" ngf-select="upload($file)" ngf-accept="'image/*'">Upload on file select</div>
+  <div id="adminExhibits">
   <div class="adminExhibit" ng-repeat="exhibit in exhibits">
-    <img ui-sref="exhibitManagement({projId: projId, id: exhibit.id})" class="exhibitImages" ng-src="{{exhibit.imageSrc.slice(9)}}"></img>
+    <img ui-sref="exhibitManagement({projId: project.id, id: exhibit.id})" class="exhibitImages" ng-src="{{exhibit.imageSrc.slice(9)}}">
+    <p>{{exhibit.title}}</p>
+    <a ng-click="deleteExhibit(exhibit.id)">delete</a>
+  </div>
   </div>
   <a ng-click="deleteProject()">Delete this project.</a>
   <a ui-sref="admin">Back to Admin Panel</a>
