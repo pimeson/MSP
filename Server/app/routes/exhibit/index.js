@@ -2,6 +2,7 @@
 const Exhibit = require('../../../db/models/exhibit');
 const router = require('express').Router();
 const fs = require('fs');
+const sharp = require('sharp')
 const AltView = require('../../../db/models/altView');
 
 module.exports = router;

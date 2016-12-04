@@ -92,7 +92,7 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
   }
 
   $scope.deleteProject = () => {
-    let confirmation = window.prompt("Are you sure?", "Please enter the name of the project (" + project.title +") to confirm.");
+    let confirmation = window.prompt("Are you sure? Please enter the name of the project (" + project.title +") to confirm.");
     if (confirmation === project.title){
       projectFactory.deleteProject($stateParams.projectId)
       .then(deletedProject => $state.go('admin'));
