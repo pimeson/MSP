@@ -5,7 +5,7 @@ app.config($stateProvider => {
     controller: 'projectMgmtCtrl',
     resolve: {
       exhibits: function ($stateParams, exhibitFactory) {
-        return exhibitFactory.getAllByProjectId($stateParams.projectId);
+        return exhibitFactory.findAllByProjectId($stateParams.projectId);
       },
       project: function ($stateParams, projectFactory) {
         return projectFactory.findById($stateParams.projectId);
@@ -61,7 +61,7 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
   };
 
   $scope.getGalleries = () => {
-    exhibitFactory.getAllByProjectId($stateParams.projectId)
+    exhibitFactory.findAllByProjectId($stateParams.projectId)
       .then(gettingExhibits => {
         $scope.exhibits = gettingExhibits;
         $scope.$evalAsync();

@@ -6,6 +6,7 @@ const User = require('./models/user');
 const Exhibit = require('./models/exhibit');
 const Project = require('./models/project');
 const AltView = require('./models/altView');
+const download = require('./models/download');
 
 
 Exhibit.belongsTo(Project, {
@@ -13,13 +14,10 @@ Exhibit.belongsTo(Project, {
   onDelete: 'cascade',
   hooks: true
 });
-
 Project.hasMany(Exhibit, {
   onDelete: 'cascade',
   hooks: true
 })
-
-
 Exhibit.hasMany(AltView, {
   onDelete: 'cascade',
   hooks: true

@@ -5,7 +5,7 @@ app.config( $stateProvider => {
     templateUrl: 'js/home/home.html',
     resolve: {
       allProjects: function(projectFactory){
-        return projectFactory.getAllWithExhibits()
+        return projectFactory.findAllWithExhibits()
       }
     }
   })

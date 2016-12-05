@@ -22,7 +22,7 @@ app.factory('exhibitFactory', function($http){
     .then(res => res.data);
   }
 
-  exObj.getAllByProjectId = (projId) => {
+  exObj.findAllByProjectId = (projId) => {
     return $http.get('/api/exhibit/project/'+projId)
     .then(res => res.data);
   }

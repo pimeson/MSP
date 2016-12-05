@@ -18,6 +18,18 @@
     <h1>Manage About Page</h1>
     <a id="downloadLink" target="_self" href="/about/about.html" download="about.html">Download current about page</a>
     <md-button class="md-raised" ngf-select="uploadAboutHtml($file)" ngf-accept="'.html'">Update About Page</md-button>
+    <div id="portraitContainer">
+      <img id="portrait" ng-src="/about/portrait/portrait.jpg" alt="portrait">
+    </div>
+    <md-button class="md-raised" ngf-select="uploadPortrait($file)">Update Portrait</md-button>
+    <h3>Manage Downloads</h3>
+     <label>new download title:<input type="text" name="dlTitle" ng-model="dlTitle"></label>
+    <md-button class="md-raised" ngf-select="newDownload($file)">Add Download</md-button>
+    <ul>
+      <li ng-repeat="download in downloads">
+        {{download.title}} <a ng-click="deleteDl(download.id)">X</a>
+      </li>
+    </ul>
   </div>
 
 </div>

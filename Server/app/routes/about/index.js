@@ -1,5 +1,6 @@
 const Express = require('express');
 const router = Express.Router();
+const Download = require('../../../db/models/download');
 const fs = require('fs');
 
 module.exports = router;
@@ -23,6 +24,35 @@ router.post('/aboutHtml', multer({
   fs.unlinkSync('./public/about/about.html')
   fs.renameSync(req.file.path, './public/about/about.html');
   res.sendStatus(204);
+})
+
+router.post('/upload', multer({
+  storage: storage
+}).single('file'), function (req, res, next) {
+  Download.create({title: req.body.title, fileName: req.file.originalname, filePath: req.file.path})
+  .then(creatingDownload => {
+    res.sendStatus(204);
+  })
+  .catch(next);
+})
+
+router.get('/downloads', function(req, res, next){
+  Download.findAll()
+  .then(findingDownloads => res.send(findingDownloads))
+  .catch(next);
+})
+
+router.delete('/downloads/:id', function(req, res, next){
+  Download.destroy({
+    where: {
+      id: req.params.id
+    },
+    individualHooks: true
+  })
+  .then(deletingDownload => {
+    res.sendStatus(204);
+  })
+  .catch(next)
 })
 
 router.post('/aboutPortrait', multer({

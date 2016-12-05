@@ -2,7 +2,7 @@ app.factory('projectFactory', function($http){
   
   const projObj = {};
 
-  projObj.getAll = () => {
+  projObj.findAll = () => {
     return $http.get('/api/project/')
     .then(res => res.data)
   }
@@ -12,7 +12,7 @@ app.factory('projectFactory', function($http){
     .then(res => res.data)
   }
 
-  projObj.getAllWithExhibits = () => {
+  projObj.findAllWithExhibits = () => {
     return $http.get('/api/project/withExhibits')
     .then(res => res.data)
   }

@@ -5,7 +5,7 @@ app.config( $stateProvider => {
     templateUrl: 'js/gallery/gallery.html',
     resolve: {
       exhibits: function($stateParams, exhibitFactory){
-        return exhibitFactory.getAllByProjectId($stateParams.projId);
+        return exhibitFactory.findAllByProjectId($stateParams.projId);
       },
       project: function($stateParams, projectFactory){
         return projectFactory.findById($stateParams.projId);
