@@ -45,6 +45,7 @@
     "pg-hstore": "^2.3.2",
     "pg-native": "^1.10.0",
     "sequelize": "^3.27.0",
+    "sharp": "^0.16.2",
     "ui-bootstrap": "^0.1.5"
   }
 }
