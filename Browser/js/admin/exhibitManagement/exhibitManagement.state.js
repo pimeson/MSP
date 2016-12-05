@@ -48,4 +48,16 @@ app.controller('exhibitManagementCtrl', function($state, $scope, exhibit, exhibi
       })
     }
   }
+
+  $scope.editSpecs = () => {
+    $scope.$evalAsync();
+    if($scope.exForm.exSpecs){
+      exhibitFactory.updateById(exhibit.id, {specs: $scope.exForm.exSpecs.split(', ')})
+      .then(updatingSpecs => {
+        $scope.exhibit.specs = $scope.exForm.exSpecs;
+        $scope.exForm.exSpecs = "";
+      })
+    }
+  }
+  
 })

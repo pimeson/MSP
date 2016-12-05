@@ -22,14 +22,22 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
   $scope.projForm = {};
 
   $scope.upload = (file) => {
+    console.log($scope.exSpecs, typeof($scope.exSpecs));
+    let specs;
+    if($scope.exSpecs){
+      specs = $scope.exSpecs.split(', ')
+    } else {
+      specs = [];
+    }
     Upload.upload({
-      url: 'https://matthewspiegelman.herokuapp.com/api/exhibit/',
+      url: 'http://localhost:1337/api/exhibit/',
       data: {
         title: $scope.exTitle,
         file: file,
         projId: $stateParams.projectId,
         description: $scope.exDesc,
-        dirName: project.dirName
+        dirName: project.dirName,
+        specs: specs
       }
     }).then( (resp) => {
       /*sample config:
@@ -43,6 +51,7 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
       size: 547530 }*/
       $scope.exTitle = "";
       $scope.exDesc = "";
+      $scope.exSpecs = "";
       $scope.getGalleries();
       console.log('Success ' + resp.config.data + 'uploaded. Response: ' + resp.data);
     }, (resp) => {

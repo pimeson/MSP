@@ -20,6 +20,10 @@ const db = require('../_db');
   },
   date: {
     type: Sequelize.DATEONLY
+  },
+  specs: {
+    type: Sequelize.ARRAY(Sequelize.STRING),
+    defaultValue: []
   }
   ,
   order: {

@@ -21,7 +21,7 @@ const storage = multer.diskStorage({
 })
 
 router.post('/',multer({storage: storage}).single('file'),  function (req, res, next) {
-  Exhibit.create({title: req.body.title, fileName: req.file.originalname, description: req.body.description, imageSrc: './public/uploads/'+req.body.dirName+'/'+req.file.originalname, projectId: req.body.projId})
+  Exhibit.create({title: req.body.title, fileName: req.file.originalname, description: req.body.description, imageSrc: './public/uploads/'+req.body.dirName+'/'+req.file.originalname, specs: req.body.specs, projectId: req.body.projId})
     .then(createdExhibit => {
       fs.renameSync(req.file.path, './public/uploads/'+req.body.dirName+'/'+req.file.originalname);
       res.send(204);

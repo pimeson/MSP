@@ -6,8 +6,9 @@
   <p>{{project.description}}</p>
   <textarea class="adminProjDesc" ng-model="projForm.projectDesc"></textarea>
   <a ng-click="editDescContent()">submit new description</a>
-  <label>Exhibit Title:<input type="text" name="exTitle" ng-model="exTitle"></label>
-  <label>Exhibit Description:<textArea type="text" name="projDesc" ng-model="exDesc"></textarea></label>
+  <label>Exhibit Title:</label><input type="text" name="exTitle" ng-model="exTitle">
+  <label>Exhibit Description:</label><textArea type="text" name="exDesc" ng-model="exDesc"></textarea>
+  <label>Exhibit Specs:</label><textArea type="text" name="exSpecs" ng-model="exSpecs" placeholder="separate values by a comma (eg: 2010, 50mm f1.4 1/320s, Film)"></textarea>
   <md-button class="md-raised" ngf-select="upload($file)" ngf-accept="'image/*'">Upload on file select</md-button>
   <div id="adminExhibits">
   <div class="adminExhibit" ng-repeat="exhibit in exhibits">

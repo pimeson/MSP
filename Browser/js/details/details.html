@@ -31,10 +31,7 @@
     <p id="picDesc">{{exhibit.description}}</p>
     <div id="picDetails">
       <ul id="picSpecs">
-        <li>2010</li>
-        <li>C-Print</li>
-        <li>ed5+2ap</li>
-        <li>24" x 20"</li>
+        <li ng-repeat="spec in exhibit.specs">{{spec}}</li>
       </ul>
     </div>
   </div>

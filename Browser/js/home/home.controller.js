@@ -1,29 +1,29 @@
 app.controller('homeCtrl', function ($scope, $state, $rootScope, allProjects) {
 
   allProjects
-  .sort((x, y) => x.order > y.order ? 1 : -1)
-  .map(project => {
-    project.num = 0;
-    return project;
-  })
-  
+    .sort((x, y) => x.order > y.order ? 1 : -1)
+    .map(project => {
+      project.exhibits.sort((a, b) => a.order > b.order ? 1 : -1 );
+      project.num = 0;
+      return project;
+    })
+
+  console.log(allProjects);
+
   $scope.allProjects = allProjects;
 
   $rootScope.$state = $state;
 
-  $scope.incrementer = (num, maxNum) => {
-    if (typeof (num.count) !== 'number') num.count = 0;
-    num.count++;
-    if (num.count > 50) {
-      num.count = 0;
-      if (num.num < maxNum) {
-        num.num += 1;
-      } else {
-        num.num = 0;
-      }
-      $scope.$evalAsync();
+  const incrementer = (num, maxNum) => {
+    if (num.num < maxNum) {
+      num.num += 1;
+    } else {
+      num.num = 0;
     }
+    $scope.$evalAsync();
   };
+
+  $scope.incrementer = _.debounce(incrementer, 50);
 
   let loaded = false;
   console.log($state.$current.name);
