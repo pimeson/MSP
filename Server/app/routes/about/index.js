@@ -2,6 +2,7 @@ const Express = require('express');
 const router = Express.Router();
 const Download = require('../../../db/models/download');
 const fs = require('fs');
+const sharp = require('sharp');
 
 module.exports = router;
 
@@ -58,8 +59,9 @@ router.delete('/downloads/:id', function(req, res, next){
 router.post('/aboutPortrait', multer({
   storage: storage
 }).single('file'), function (req, res, next) {
+  const transformer = sharp().resize(2000).max()
   fs.unlinkSync('./public/about/portrait/portrait.jpg')
-  fs.renameSync(req.file.path, './public/about/portrait/portrait.jpg');
+  fs.createReadStream(req.file.path).pipe(transformer).pipe(fs.createWriteStream('./public/about/portrait/portrait.jpg'));
   res.sendStatus(204);
 })
   

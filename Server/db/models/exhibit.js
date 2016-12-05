@@ -30,6 +30,11 @@ const db = require('../_db');
     type: Sequelize.INTEGER,
   }
 }, {
+  getterMethods: {
+    thumbnail: function(){
+      return this.getDataValue('imageSrc').slice(0,-4)+"mini.jpg"
+    }
+  },
   hooks: {
     beforeCreate: (exhibit) => {
       return Exhibit.findAndCountAll({
@@ -44,6 +49,7 @@ const db = require('../_db');
     beforeDestroy: (exhibit) => {
       console.log("cascading?")
       fs.unlinkSync('./'+exhibit.dataValues.imageSrc);
+      fs.unlinkSync('./'+exhibit.dataValues.imageSrc.slice(0,-4)+"mini.jpg");
       return Exhibit.findAll({
           where: {
             projectId: exhibit.projectId,

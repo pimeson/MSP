@@ -4,6 +4,7 @@ const router = require('express').Router();
 const fs = require('fs');
 const sharp = require('sharp')
 const AltView = require('../../../db/models/altView');
+const bluebird = require('bluebird');
 
 module.exports = router;
 
@@ -24,7 +25,16 @@ router.post('/',multer({storage: storage}).single('file'),  function (req, res, 
   Exhibit.create({title: req.body.title, fileName: req.file.originalname, description: req.body.description, imageSrc: './public/uploads/'+req.body.dirName+'/'+req.file.originalname, specs: req.body.specs, projectId: req.body.projId})
     .then(createdExhibit => {
       fs.renameSync(req.file.path, './public/uploads/'+req.body.dirName+'/'+req.file.originalname);
-      res.send(204);
+      let newPath = './public/uploads/'+req.body.dirName+'/'+req.file.originalname
+      return newPath;
+    })
+    .then(movingFile => {
+      console.log(movingFile);
+      const transformer = sharp().resize(2000).max()
+      fs.createReadStream(movingFile).pipe(transformer).pipe(fs.createWriteStream('./public/uploads/'+req.body.dirName+'/'+req.file.originalname.slice(0, -4)+'mini.jpg'));
+    })
+    .then(makingThumbnail => {
+      res.sendStatus(204);
     })
     .catch(next);
 
