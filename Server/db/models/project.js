@@ -1,8 +1,9 @@
 const Sequelize = require('sequelize');
 const fs = require('fs');
 const db = require('../_db');
+const Promise = require('bluebird');
 
-module.exports = db.define('project', {
+const Project = db.define('project', {
   title: {
     type: Sequelize.STRING,
     allowNull: false
@@ -15,10 +16,21 @@ module.exports = db.define('project', {
   },
   dirPath: {
     type: Sequelize.TEXT
+  },
+  order: {
+    type: Sequelize.INTEGER
   }
 }, {
   hooks: {
-    beforeDestroy: (project) => { 
+    beforeCreate: (project) => {
+      //console.log(project);
+      return Project.findAndCountAll({})
+      .then(foundAndCounted => {
+        console.log(foundAndCounted.count);
+        return project.setDataValue('order', foundAndCounted.count + 1)
+      });
+    },
+    beforeDestroy: (project) => {
         let path = project.dirPath;
         if (fs.existsSync(path)) {
           fs.readdirSync(path).forEach(function (file) {
@@ -31,6 +43,22 @@ module.exports = db.define('project', {
           });
           fs.rmdirSync(path);
         }
+        return Project.findAll({
+          where: {
+            order: {
+              $gt: project.order
+            }
+          }
+        })
+        .then(reordering => {
+          let updatingProjects = reordering.map( project => {
+            project.order--;
+            return project.save();
+          })
+          return Promise.all(updatingProjects);
+        })
       }
     }
 });
+
+module.exports = Project;

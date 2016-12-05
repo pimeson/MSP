@@ -1,19 +1,29 @@
 <div id="AdminPanel">
-  
   <div id="projectPanel" style="">
     <h1>Manage Projects</h1>
     <form name="projectForm" id="projectForm">
-      <label>project title:<input type="text" name="projTitle" ng-model="projTitle"></label>
-      <label>project description:<textArea type="text" name="projDesc" ng-model="projDesc"></textarea></label>
+      <md-input-container><label>project title</label><input type="text" name="projTitle" ng-model="projTitle"></md-input-container>
+      <label>project description</label><textArea type="text" name="projDesc" ng-model="projDesc"></textarea>
     </form>
-    <md-button ng-click="makeProject(projTitle, projDesc)">Make project</md-button>
+    <md-button class="md-raised" ng-click="makeProject(projTitle, projDesc)">Make project</md-button>
     <ul>
       <li ng-repeat="project in projects">
         <a ui-sref="adminProject({ projectId: project.id })">{{$index+1}} Title:{{project.title}}</a>
       </li>
     </ul>
+    <div id="switch">
+    <md-input-container>
+      <label>Project Pos 1</label>
+      <input type="number" ng-model="pos1" required>
+    </md-input-container>
+    <md-input-container>
+      <label>Project Pos 2</label>
+      <input type="number" ng-model="pos2" required>
+    </md-input-container>
+    </div>
+    <md-button class="md-raised" ng-click="switch(pos1, pos2)">Switch Order</md-button>
   </div>
-   
+
   <div id="aboutPanel">
     <h1>Manage About Page</h1>
     <a id="downloadLink" target="_self" href="/about/about.html" download="about.html">Download current about page</a>
@@ -23,7 +33,7 @@
     </div>
     <md-button class="md-raised" ngf-select="uploadPortrait($file)">Update Portrait</md-button>
     <h3>Manage Downloads</h3>
-     <label>new download title:<input type="text" name="dlTitle" ng-model="dlTitle"></label>
+     <md-input-container><label>new download title</label><input type="text" name="dlTitle" ng-model="dlTitle"></md-input-container>
     <md-button class="md-raised" ngf-select="newDownload($file)">Add Download</md-button>
     <ul>
       <li ng-repeat="download in downloads">
@@ -31,5 +41,4 @@
       </li>
     </ul>
   </div>
-
 </div>

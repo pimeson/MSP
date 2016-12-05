@@ -16,6 +16,7 @@ app.config($stateProvider => {
 
 app.controller('adminCtrl', function ($scope, projectFactory, projects, Upload, $state, downloads, fileFactory) {
 
+  projects.sort((x, y) => x.order > y.order ? 1 : -1)
   $scope.projects = projects;
   $scope.downloads = downloads;
 
@@ -87,4 +88,15 @@ app.controller('adminCtrl', function ($scope, projectFactory, projects, Upload, 
       .then(deletingFile => $state.reload())
   }
 
+  $scope.switch = (x, y) => {
+    if( x <= $scope.projects.length && x > 0 && y <= $scope.projects.length && y > 0 && x !== y ){
+      let firstSwitch = projectFactory.updateById($scope.projects[x-1].id, {order: y});
+      let secondSwitch = projectFactory.updateById($scope.projects[y-1].id, {order: x});
+      Promise.all(firstSwitch, secondSwitch)
+      .then(switched => $state.reload());
+    } else {
+      console.log($scope.projects, x, y);
+      console.log("gross");
+    }
+  }
 })

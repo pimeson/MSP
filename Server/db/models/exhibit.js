@@ -3,7 +3,7 @@ const fs = require('fs');
 
 const db = require('../_db');
 
-module.exports = db.define('exhibit', {
+ const Exhibit = db.define('exhibit', {
   title: {
     type: Sequelize.STRING
   },
@@ -21,15 +21,31 @@ module.exports = db.define('exhibit', {
   date: {
     type: Sequelize.DATEONLY
   }
+  ,
+  order: {
+    type: Sequelize.INTEGER,
+  }
 }, {
   hooks: {
-    // beforeBulkDestroy: (exhibit, options) => {
-    //   return console.log(exhibit);
-    // }
-    // ,
+    beforeCreate: (exhibit) => {
+      return Exhibit.findAndCountAll({
+        where: {
+          projectId: exhibit.projectId
+        }
+      })
+      .then(foundAndCounted => {
+        return exhibit.setDataValue('order', foundAndCounted.count + 1)
+      })
+    },
+    beforeBulkDestroy: (exhibit, options) => {
+      return console.log(exhibit);
+    }
+    ,
     beforeDestroy: (exhibit) => {
       console.log("cascading?")
       fs.unlinkSync('./'+exhibit.dataValues.imageSrc);
     }
   }
 });
+
+module.exports = Exhibit

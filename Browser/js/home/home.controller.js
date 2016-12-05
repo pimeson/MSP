@@ -1,6 +1,8 @@
 app.controller('homeCtrl', function ($scope, $state, $rootScope, allProjects) {
 
-  allProjects.map(project => {
+  allProjects
+  .sort((x, y) => x.order > y.order ? 1 : -1)
+  .map(project => {
     project.num = 0;
     return project;
   })
