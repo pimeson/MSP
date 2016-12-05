@@ -12,10 +12,22 @@
   <div id="adminExhibits">
   <div class="adminExhibit" ng-repeat="exhibit in exhibits">
     <img ui-sref="exhibitManagement({projId: project.id, id: exhibit.id})" class="exhibitImages" ng-src="{{exhibit.imageSrc.slice(9)}}">
-    <p>{{exhibit.title}}</p>
+    <p>{{$index+1}} {{exhibit.title}}</p>
     <a ng-click="deleteExhibit(exhibit.id)">delete</a>
   </div>
   </div>
+  <div id="switch">
+    <md-input-container>
+      <label>Project Pos 1</label>
+      <input type="number" ng-model="pos1" required>
+    </md-input-container>
+    <md-input-container>
+      <label>Project Pos 2</label>
+      <input type="number" ng-model="pos2" required>
+    </md-input-container>
+
+    <md-button class="md-raised" ng-click="switch(pos1, pos2)">Switch Order</md-button>
+  </div>
   <a ng-click="deleteProject()">Delete this project.</a>
   <a ui-sref="admin">Back to Admin Panel</a>
-</div>
+      </div>

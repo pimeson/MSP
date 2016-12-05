@@ -37,13 +37,24 @@ const db = require('../_db');
         return exhibit.setDataValue('order', foundAndCounted.count + 1)
       })
     },
-    beforeBulkDestroy: (exhibit, options) => {
-      return console.log(exhibit);
-    }
-    ,
     beforeDestroy: (exhibit) => {
       console.log("cascading?")
       fs.unlinkSync('./'+exhibit.dataValues.imageSrc);
+      return Exhibit.findAll({
+          where: {
+            projectId: exhibit.projectId,
+            order: {
+              $gt: exhibit.order
+            }
+          }
+        })
+        .then(reordering => {
+          let updatingExhibits = reordering.map( exhibits => {
+            exhibits.order--;
+            return exhibits.save();
+          })
+          return Promise.all(updatingExhibits);
+        })
     }
   }
 });

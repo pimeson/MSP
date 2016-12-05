@@ -16,8 +16,8 @@ app.config($stateProvider => {
 
 app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $stateParams, exhibitFactory, exhibits, project, $state) {
   // upload on file select or drop
+  $scope.exhibits = exhibits.sort((x, y) => x.order > y.order ? 1 : -1);
 
-  $scope.exhibits = exhibits;
   $scope.project = project;
   $scope.projForm = {};
 
@@ -99,6 +99,18 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
     if (confirmation === project.title){
       projectFactory.deleteProject($stateParams.projectId)
       .then(deletedProject => $state.go('admin'));
+    }
+  }
+
+  $scope.switch = (x, y) => {
+    if( x <= $scope.exhibits.length && x > 0 && y <= $scope.exhibits.length && y > 0 && x !== y ){
+      let firstSwitch = exhibitFactory.updateById($scope.exhibits[x-1].id, {order: y});
+      let secondSwitch = exhibitFactory.updateById($scope.exhibits[y-1].id, {order: x});
+      Promise.all(firstSwitch, secondSwitch)
+      .then(switched => $state.reload());
+    } else {
+      console.log($scope.exhibits, x, y);
+      console.log("gross");
     }
   }
 

@@ -29,12 +29,16 @@ app.controller('adminCtrl', function ($scope, projectFactory, projects, Upload, 
   }
 
   $scope.makeProject = (title, desc) => {
+    if(title){
     return projectFactory.makeProject(title, desc)
       .then(makingproject => {
         $scope.projTitle = '';
         $scope.projDesc = '';
         $scope.findAll();
       })
+    } else {
+      alert("Projects must have a title!");
+    }
   };
 
   $scope.uploadAboutHtml = (file) => {
