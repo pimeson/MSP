@@ -60,8 +60,8 @@ router.post('/aboutPortrait', multer({
   storage: storage
 }).single('file'), function (req, res, next) {
   const transformer = sharp().resize(2000).max()
-  fs.unlinkSync('./public/about/portrait/portrait.jpg')
-  fs.createReadStream(req.file.path).pipe(transformer).pipe(fs.createWriteStream('./public/about/portrait/portrait.jpg'));
-  res.sendStatus(204);
+  let deletingImage = fs.unlink('./public/about/portrait/portrait.jpg',() => console.log('deleted portrait'));
+  let convertingPortrait = fs.createReadStream(req.file.path).pipe(transformer).toFile('./public/about/portrait/portrait.jpg');
+  Promise.all([deletingImage, convertingPortrait])
+  .then( updatingPortrait => res.sendStatus(204));
 })
-  

@@ -8,6 +8,13 @@ const bluebird = require('bluebird');
 
 module.exports = router;
 
+const streamToPromise = stream => {
+  return new Promise(function (resolve, reject) {
+    stream.on("end", resolve);
+    stream.on("error", reject);
+  });
+}
+
 const multer = require('multer');
 
 const storage = multer.diskStorage({
@@ -17,30 +24,40 @@ const storage = multer.diskStorage({
   filename: (req, file, cb) => {
     console.log(file);
     let datetimestamp = Date.now();
-    cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1]);
+    cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length - 1]);
   }
 })
 
-router.post('/',multer({storage: storage}).single('file'),  function (req, res, next) {
-  Exhibit.create({title: req.body.title, fileName: req.file.originalname, description: req.body.description, imageSrc: './public/uploads/'+req.body.dirName+'/'+req.file.originalname, specs: req.body.specs, projectId: req.body.projId})
-    .then(createdExhibit => {
-      fs.renameSync(req.file.path, './public/uploads/'+req.body.dirName+'/'+req.file.originalname);
-      let newPath = './public/uploads/'+req.body.dirName+'/'+req.file.originalname
-      return newPath;
-    })
-    .then(movingFile => {
-      console.log(movingFile);
-      const transformer = sharp().resize(2000).max()
-      fs.createReadStream(movingFile).pipe(transformer).pipe(fs.createWriteStream('./public/uploads/'+req.body.dirName+'/'+req.file.originalname.slice(0, -4)+'mini.jpg'));
-    })
-    .then(makingThumbnail => {
-      res.sendStatus(204);
-    })
-    .catch(next);
+router.post('/', multer({
+  storage: storage
+}).single('file'), function (req, res, next) {
+  
+  Exhibit.create({
+    title: req.body.title,
+    fileName: req.file.originalname,
+    description: req.body.description,
+    imageSrc: './public/uploads/' + req.body.dirName + '/' + req.file.originalname,
+    specs: req.body.specs,
+    projectId: req.body.projId
+  })
+  .then(creatingExhibit => {
 
+  let renaming = fs.rename(req.file.path, './public/uploads/' + req.body.dirName + '/' + req.file.originalname, () => console.log('done!'));
+
+  let newPath = './public/uploads/' + req.body.dirName + '/' + req.file.originalname
+
+  const transformer = sharp().resize(2000).max()
+
+  let resizing = fs.createReadStream(newPath).pipe(transformer).toFile('./public/uploads/' + req.body.dirName + '/' + req.file.originalname.slice(0, -4) + 'mini.jpg');
+
+  return Promise.all([renaming, resizing])
+
+  })
+  .then(() => res.sendStatus(204))
+  .catch(next);
   // console.log(req.body); //form fields
-	// console.log(req.file.path); //form files
-	// res.status(204).end();
+  // console.log(req.file.path); //form files
+  // res.status(204).end();
 })
 
 router.get('/', function (req, res, next) {
@@ -61,13 +78,13 @@ router.get('/project/:id', function (req, res, next) {
 
 router.get('/project/withAltViews/:id', function (req, res, next) {
   Exhibit.findAll(
-    
-    {
-      include: [AltView],
-      where: {
-        projectId: req.params.id
-      }
-    })
+
+      {
+        include: [AltView],
+        where: {
+          projectId: req.params.id
+        }
+      })
     .then(findingExhibits => res.send(findingExhibits))
     .catch(next);
 })
@@ -86,18 +103,21 @@ router.delete('/:id', function (req, res, next) {
   // })
   // .then(deletingExhibitFile => {
   Exhibit.destroy({
-    where:{id: req.params.id}, individualHooks: true
-  })
-  .then(deletingExhibit => res.sendStatus(204))
-  .catch(next);
+      where: {
+        id: req.params.id
+      },
+      individualHooks: true
+    })
+    .then(deletingExhibit => res.sendStatus(204))
+    .catch(next);
 })
 
-router.put('/:id', function(req, res, next) {
+router.put('/:id', function (req, res, next) {
   Exhibit.update(req.body, {
-    where: {
-      id: req.params.id
-    }
-  })
-  .then(updating => res.sendStatus(200))
-  .catch(next)
+      where: {
+        id: req.params.id
+      }
+    })
+    .then(updating => res.sendStatus(200))
+    .catch(next)
 })

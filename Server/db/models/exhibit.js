@@ -32,7 +32,11 @@ const db = require('../_db');
 }, {
   getterMethods: {
     thumbnail: function(){
-      return this.getDataValue('imageSrc').slice(0,-4)+"mini.jpg"
+      if(this.getDataValue('imageSrc')){
+        return this.getDataValue('imageSrc').slice(0,-4)+"mini.jpg"
+      } else {
+        return this.getDataValue('imageSrc')
+      }
     }
   },
   hooks: {
