@@ -7,7 +7,7 @@
       <span class="galContainer "ng-repeat="exhibit in exhibits">
       <div class="galImageContainer underlay underlay-0">
       <div ng-mouseenter="exhibit.showTitle = true" ng-mouseleave="exhibit.showTitle = false" class="galImage first underlay underlay-0">
-      <img ui-sref="details({projTitle: project.title, projId: project.id, exhibitId: exhibit.id})" class="galImages" ng-src="{{exhibit.thumbnail.slice(9)}}">
+      <img ui-sref="details({projTitle: project.title, projId: project.id, exhibitId: exhibit.id})" class="galImages" ng-src="{{exhibit.thumbnail}}">
       <p class="exhibitTitle" ng-show="exhibit.showTitle">{{exhibit.title}}</p>
       </div>
       
@@ -15,8 +15,8 @@
      
       </span>
       <div>
-        <div class="galDesc" ng-show="!hide">
-          <p id="galText">{{project.description}}</p>
+        <div class="galDesc" id="noscroll" ng-show="!hide">
+          <p id="galText noscroll">{{project.description}}</p>
           <p ng-click="hide = true" class="hideGalDesc">hide</p>
         </div>
       </div>

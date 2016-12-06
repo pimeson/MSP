@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const AltView = require('../../../db/models/altView');
 const Exhibit = require('../../../db/models/exhibit');
+const sharp = require('sharp')
 const fs = require('fs');
 
 module.exports = router;
@@ -14,18 +15,36 @@ const storage = multer.diskStorage({
   filename: (req, file, cb) => {
     console.log(file);
     let datetimestamp = Date.now();
-    cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1]);
+    cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length - 1]);
   }
 })
 
-router.post('/',multer({storage: storage}).single('file'),  function (req, res, next) {
-  AltView.create({title: req.body.title, type: req.body.type, fileName: req.file.originalname, description: req.body.description, imageSrc: req.file.path, exhibitId: req.body.exhibitId, projectId: req.body.projectId})
-    .then(createdAltView => res.sendStatus(200))
+router.post('/', multer({
+  storage: storage
+}).single('file'), function (req, res, next) {
+  let timeStamp = Date.now();
+  let newPath = './public/uploads/' + req.body.dirName + '/' + timeStamp + req.file.originalname;
+  AltView.create({
+      title: req.body.title,
+      type: req.body.type,
+      fileName: req.file.originalname,
+      description: req.body.description,
+      imageSrc: newPath,
+      exhibitId: req.body.exhibitId,
+      projectId: req.body.projectId
+    })
+    .then(creatingAltView => {
+      let renaming = fs.rename(req.file.path,  newPath, () => console.log('done!'));
+      const transformer = sharp().resize(500, 500).max()
+      let resizing = fs.createReadStream(newPath).pipe(transformer).toFile(newPath.slice(0, -4) + 'mini.jpg');
+      return Promise.all([renaming, resizing])
+    })
+    .then(makingThumbnailAndRenaming => res.sendStatus(200))
     .catch(next);
 
   // console.log(req.body); //form fields
-	// console.log(req.file.path); //form files
-	// res.status(204).end();
+  // console.log(req.file.path); //form files
+  // res.status(204).end();
 })
 
 router.get('/', function (req, res, next) {
@@ -36,19 +55,21 @@ router.get('/', function (req, res, next) {
 
 router.delete('/:id', function (req, res, next) {
   AltView.destroy({
-      where:{id: req.params.id},
+      where: {
+        id: req.params.id
+      },
       individualHooks: true
-  })
-  .then(deletingAltView => res.sendStatus(204))
-  .catch(next);
+    })
+    .then(deletingAltView => res.sendStatus(204))
+    .catch(next);
 })
 
 router.get('/exhibit/:id', function (req, res, next) {
   AltView.findAll({
-    where: {
-      exhibitId: req.params.exhibitId
-    }
-  })
+      where: {
+        exhibitId: req.params.exhibitId
+      }
+    })
     .then(findingAltViews => res.send(findingAltViews))
     .catch(next);
 })
@@ -58,4 +79,3 @@ router.get('/:id', function (req, res, next) {
     .then(findingAltView => res.send(findingAltView))
     .catch(next);
 })
-

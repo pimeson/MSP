@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const fs = require('fs');
-
+const AltView = require('./altView');
 const db = require('../_db');
 
  const Exhibit = db.define('exhibit', {
@@ -33,7 +33,7 @@ const db = require('../_db');
   getterMethods: {
     thumbnail: function(){
       if(this.getDataValue('imageSrc')){
-        return this.getDataValue('imageSrc').slice(0,-4)+"mini.jpg"
+        return (this.getDataValue('imageSrc').slice(0,-4)+"mini.jpg").slice(9);
       } else {
         return this.getDataValue('imageSrc')
       }
@@ -54,7 +54,13 @@ const db = require('../_db');
       console.log("cascading?")
       fs.unlinkSync('./'+exhibit.dataValues.imageSrc);
       fs.unlinkSync('./'+exhibit.dataValues.imageSrc.slice(0,-4)+"mini.jpg");
-      return Exhibit.findAll({
+      let destroyingAlts = AltView.destroy(
+        {
+          where: {exhibitId: exhibit.id},
+          individualHooks: true
+        }
+      )
+      let findingExhibits = Exhibit.findAll({
           where: {
             projectId: exhibit.projectId,
             order: {
@@ -62,9 +68,10 @@ const db = require('../_db');
             }
           }
         })
+        Promise.all([findingExhibits, destroyingAlts])
         .then(reordering => {
-          let updatingExhibits = reordering.map( exhibits => {
-            exhibits.order--;
+          let updatingExhibits = reordering[0].map( exhibits => {
+            exhibits.order--
             return exhibits.save();
           })
           return Promise.all(updatingExhibits);

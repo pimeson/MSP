@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-
+const fs = require('fs');
 const db = require('../_db');
 
 module.exports = db.define('altView', {
@@ -20,10 +20,21 @@ module.exports = db.define('altView', {
     type: Sequelize.STRING
   }
 }, {
+  getterMethods: {
+    thumbnail: function(){
+       if(this.getDataValue('imageSrc')){
+        return (this.getDataValue('imageSrc').slice(0,-4)+"mini.jpg").slice(9);
+      } else {
+        return this.getDataValue('imageSrc')
+      }
+    }
+  },
   hooks: {
     beforeDestroy: (altView) => {
-      if(altView.type === 'picture'){
+      console.log(altView);
+      if(altView.dataValues.type === 'Picture'){
         fs.unlinkSync('./'+altView.dataValues.imageSrc);
+        fs.unlinkSync('./'+altView.dataValues.imageSrc.slice(0,-4)+"mini.jpg");
       }
     }
   }
