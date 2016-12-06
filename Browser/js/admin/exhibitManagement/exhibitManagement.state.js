@@ -68,7 +68,7 @@ app.controller('exhibitManagementCtrl', function($state, $scope, exhibit, exhibi
     $scope.$evalAsync();
     console.log("WHAT?")
     Upload.upload({
-      url: 'http://localhost:1337/api/altview/',
+      url: 'https://matthewspiegelman.herokuapp.com/api/altview/',
       data: {
         title: $scope.altForm.title,
         file: file,
