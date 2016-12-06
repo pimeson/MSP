@@ -71,3 +71,8 @@
 .adminProjDesc {
   border: 2px black solid;
 }
+
+#altViewsMgmt {
+  display: flex;
+  flex-direction: column;
+}

@@ -1,4 +1,4 @@
-app.factory('altviewFactory', function($http){
+app.factory('altViewFactory', function($http){
 
   const altObj = {}
 

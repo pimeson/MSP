@@ -8,7 +8,7 @@ app.controller('DetailsCtrl', function ($scope, $rootScope, exhibit, project, $s
 
   $scope.projTitle = $stateParams.projTitle;
 
-  $scope.altViews = [{}, {}];
+  $scope.altViews = exhibit[0].altViews
 
   $scope.backToGallery = () => $state.go('gallery',{projId: exhibit[0].projectId});
 

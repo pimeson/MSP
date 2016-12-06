@@ -7,7 +7,7 @@ module.exports = db.define('altView', {
     type: Sequelize.STRING
   },
   type: {
-    type: Sequelize.ENUM('picture', 'video'),
+    type: Sequelize.ENUM('Picture', 'Video'),
     allowNull: false
   },
   fileName: {

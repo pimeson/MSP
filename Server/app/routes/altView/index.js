@@ -36,9 +36,10 @@ router.get('/', function (req, res, next) {
 
 router.delete('/:id', function (req, res, next) {
   AltView.destroy({
-      where:{id: req.params.id}
+      where:{id: req.params.id},
+      individualHooks: true
   })
-  .then(deletingExhibit => res.sendStatus(204))
+  .then(deletingAltView => res.sendStatus(204))
   .catch(next);
 })
 
@@ -54,7 +55,7 @@ router.get('/exhibit/:id', function (req, res, next) {
 
 router.get('/:id', function (req, res, next) {
   AltView.findById(req.params.id)
-    .then(findingaltView => res.send(findingaltView))
+    .then(findingAltView => res.send(findingAltView))
     .catch(next);
 })
 

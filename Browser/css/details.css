@@ -7,12 +7,12 @@
 
 .galleryBar {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   overflow-y: scroll;
   height: 70vh;
   width: 20vw;
   align-items: center;
-  justify-content: flex-end;
+  /*justify-content: flex-end;*/
   /* padding: 0vh 4vw 0vw 10vw; */
   margin-top: 20vh;
 }

@@ -5,20 +5,24 @@ app.config($stateProvider => {
     templateUrl: '/js/admin/exhibitManagement/exhibitManagement.html',
     controller: 'exhibitManagementCtrl',
     resolve: {
-      exhibit: function($stateParams,exhibitFactory){
+      exhibit: function($stateParams, exhibitFactory){
         return exhibitFactory.findById($stateParams.id)
+      },
+      project: function($stateParams, projectFactory){
+        return projectFactory.findById($stateParams.projId)
       }
     }
   })
 
 })
 
-app.controller('exhibitManagementCtrl', function($state, $scope, exhibit, exhibitFactory, $stateParams, Upload){
+app.controller('exhibitManagementCtrl', function($state, $scope, exhibit, exhibitFactory, $stateParams, Upload, project, altViewFactory){
 
   $scope.exhibit = exhibit[0];
   $scope.projId = $stateParams.projId;
 
   $scope.exForm = {};
+  $scope.altForm = {};
 
   $scope.deleteExhibit = () => {
     exhibitFactory.deleteById(exhibit[0].id)
@@ -61,19 +65,29 @@ app.controller('exhibitManagementCtrl', function($state, $scope, exhibit, exhibi
   }
 
   $scope.addAltView = (file) => {
+    $scope.$evalAsync();
+    console.log("WHAT?")
     Upload.upload({
-      url: 'http://localhost:1337/api/exhibit/',
+      url: 'http://localhost:1337/api/altview/',
       data: {
-        title: $scope.exTitle,
+        title: $scope.altForm.title,
         file: file,
         projectId: $stateParams.projId,
         exhibitId: $stateParams.id,
-        description: $scope.exDesc,
-        dirName: project.dirName,
-        specs: specs
+        description: $scope.altForm.desc,
+        type: $scope.altForm.type,
+        dirName: project.dirName
       }
     }).then( res => {
+      $state.reload();
+    })
+  }
 
+  $scope.deleteAltView = (index) => {
+    console.log(index);
+    altViewFactory.deleteById(index)
+    .then(deleting => {
+      $state.reload();
     })
   }
   
