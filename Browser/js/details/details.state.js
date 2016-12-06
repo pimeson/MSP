@@ -19,4 +19,7 @@ app.config($stateProvider => {
       });
     }
   })
+  .state('details.alt', {
+    templateUrl: 'js/details/details.alt.html'
+  })
 })

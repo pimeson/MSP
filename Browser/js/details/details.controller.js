@@ -3,12 +3,14 @@ app.controller('DetailsCtrl', function ($scope, $rootScope, exhibit, project, $s
   $scope.hover = false;
   $scope.collapsed = true;
 
-  $scope.exhibit = exhibit;
+  $scope.exhibit = exhibit[0];
   $scope.projDesc = project.description;
 
   $scope.projTitle = $stateParams.projTitle;
 
-  $scope.backToGallery = () => $state.go('gallery',{projId: exhibit.projectId});
+  $scope.altViews = [{}, {}];
+
+  $scope.backToGallery = () => $state.go('gallery',{projId: exhibit[0].projectId});
 
   $(document).ready(function () {
     $('#mainPicContainer').zoom({

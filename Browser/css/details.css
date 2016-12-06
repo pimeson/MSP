@@ -12,13 +12,17 @@
   height: 70vh;
   width: 20vw;
   align-items: center;
+  justify-content: flex-end;
   /* padding: 0vh 4vw 0vw 10vw; */
   margin-top: 20vh;
 }
 
+#noscroll::-webkit-scrollbar { 
+    display: none; 
+}
+
 #projDesc {
-  height: 65vh;
-  overflow-y: scroll;
+  height: 70vh;
 }
 
 .galleryImg {
@@ -37,6 +41,10 @@
   flex-direction: column;
   align-self: center;
   cursor: crosshair;
+}
+
+#target {
+  overflow: scroll !important;
 }
 
 #picDesc {

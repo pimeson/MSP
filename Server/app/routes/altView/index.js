@@ -35,17 +35,8 @@ router.get('/', function (req, res, next) {
 })
 
 router.delete('/:id', function (req, res, next) {
-  AltView.findById(req.params.id)
-  .then(findingAltView => {
-    if(findingAltView.type = 'photo'){
-      fs.unlinkSync('./' + findingAltView.imageSrc);
-    }
-    return;
-  })
-  .then(deletingAltViewFile => {
-     AltView.destroy({
+  AltView.destroy({
       where:{id: req.params.id}
-    })
   })
   .then(deletingExhibit => res.sendStatus(204))
   .catch(next);

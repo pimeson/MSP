@@ -76,13 +76,13 @@ router.get('/project/:id', function (req, res, next) {
     .catch(next);
 })
 
-router.get('/project/withAltViews/:id', function (req, res, next) {
+router.get('/:id/withAltViews', function (req, res, next) {
   Exhibit.findAll(
 
       {
         include: [AltView],
         where: {
-          projectId: req.params.id
+          id: req.params.id
         }
       })
     .then(findingExhibits => res.send(findingExhibits))

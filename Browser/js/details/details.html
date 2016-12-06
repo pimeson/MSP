@@ -2,10 +2,10 @@
   
   <div class=bar>
 
-  <div class="galleryBar">
+  <div class="galleryBar" id="noscroll">
     
-    <div class="galleryImg" ng-repeat="picture in projPictures">
-      <img class="galleryPic" ngsrc=<img src="http://placehold.it/90x160">
+    <div class="galleryImg" ng-repeat="altView in altViews">
+      <img ui-sref="details.alt" class="galleryPic" src="http://placehold.it/300x300">
     </div>
    
   </div>
@@ -24,7 +24,7 @@
     
     <h2 id="projTitle" ng-show="!hover">PROJECT DESCRIPTION <a id="collapseDesc" ng-click="collapsed = !collapsed">{{collapsed ? '+' : '-'}}</a></h2>
     <div id="projDesc">
-    <div id='target' ng-show="hover" style='height: 100vh; margin-top: 2.5vh;'></div>
+    <div id='target' ng-show="hover" style='height: 70vh; margin-top: 2.5vh; overflow-x: hidden !Important'></div>
     <p ng-show="!hover && !collapsed">{{projDesc}}</p>
     </div>
     <div id=picDescContainer>

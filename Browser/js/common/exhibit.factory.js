@@ -8,7 +8,7 @@ app.factory('exhibitFactory', function($http){
   }
 
   exObj.findById = (exhibitId) => {
-    return $http.get('/api/exhibit/' + exhibitId)
+    return $http.get('/api/exhibit/' + exhibitId + '/withAltViews')
     .then(res => res.data);
   }
 

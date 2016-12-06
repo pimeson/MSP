@@ -39,7 +39,7 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
         dirName: project.dirName,
         specs: specs
       }
-    }).then( (resp) => {
+    }).then( resp => {
       /*sample config:
       { fieldname: 'file',
       originalname: 'tumblr_oe4cfyH9XA1qeh7fdo9_1280.jpg',

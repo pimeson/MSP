@@ -22,7 +22,9 @@ module.exports = db.define('altView', {
 }, {
   hooks: {
     beforeDestroy: (altView) => {
-      fs.unlinkSync('./'+altView.dataValues.imageSrc);
+      if(altView.type === 'picture'){
+        fs.unlinkSync('./'+altView.dataValues.imageSrc);
+      }
     }
   }
 });
