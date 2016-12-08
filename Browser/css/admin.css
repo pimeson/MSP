@@ -76,3 +76,7 @@
   display: flex;
   flex-direction: column;
 }
+
+#adminProjDesc {
+  width: 50vw;
+}

@@ -3,7 +3,7 @@
   <input class="titleInput" type="text" ng-model="projForm.projectTitle"></input>
   <a ng-click="editTitle()">submit new title</a>
   <h4>Project Description</h4>
-  <p>{{project.description}}</p>
+  <p id="adminProjDesc">{{project.description}}</p>
   <textarea class="adminProjDesc" ng-model="projForm.projectDesc"></textarea>
   <a ng-click="editDescContent()">submit new description</a>
   <label>Exhibit Title:</label><input type="text" name="exTitle" ng-model="exTitle">

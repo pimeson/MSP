@@ -5,7 +5,7 @@
   <div class="galleryBar noscroll">
     
     <div class="galleryImg" ng-repeat="altView in altViews">
-      <img ui-sref="details.alt" class="galleryPic" ng-src="{{altView.thumbnail}}">
+      <img ng-click="changeToAltView(altView)" class="galleryPic" ng-src="{{altView.showing ? exhibit.thumbnail  : altView.thumbnail}}">
     </div>
    
   </div>
@@ -15,17 +15,16 @@
   
   <div id="mainPicContainer" ng-mouseenter="hover = true" ng-mouseleave="hover = false">
       <p id="exTitle">{{exhibit.title}}</p>
-      <img class="zoom" id="mainPic" ng-src="{{exhibit.imageSrc.slice(9)}}">
-      <div id="picBar">
-        <p>hover to zoom</p>
-      </div>
+      <img ng-show="!showVideo" ng-class="{showVideo : zoom}" id="mainPic" ng-src="{{currImage}}">
+      <div ng-show="showVideo" id="exhibitVideo"></div>
   </div>
+
   <div class="desc">
     
-    <h2 id="projTitle" ng-show="!hover">PROJECT DESCRIPTION <a id="collapseDesc" ng-click="collapsed = !collapsed">{{collapsed ? '+' : '-'}}</a></h2>
+    <h2 id="projTitle" ng-hide="hover && !showVideo">PROJECT DESCRIPTION <a id="collapseDesc" ng-click="collapsed = !collapsed">{{collapsed ? '+' : '-'}}</a></h2>
     <div id="projDesc">
-    <div id='target' ng-show="hover" style='height: 70vh; margin-top: 2.5vh; overflow-x: hidden !Important'></div>
-    <p ng-show="!hover && !collapsed">{{projDesc}}</p>
+    <div id='target' ng-show="hover && !showVideo" style='height: 70vh; margin-top: 2.5vh; overflow-x: hidden !Important'></div>
+    <p ng-show="!collapsed && (!hover || showVideo)">{{projDesc}}</p>
     </div>
     <div id=picDescContainer>
     <p id="picDesc">{{exhibit.description}}</p>

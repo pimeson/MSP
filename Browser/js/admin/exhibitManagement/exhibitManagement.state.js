@@ -68,7 +68,7 @@ app.controller('exhibitManagementCtrl', function($state, $scope, exhibit, exhibi
     $scope.$evalAsync();
     console.log("WHAT?")
     Upload.upload({
-      url: 'https://matthewspiegelman.herokuapp.com/api/altview/',
+      url: 'http://localhost:1337/api/altview/',
       data: {
         title: $scope.altForm.title,
         file: file,
@@ -79,6 +79,19 @@ app.controller('exhibitManagementCtrl', function($state, $scope, exhibit, exhibi
         dirName: project.dirName
       }
     }).then( res => {
+      $state.reload();
+    })
+  }
+
+  $scope.addAltVideo = () => {
+    altViewFactory.makeVideo({
+      title: $scope.altForm.title,
+      type: 'Video',
+      projectId: $stateParams.projId,
+      exhibitId: $stateParams.id,
+      videoUrl: $scope.altForm.videoUrl
+    })
+    .then( res => {
       $state.reload();
     })
   }

@@ -1,36 +1,41 @@
 <div id="exhibitManagement">
   <div id="editExhibitContent">
-    <h1>Exhibit Title</h1>
+    <h1>Picture Title</h1>
     <h2>{{exhibit.title}}</h2>
     <input class="titleInput" type="text" ng-model="exForm.exTitle">
     <a ng-click="editTitle()">submit new title</a>
-    <h4>Exhibit Description</h4>
+    <h4>Description</h4>
     <p>{{exhibit.description}}</p>
     <textarea class="adminExDesc" ng-model="exForm.exDesc"></textarea>
     <a ng-click="editDesc()">submit new description</a>
-    <h4>Exhibit Specs</h4>
+    <h4>Specs</h4>
     <p>{{exhibit.specs}}</p>
     <textarea class="adminExSpecs" ng-model="exForm.exSpecs"></textarea>
     <a ng-click="editSpecs()">submit new specs</a>
     <a ng-click="deleteExhibit()">Delete this exhibit</a>
     <a ui-sref="adminProject({projectId: projId})">Back to Project View</a>
   </div>
-
+  
   <div id="exhibitMgmtDiv">
     <img id="exhibitMgmtImg" ng-src="{{exhibit.imageSrc.slice(9)}}">
   </div>
+
 
   <div id="altViewsMgmt">
     <h1>Alternate Views</h1>
     <label>Title</label><input ng-model="altForm.title" type="text">
     <label>Description</label><input ng-model="altForm.desc" type="text">
     <md-input-container>
-      <md-select ng-model="altForm.type" placeholder="Select a state">
+      <md-select ng-model="altForm.type" placeholder="Select Type (required)" md-required>
         <md-option value="Picture">Picture</md-option>
         <md-option value="Video">Video</md-option>
       </md-select>
     </md-input-container>
-    <md-button class="md-raised" ngf-select="addAltView($file)">Add Alt View</md-button>
+    <md-button ng-if="altForm.type === 'Picture'" class="md-raised" ngf-select="addAltView($file)">Add Alt View</md-button>
+    <div ng-if="altForm.type==='Video'">
+    <label>Vimeo URL:</label><input ng-model="altForm.videoUrl" type="text">
+    </div>
+    <md-button ng-if="altForm.type === 'Video'" class="md-raised" ng-click="addAltVideo()">Add Alt Video</md-button>
     <ul>
       <li ng-repeat="altView in exhibit.altViews">
         {{$index + 1}} {{altView.title}} <a ng-click="deleteAltView(altView.id)">x</a>

@@ -22,6 +22,11 @@ app.factory('altViewFactory', function($http){
     .then(res => res.data);
   }
 
+  altObj.makeVideo = (payload) => {
+    return $http.post('/api/altView/video', payload)
+    .then(res => res.data);
+  }
+
   return altObj;
 
 })

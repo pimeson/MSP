@@ -18,12 +18,22 @@ module.exports = db.define('altView', {
   },
   imageSrc: {
     type: Sequelize.STRING
+  },
+  videoUrl: {
+    type: Sequelize.STRING
+  },
+  videoThumbnail: {
+    type: Sequelize.STRING
   }
 }, {
   getterMethods: {
-    thumbnail: function(){
-       if(this.getDataValue('imageSrc')){
-        return (this.getDataValue('imageSrc').slice(0,-4)+"mini.jpg").slice(9);
+    thumbnail: function () {
+      if (this.getDataValue('type') === 'picture') {
+        if (this.getDataValue('imageSrc')) {
+          return (this.getDataValue('imageSrc').slice(0, -4) + "mini.jpg").slice(9);
+        } else {
+          return this.getDataValue('imageSrc')
+        }
       } else {
         return this.getDataValue('imageSrc')
       }
@@ -32,9 +42,9 @@ module.exports = db.define('altView', {
   hooks: {
     beforeDestroy: (altView) => {
       console.log(altView);
-      if(altView.dataValues.type === 'Picture'){
-        fs.unlinkSync('./'+altView.dataValues.imageSrc);
-        fs.unlinkSync('./'+altView.dataValues.imageSrc.slice(0,-4)+"mini.jpg");
+      if (altView.dataValues.type === 'Picture') {
+        fs.unlinkSync('./' + altView.dataValues.imageSrc);
+        fs.unlinkSync('./' + altView.dataValues.imageSrc.slice(0, -4) + "mini.jpg");
       }
     }
   }

@@ -38,15 +38,14 @@
     position: fixed;
     font-family: 'Geometric415';
     font-size: 14px;
-    width: 20vw;
-    margin-top: 8vh;
+    width: 26vw;
+    margin-top: 5vh;
     padding: 10px;
     text-align: center;
     right: 2%;
-    height: 82.6vh;
+    height: 90vh;
     overflow-y: scroll;
-    background: white;
-    opacity: .87
+    background: #ecf0f1;
 }
 
 .galImages {
