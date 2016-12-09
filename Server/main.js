@@ -18,7 +18,7 @@ const startServer = function () {
   });
 
 }
-
+//codeship test
 db.sync({force: true})
 .then(createApplication)
 .then(startServer)
