@@ -19,7 +19,7 @@ const startServer = function () {
 
 }
 //codeship test
-db.sync({force: true})
+db.sync()
 .then(createApplication)
 .then(startServer)
 .catch((err) => {
