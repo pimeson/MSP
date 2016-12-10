@@ -30,7 +30,7 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
       specs = [];
     }
     Upload.upload({
-      url: 'http://localhost:1337/api/exhibit/',
+      url: 'http://138.197.25.20:1337/api/exhibit/',
       data: {
         title: $scope.exTitle,
         file: file,
