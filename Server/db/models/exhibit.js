@@ -1,3 +1,5 @@
+'use strict'
+
 const Sequelize = require('sequelize');
 const fs = require('fs');
 const AltView = require('./altView');

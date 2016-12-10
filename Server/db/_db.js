@@ -1,3 +1,5 @@
+'use strict'
+
 const path = require('path');
 const Sequelize = require('sequelize');
 const dbURL = 'postgres://postgres@localhost:5432/msp';
