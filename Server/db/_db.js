@@ -5,7 +5,7 @@ const dbURL = 'postgres://localhost:5432/msp';
 // const env = require(path.join(__dirname, '../env'));
 // const url = env.DATABASE_URL
 const url = dbURL
-const db = new Sequelize(url, 'postgres', '', {
+const db = new Sequelize(url, 'postgres', 'postgres', {
   // logging: env.LOGGING ? console.log : false,
   // native: env.NATIVE
   logging: false,
