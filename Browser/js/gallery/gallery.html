@@ -4,7 +4,7 @@
     <table id="initialSpacer"></table>
     <div id="galleryPics">
       <table id="initialSpacer"></table>
-      <span class="galContainer "ng-repeat="exhibit in exhibits">
+      <span class="galContainer" ng-repeat="exhibit in exhibits">
       <div class="galImageContainer underlay underlay-0">
       <div ng-mouseenter="exhibit.showTitle = true" ng-mouseleave="exhibit.showTitle = false" class="galImage first underlay underlay-0">
       <img ui-sref="details({projTitle: project.title, projId: project.id, exhibitId: exhibit.id})" class="galImages" ng-src="{{exhibit.thumbnail}}">
@@ -16,7 +16,11 @@
       </span>
       <div>
         <div class="galDesc noscroll" ng-show="!hide">
-          <p class="noscroll" id="galText">{{project.description}}</p>
+          <span id="galText" class="noscroll">
+            <p ng-repeat="desc in description track by $index" class="galParagraph">
+              {{desc}}
+            </p>
+          </span>
           <p ng-click="hide = true" class="hideGalDesc">hide</p>
         </div>
       </div>

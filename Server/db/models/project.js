@@ -11,7 +11,7 @@ const Project = db.define('project', {
     allowNull: false
   },
   description: {
-    type: Sequelize.TEXT
+    type: Sequelize.ARRAY(Sequelize.TEXT)
   },
   dirName: {
     type: Sequelize.TEXT

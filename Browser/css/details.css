@@ -165,3 +165,10 @@ a#backToGallery {
 #exhibitVideo {
   align-self: center;
 }
+
+#backArrow {
+    position: fixed;
+    height: 5vh;
+    margin-top: 50vh;
+    transform: translate(0, -50%);
+}

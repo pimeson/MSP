@@ -66,7 +66,12 @@ p#showGalDesc {
 }
 
 #galText {
-  padding: 2vh;
+    padding: 4vh 1vw 0vh 1vw;
+    display: block;
+}
+
+.galParagraph {
+  text-align: left;
 }
 
 .exhibitTitle {

@@ -12,6 +12,7 @@ router.post('/', function (req, res, next) {
   
   req.body.dirName = req.body.title + timeStamp;
   req.body.dirPath = newDirPath;
+  req.body.description = req.body.description.split('\n');
   
   //Promises
   let makingDir = fs.mkdirSync(newDirPath)
@@ -58,6 +59,9 @@ router.delete('/:id', function (req, res, next) {
 
 
 router.put('/:id', function (req, res, next) {
+  if(req.body.description){
+    req.body.description = req.body.description.split('\n');
+  }
   Project.update(
       req.body, {
         where: {
