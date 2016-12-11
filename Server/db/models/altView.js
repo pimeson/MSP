@@ -30,7 +30,7 @@ module.exports = db.define('altView', {
 }, {
   getterMethods: {
     thumbnail: function () {
-      if (this.getDataValue('type') === 'picture') {
+      if (this.getDataValue('type') === 'Picture') {
         if (this.getDataValue('imageSrc')) {
           return (this.getDataValue('imageSrc').slice(0, -4) + "mini.jpg").slice(9);
         } else {

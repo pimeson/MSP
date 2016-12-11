@@ -22,6 +22,9 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
   $scope.projForm = {};
 
   $scope.upload = (file) => {
+    if(!file){
+      return;
+    }
     console.log($scope.exSpecs, typeof($scope.exSpecs));
     let specs;
     if($scope.exSpecs){
@@ -30,7 +33,7 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
       specs = [];
     }
     Upload.upload({
-      url: 'http://138.197.25.20:1337/api/exhibit/',
+      url: 'http://localhost:1337/api/exhibit/',
       data: {
         title: $scope.exTitle,
         file: file,
@@ -57,8 +60,10 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
     }, (resp) => {
       console.log('Error status: ' + resp.status);
     }, (evt) => {
+      if(evt.config.data.file){
       var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
       console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+      }
     });
   };
 

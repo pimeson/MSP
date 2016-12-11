@@ -7,11 +7,17 @@ const _ = require('lodash');
 const fs = require('fs');
 
 router.post('/', function (req, res, next) {
-  let newDirPath = './public/uploads/' + req.body.title
-  req.body.dirName = req.body.title;
+  let timeStamp = Date.now();
+  let newDirPath = './public/uploads/' + req.body.title + timeStamp
+  
+  req.body.dirName = req.body.title + timeStamp;
   req.body.dirPath = newDirPath;
+  
+  //Promises
   let makingDir = fs.mkdirSync(newDirPath)
   let makingProjEntry = Project.create(req.body)
+  //
+  
   Promise.all([makingDir, makingProjEntry])
     .then(createdProject => res.send('okay'))
     .catch(next);

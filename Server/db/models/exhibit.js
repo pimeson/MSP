@@ -9,6 +9,9 @@ const db = require('../_db');
   title: {
     type: Sequelize.STRING
   },
+  type: {
+    type: Sequelize.ENUM('Picture', 'Video')
+  },
   fileName: {
     type: Sequelize.STRING,
     allowNull: false
@@ -26,8 +29,7 @@ const db = require('../_db');
   specs: {
     type: Sequelize.ARRAY(Sequelize.STRING),
     defaultValue: []
-  }
-  ,
+  },
   order: {
     type: Sequelize.INTEGER,
   }

@@ -31,24 +31,28 @@ const storage = multer.diskStorage({
 router.post('/', multer({
   storage: storage
 }).single('file'), function (req, res, next) {
-  
+  console.log(req.file);
+  let timeStamp = Date.now();
+
+  let newPath = './public/uploads/' + req.body.dirName + '/' + timeStamp + req.file.originalname
+
   Exhibit.create({
     title: req.body.title,
     fileName: req.file.originalname,
     description: req.body.description,
-    imageSrc: './public/uploads/' + req.body.dirName + '/' + req.file.originalname,
+    imageSrc: newPath,
     specs: req.body.specs,
     projectId: req.body.projId
   })
   .then(creatingExhibit => {
 
-  let renaming = fs.rename(req.file.path, './public/uploads/' + req.body.dirName + '/' + req.file.originalname, () => console.log('done!'));
-
-  let newPath = './public/uploads/' + req.body.dirName + '/' + req.file.originalname
-
   const transformer = sharp().resize(2000).max()
 
-  let resizing = fs.createReadStream(newPath).pipe(transformer).toFile('./public/uploads/' + req.body.dirName + '/' + req.file.originalname.slice(0, -4) + 'mini.jpg');
+  //Promises
+
+  let renaming = fs.rename(req.file.path, newPath, () => console.log('done!'));
+
+  let resizing = fs.createReadStream(newPath).pipe(transformer).toFile(newPath.slice(0, -4) + 'mini.jpg');
 
   return Promise.all([renaming, resizing])
 

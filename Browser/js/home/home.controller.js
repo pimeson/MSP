@@ -24,7 +24,7 @@ app.controller('homeCtrl', function ($scope, $state, $rootScope, allProjects) {
     $scope.$evalAsync();
   };
 
-  $scope.incrementer = _.debounce(incrementer, 30);
+  $scope.incrementer = _.debounce(incrementer, 100);
 
   let loaded = false;
   console.log($state.$current.name);
