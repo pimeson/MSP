@@ -32,6 +32,12 @@ const db = require('../_db');
   },
   order: {
     type: Sequelize.INTEGER,
+  },
+  width: {
+    type: Sequelize.INTEGER,
+  },
+  height: {
+    type: Sequelize.INTEGER
   }
 }, {
   getterMethods: {

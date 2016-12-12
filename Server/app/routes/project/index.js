@@ -12,7 +12,7 @@ router.post('/', function (req, res, next) {
   
   req.body.dirName = req.body.title + timeStamp;
   req.body.dirPath = newDirPath;
-  req.body.description = req.body.description.split('\n');
+  req.body.description = req.body.description && req.body.description.split('\n');
   
   //Promises
   let makingDir = fs.mkdirSync(newDirPath)

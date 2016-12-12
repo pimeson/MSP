@@ -5,6 +5,7 @@ const fs = require('fs');
 const sharp = require('sharp')
 const AltView = require('../../../db/models/altView');
 const bluebird = require('bluebird');
+const sizeOf = require('image-size')
 
 module.exports = router;
 
@@ -35,16 +36,9 @@ router.post('/', multer({
   let timeStamp = Date.now();
 
   let newPath = './public/uploads/' + req.body.dirName + '/' + timeStamp + req.file.originalname
+  let miniPath = newPath.slice(0, -4) + 'mini.jpg'
 
-  Exhibit.create({
-    title: req.body.title,
-    fileName: req.file.originalname,
-    description: req.body.description,
-    imageSrc: newPath,
-    specs: req.body.specs,
-    projectId: req.body.projId
-  })
-  .then(creatingExhibit => {
+  let dim = sizeOf(req.file.path);
 
   const transformer = sharp().resize(2000).max()
 
@@ -52,13 +46,28 @@ router.post('/', multer({
 
   let renaming = fs.rename(req.file.path, newPath, () => console.log('done!'));
 
-  let resizing = fs.createReadStream(newPath).pipe(transformer).toFile(newPath.slice(0, -4) + 'mini.jpg');
+  let resizing = fs.createReadStream(newPath).pipe(transformer).toFile(miniPath);
 
-  return Promise.all([renaming, resizing])
+  Promise.all([renaming, resizing])
+    .then(() => {
 
-  })
-  .then(() => res.sendStatus(204))
-  .catch(next);
+      return sizeOf(miniPath)
+
+    })
+    .then((measuringMini) => {
+      return Exhibit.create({
+        title: req.body.title,
+        fileName: req.file.originalname,
+        description: req.body.description,
+        imageSrc: newPath,
+        specs: req.body.specs,
+        projectId: req.body.projId,
+        width: measuringMini.width,
+        height: measuringMini.height
+      })
+    })
+    .then((creatingExhibit) => res.sendStatus(204))
+    .catch(next);
   // console.log(req.body); //form fields
   // console.log(req.file.path); //form files
   // res.status(204).end();
