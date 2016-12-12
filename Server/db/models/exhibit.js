@@ -5,7 +5,7 @@ const fs = require('fs');
 const AltView = require('./altView');
 const db = require('../_db');
 
- const Exhibit = db.define('exhibit', {
+const Exhibit = db.define('exhibit', {
   title: {
     type: Sequelize.STRING
   },
@@ -14,7 +14,6 @@ const db = require('../_db');
   },
   fileName: {
     type: Sequelize.STRING,
-    allowNull: false
   },
   description: {
     type: Sequelize.TEXT
@@ -23,8 +22,8 @@ const db = require('../_db');
     type: Sequelize.STRING,
     allowNull: false
   },
-  date: {
-    type: Sequelize.DATEONLY
+  videoUrl: {
+    type: Sequelize.STRING,
   },
   specs: {
     type: Sequelize.ARRAY(Sequelize.STRING),
@@ -41,9 +40,9 @@ const db = require('../_db');
   }
 }, {
   getterMethods: {
-    thumbnail: function(){
-      if(this.getDataValue('imageSrc')){
-        return (this.getDataValue('imageSrc').slice(0,-4)+"mini.jpg").slice(9);
+    thumbnail: function () {
+      if (this.getDataValue('imageSrc') && this.getDataValue('type') === 'Picture') {
+        return (this.getDataValue('imageSrc').slice(0, -4) + "mini.jpg").slice(9);
       } else {
         return this.getDataValue('imageSrc')
       }
@@ -52,36 +51,38 @@ const db = require('../_db');
   hooks: {
     beforeCreate: (exhibit) => {
       return Exhibit.findAndCountAll({
-        where: {
-          projectId: exhibit.projectId
-        }
-      })
-      .then(foundAndCounted => {
-        return exhibit.setDataValue('order', foundAndCounted.count + 1)
-      })
-    },
-    beforeDestroy: (exhibit) => {
-      console.log("cascading?")
-      fs.unlinkSync('./'+exhibit.dataValues.imageSrc);
-      fs.unlinkSync('./'+exhibit.dataValues.imageSrc.slice(0,-4)+"mini.jpg");
-      let destroyingAlts = AltView.destroy(
-        {
-          where: {exhibitId: exhibit.id},
-          individualHooks: true
-        }
-      )
-      let findingExhibits = Exhibit.findAll({
           where: {
-            projectId: exhibit.projectId,
-            order: {
-              $gt: exhibit.order
-            }
+            projectId: exhibit.projectId
           }
         })
-        Promise.all([findingExhibits, destroyingAlts])
+        .then(foundAndCounted => {
+          return exhibit.setDataValue('order', foundAndCounted.count + 1)
+        })
+    },
+    beforeDestroy: (exhibit) => {
+      let destroyingAlts;
+      if (exhibit.type === 'Picture') {
+        fs.unlinkSync('./' + exhibit.dataValues.imageSrc);
+        fs.unlinkSync('./' + exhibit.dataValues.imageSrc.slice(0, -4) + "mini.jpg");
+        destroyingAlts = AltView.destroy({
+          where: {
+            exhibitId: exhibit.id
+          },
+          individualHooks: true
+        })
+      }
+      let findingExhibits = Exhibit.findAll({
+        where: {
+          projectId: exhibit.projectId,
+          order: {
+            $gt: exhibit.order
+          }
+        }
+      })
+      Promise.all([findingExhibits, destroyingAlts])
         .then(reordering => {
-          let updatingExhibits = reordering[0].map( exhibits => {
-            exhibits.order--
+          let updatingExhibits = reordering[0].map(exhibits => {
+            exhibits.order--;
             return exhibits.save();
           })
           return Promise.all(updatingExhibits);

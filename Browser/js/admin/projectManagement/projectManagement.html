@@ -1,4 +1,5 @@
 <div class="adminProject">
+  
   <div id=control>
   <div id="projectControl">
   <h2>Project Title</h2>
@@ -6,17 +7,32 @@
   <input class="titleInput" type="text" ng-model="projForm.projectTitle">
   <a ng-click="editTitle()">submit new title</a>
   <h4>Project Description</h4>
-  <p id="adminProjDesc" ng-repeat= "desc in project.description">{{desc}}</p>
+  <p id="adminProjDesc" ng-repeat= "desc in project.description track by $index">{{desc}}</p>
   <textarea class="adminProjDesc" ng-model="projForm.projectDesc"></textarea>
   <a ng-click="editDescContent()">submit new description</a>
   </div>
+
+
+
   <div id="exhibitControl">
-  <label>Exhibit Title:</label><input type="text" name="exTitle" ng-model="exTitle">
-  <label>Exhibit Description:</label><textArea type="text" name="exDesc" ng-model="exDesc"></textarea>
-  <label>Exhibit Specs:</label><textArea type="text" name="exSpecs" ng-model="exSpecs" placeholder="separate values by a comma (eg: 2010, 50mm f1.4 1/320s, Film)"></textarea>
-  <md-button class="md-raised" ngf-select="upload($file)" ngf-accept="'image/*'">Upload on file select</md-button>
+  <label>Exhibit Title:</label><input type="text" name="exTitle" ng-model="exForm.exTitle">
+  <label>Exhibit Description:</label><textArea type="text" name="exDesc" ng-model="exForm.exDesc"></textarea>
+  <label>Exhibit Specs:</label><textArea type="text" name="exSpecs" ng-model="exForm.exSpecs" placeholder="separate values by a comma (eg: 2010, 50mm f1.4 1/320s, Film)"></textarea>
+  <md-input-container>
+      <md-select ng-model="exForm.exType" placeholder="Select Type (required)" md-required>
+        <md-option value="Picture">Picture</md-option>
+        <md-option value="Video">Video</md-option>
+      </md-select>
+  </md-input-container>
+  <md-button ng-show="exForm.exType==='Picture'" class="md-raised" ngf-select="upload($file)" ngf-accept="'image/*'">Upload on file select</md-button>
+  <label ng-show="exForm.exType==='Video'">Exhibit Video URL:</label><input type="text" name="videoUrl" ng-model="exForm.videoUrl"></input>
+  <md-button ng-show="exForm.exType==='Video'" class="md-raised" ng-click="addVideo()">Add Video</md-button>
   </div>
   </div>
+
+
+
+
   <div id="adminExhibits">
   <div class="adminExhibit" ng-repeat="exhibit in exhibits">
     <img ui-sref="exhibitManagement({projId: project.id, id: exhibit.id})" class="exhibitImages" ng-src="{{exhibit.thumbnail}}">

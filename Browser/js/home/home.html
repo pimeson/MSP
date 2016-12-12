@@ -2,15 +2,15 @@
   <container>
     <div class="num">
       <table id="initialSpacer"></table>
-      <span ng-repeat="project in allProjects">
+      <section ng-repeat="project in allProjects">
       <div class="pattern" ui-sref="gallery({projId: project.id})">
       <div class="alone" ng-style="{width: project.width}">
-        <img ng-mousemove="incrementer(project, project.exhibits.length)" id="proj-{{$index}}" class="projects" ng-src="{{project.exhibits[project.num].thumbnail}}">
+        <img ng-mousemove="incrementer(project, project.exhibits.length)" id="proj-{{$index}}" class="projects" ng-src="{{project.exhibits[project.num].type==='Picture' ? project.exhibits[project.num].thumbnail : project.exhibits[project.num].imageSrc}}">
         <div id="galleryTag">
           <p>{{project.title}}</p>
         </div>
       </div>
       </div>
-      </span>
+      </section>
   </container>
 </section>

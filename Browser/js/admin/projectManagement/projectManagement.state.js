@@ -20,14 +20,13 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
 
   $scope.project = project;
   $scope.projForm = {};
+  $scope.exForm = {};
 
   $scope.upload = (file) => {
-    if(!file){
-      return;
-    }
-    console.log($scope.exSpecs, typeof($scope.exSpecs));
+    $scope.$evalAsync();
+    if (!file) return;
     let specs;
-    if($scope.exSpecs){
+    if ($scope.exForm.exSpecs) {
       specs = $scope.exSpecs.split(', ')
     } else {
       specs = [];
@@ -35,14 +34,15 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
     Upload.upload({
       url: 'http://localhost:1337/api/exhibit/',
       data: {
-        title: $scope.exTitle,
+        title: $scope.exForm.exTitle,
+        type: 'Picture',
         file: file,
         projId: $stateParams.projectId,
-        description: $scope.exDesc,
+        description: $scope.exForm.exDesc,
         dirName: project.dirName,
         specs: specs
       }
-    }).then( resp => {
+    }).then(resp => {
       /*sample config:
       { fieldname: 'file',
       originalname: 'tumblr_oe4cfyH9XA1qeh7fdo9_1280.jpg',
@@ -52,20 +52,42 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
       filename: 'file-1480376741574.jpg',
       path: 'public/uploads/file-1480376741574.jpg',
       size: 547530 }*/
-      $scope.exTitle = "";
-      $scope.exDesc = "";
-      $scope.exSpecs = "";
+      $scope.exForm = {};
       $scope.getGalleries();
       console.log('Success ' + resp.config.data + 'uploaded. Response: ' + resp.data);
     }, (resp) => {
       console.log('Error status: ' + resp.status);
     }, (evt) => {
-      if(evt.config.data.file){
-      var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-      console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+      if (evt.config.data.file) {
+        var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+        console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
       }
     });
   };
+
+  $scope.addVideo = () => {
+    $scope.$evalAsync();
+    console.log("I was clicked!")
+    //if (!$scope.exForm.videoUrl) return;
+    let specs;
+    if ($scope.exForm.exSpecs && $scope.exForm.exSpecs.length) {
+      specs = $scope.exSpecs.split(', ')
+    } else {
+      specs = [];
+    }
+    let payload = {
+      title: $scope.exForm.exTitle,
+      type: 'Video',
+      videoUrl: $scope.exForm.videoUrl,
+      projectId: $stateParams.projectId,
+      description: $scope.exForm.exDesc,
+      specs: specs || []
+    }
+    exhibitFactory.makeVideo(payload)
+    .then(res => {
+      $state.reload();
+    })
+  }
 
 
   $scope.submit = () => {
@@ -84,44 +106,52 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
   }
 
   $scope.editTitle = () => {
-    if($scope.projForm.projectTitle){
-    projectFactory.updateById($stateParams.projectId, {title: $scope.projForm.projectTitle})
-    .then(() => {
-      $scope.project.title = $scope.projForm.projectTitle;
-      $scope.projForm.projectTitle = "";
-    })
+    if ($scope.projForm.projectTitle) {
+      projectFactory.updateById($stateParams.projectId, {
+          title: $scope.projForm.projectTitle
+        })
+        .then(() => {
+          $scope.project.title = $scope.projForm.projectTitle;
+          $scope.projForm.projectTitle = "";
+        })
     } else {
       alert('No empty titles allowed.');
     }
   }
 
   $scope.editDescContent = () => {
-    projectFactory.updateById($stateParams.projectId, {description: $scope.projForm.projectDesc})
-    .then(() => {
-      $scope.project.description = $scope.projForm.projectDesc;
-      $scope.projForm.projectDesc = "";
-    })
+    projectFactory.updateById($stateParams.projectId, {
+        description: $scope.projForm.projectDesc
+      })
+      .then(() => {
+        $scope.project.description = $scope.projForm.projectDesc;
+        $scope.projForm.projectDesc = "";
+      })
   }
 
   $scope.deleteExhibit = (id) => {
     exhibitFactory.deleteById(id)
-    .then( (deletingExhibit) => $state.reload());
+      .then((deletingExhibit) => $state.reload());
   }
 
   $scope.deleteProject = () => {
-    let confirmation = window.prompt("Are you sure? Please enter the name of the project (" + project.title +") to confirm.");
-    if (confirmation === project.title){
+    let confirmation = window.prompt("Are you sure? Please enter the name of the project (" + project.title + ") to confirm.");
+    if (confirmation === project.title) {
       projectFactory.deleteProject($stateParams.projectId)
-      .then(deletedProject => $state.go('admin'));
+        .then(deletedProject => $state.go('admin'));
     }
   }
 
   $scope.switch = (x, y) => {
-    if( x <= $scope.exhibits.length && x > 0 && y <= $scope.exhibits.length && y > 0 && x !== y ){
-      let firstSwitch = exhibitFactory.updateById($scope.exhibits[x-1].id, {order: y});
-      let secondSwitch = exhibitFactory.updateById($scope.exhibits[y-1].id, {order: x});
+    if (x <= $scope.exhibits.length && x > 0 && y <= $scope.exhibits.length && y > 0 && x !== y) {
+      let firstSwitch = exhibitFactory.updateById($scope.exhibits[x - 1].id, {
+        order: y
+      });
+      let secondSwitch = exhibitFactory.updateById($scope.exhibits[y - 1].id, {
+        order: x
+      });
       Promise.all(firstSwitch, secondSwitch)
-      .then(switched => $state.reload());
+        .then(switched => $state.reload());
     } else {
       console.log($scope.exhibits, x, y);
       console.log("gross");

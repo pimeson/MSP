@@ -5,9 +5,12 @@
     <div id="galleryPics">
       <table id="initialSpacer"></table>
       <span class="galContainer" ng-repeat="exhibit in exhibits">
+      
       <div class="galImageContainer underlay underlay-0">
+      
       <div ng-mouseenter="exhibit.showTitle = true" ng-mouseleave="exhibit.showTitle = false" class="galImage first underlay underlay-0">
-      <img ui-sref="details({projTitle: project.title, projId: project.id, exhibitId: exhibit.id})" class="galImages" ng-src="{{exhibit.thumbnail}}">
+        <img ng-if="exhibit.type === 'Picture' " ui-sref="details({projTitle: project.title, projId: project.id, exhibitId: exhibit.id})" class="galImages" ng-src="{{exhibit.thumbnail}}">
+        <iframe ng-if="exhibit.type === 'Video'" ng-src="{{exhibit.video | trusted}}" height = "{{iframeHeight * .84}}" width = "{{iframeHeight * .84 * 16/9}}"  frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
       <p class="exhibitTitle" ng-show="exhibit.showTitle">{{exhibit.title}}</p>
       </div>
       

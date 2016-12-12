@@ -27,5 +27,10 @@ app.factory('exhibitFactory', function($http){
     .then(res => res.data);
   }
 
+  exObj.makeVideo = (payload) => {
+    return $http.post('/api/exhibit/video', payload)
+    .then(res => res.data);
+  }
+
   return exObj;
 });

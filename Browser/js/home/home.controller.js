@@ -2,6 +2,7 @@ app.controller('homeCtrl', function ($scope, $state, $rootScope, allProjects) {
 
   let iframeHeight = $(window).height();
 
+  console.log(iframeHeight);
 
 
   allProjects
@@ -9,6 +10,7 @@ app.controller('homeCtrl', function ($scope, $state, $rootScope, allProjects) {
     .map(project => {
       project.exhibits.sort((a, b) => a.order > b.order ? 1 : -1);
       project.width = project.exhibits[0] && iframeHeight * (project.exhibits[0].width / project.exhibits[0].height) *.81;
+      console.log(project.width);
       project.num = 0;
       return project;
     })

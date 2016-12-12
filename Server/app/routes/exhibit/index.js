@@ -7,6 +7,11 @@ const AltView = require('../../../db/models/altView');
 const bluebird = require('bluebird');
 const sizeOf = require('image-size');
 const _ = require('lodash');
+const rp = require('request-promise');
+const Vimeo = require('vimeo').Vimeo;
+
+//Need to hide api keys in env config file;
+const lib = new Vimeo();
 
 module.exports = router;
 
@@ -16,9 +21,7 @@ const streamToPromise = stream => {
     stream.on("error", reject);
   });
 }
-
 const multer = require('multer');
-
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, './public/uploads/')
@@ -33,31 +36,20 @@ const storage = multer.diskStorage({
 router.post('/', multer({
   storage: storage
 }).single('file'), function (req, res, next) {
-  console.log(req.file);
-  
   let timeStamp = Date.now();
-
   let newPath = './public/uploads/' + req.body.dirName + '/' + timeStamp + '-' + req.file.originalname
-  
   let miniPath = newPath.slice(0, -4) + 'mini.jpg'
-
-  let dim = sizeOf(req.file.path);
-
   const transformer = sharp().resize(2000).max()
 
-  //Promises
-
- fs.renameSync(req.file.path, newPath, () => console.log('done!'));
- 
- fs.createReadStream(newPath).pipe(transformer).toFile(miniPath)
+  fs.renameSync(req.file.path, newPath, () => console.log('done!'));
+  fs.createReadStream(newPath).pipe(transformer).toFile(miniPath)
     .then(() => {
-
       return sizeOf(miniPath)
-
     })
     .then((measuringMini) => {
-      return Exhibit.create({
+      let exBody = {
         title: req.body.title,
+        type: 'Picture',
         fileName: req.file.originalname,
         description: req.body.description,
         imageSrc: newPath,
@@ -65,13 +57,54 @@ router.post('/', multer({
         projectId: req.body.projId,
         width: measuringMini.width,
         height: measuringMini.height
-      })
+      }
+      return Exhibit.create(exBody);
     })
     .then((creatingExhibit) => res.sendStatus(204))
     .catch(next);
-  // console.log(req.body); //form fields
-  // console.log(req.file.path); //form files
-  // res.status(204).end();
+})
+
+router.post('/video', function (req, res, next) {
+
+  let vidId = req.body.videoUrl.slice(req.body.videoUrl.lastIndexOf('/') + 1)
+  console.log(vidId);
+
+  let libAsync = (id) => {
+    return new Promise((resolve, reject) => {
+        lib.request({
+          method: 'GET',
+          path: '/videos/' + id + '/pictures'
+        }, function (error, body, status_code, headers) {
+          if (error) {
+            console.log('error');
+            reject();
+          } else {
+            console.log('body');
+            resolve(body.data[0].uri.slice(body.data[0].uri.lastIndexOf('/') + 1));
+          }
+        })
+    })
+  }
+
+  
+
+  libAsync(vidId)
+    .then(gettingVidInfo => {
+        Exhibit.create({
+            title: req.body.title,
+            type: req.body.type,
+            description: req.body.description,
+            videoUrl: req.body.videoUrl,
+            imageSrc: 'https://i.vimeocdn.com/video/'+ gettingVidInfo +'_1920x1080.jpg',
+            width: 1920,
+            height: 1080,
+            projectId: req.body.projectId
+      })
+    })
+    .then(makingDbRow => {
+      res.sendStatus(204);
+    })
+    .catch(next);
 })
 
 router.get('/', function (req, res, next) {
@@ -110,12 +143,6 @@ router.get('/:id', function (req, res, next) {
 })
 
 router.delete('/:id', function (req, res, next) {
-  // Exhibit.findById(req.params.id)
-  // .then(findingExhibit => {
-  //   fs.unlinkSync('./' + findingExhibit.imageSrc);
-  //   return;
-  // })
-  // .then(deletingExhibitFile => {
   Exhibit.destroy({
       where: {
         id: req.params.id
