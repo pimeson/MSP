@@ -80,3 +80,20 @@
 #adminProjDesc {
   width: 50vw;
 }
+
+#exhibitControl {
+    flex-direction: column;
+    justify-content: space-between;
+    display: flex;
+    width: 40vw;
+}
+
+#control {
+    display: flex;
+    margin-top: 20vh;
+}
+
+#projectControl {
+    display: flex;
+    flex-direction: column;
+}

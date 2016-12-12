@@ -1,15 +1,22 @@
 <div class="adminProject">
-  <h1>{{project.title}}</h1>
-  <input class="titleInput" type="text" ng-model="projForm.projectTitle"></input>
+  <div id=control>
+  <div id="projectControl">
+  <h2>Project Title</h2>
+  <h3>{{project.title}}</h3>
+  <input class="titleInput" type="text" ng-model="projForm.projectTitle">
   <a ng-click="editTitle()">submit new title</a>
   <h4>Project Description</h4>
-  <p id="adminProjDesc">{{project.description}}</p>
+  <p id="adminProjDesc" ng-repeat= "desc in project.description">{{desc}}</p>
   <textarea class="adminProjDesc" ng-model="projForm.projectDesc"></textarea>
   <a ng-click="editDescContent()">submit new description</a>
+  </div>
+  <div id="exhibitControl">
   <label>Exhibit Title:</label><input type="text" name="exTitle" ng-model="exTitle">
   <label>Exhibit Description:</label><textArea type="text" name="exDesc" ng-model="exDesc"></textarea>
   <label>Exhibit Specs:</label><textArea type="text" name="exSpecs" ng-model="exSpecs" placeholder="separate values by a comma (eg: 2010, 50mm f1.4 1/320s, Film)"></textarea>
   <md-button class="md-raised" ngf-select="upload($file)" ngf-accept="'image/*'">Upload on file select</md-button>
+  </div>
+  </div>
   <div id="adminExhibits">
   <div class="adminExhibit" ng-repeat="exhibit in exhibits">
     <img ui-sref="exhibitManagement({projId: project.id, id: exhibit.id})" class="exhibitImages" ng-src="{{exhibit.thumbnail}}">

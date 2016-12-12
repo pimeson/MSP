@@ -33,9 +33,11 @@ router.post('/', multer({
   storage: storage
 }).single('file'), function (req, res, next) {
   console.log(req.file);
+  
   let timeStamp = Date.now();
 
-  let newPath = './public/uploads/' + req.body.dirName + '/' + timeStamp + req.file.originalname
+  let newPath = './public/uploads/' + req.body.dirName + '/' + timeStamp + '-' + req.file.originalname
+  
   let miniPath = newPath.slice(0, -4) + 'mini.jpg'
 
   let dim = sizeOf(req.file.path);
