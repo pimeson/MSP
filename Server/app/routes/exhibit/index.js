@@ -5,7 +5,8 @@ const fs = require('fs');
 const sharp = require('sharp')
 const AltView = require('../../../db/models/altView');
 const bluebird = require('bluebird');
-const sizeOf = require('image-size')
+const sizeOf = require('image-size');
+const _ = require('lodash');
 
 module.exports = router;
 
@@ -46,11 +47,9 @@ router.post('/', multer({
 
   //Promises
 
-  let renaming = fs.rename(req.file.path, newPath, () => console.log('done!'));
-
-  let resizing = fs.createReadStream(newPath).pipe(transformer).toFile(miniPath);
-
-  Promise.all([renaming, resizing])
+ fs.renameSync(req.file.path, newPath, () => console.log('done!'));
+ 
+ fs.createReadStream(newPath).pipe(transformer).toFile(miniPath)
     .then(() => {
 
       return sizeOf(miniPath)

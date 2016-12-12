@@ -8,7 +8,7 @@ const fs = require('fs');
 
 router.post('/', function (req, res, next) {
   let timeStamp = Date.now();
-  let dirName = req.body.title + '-' + timeStamp
+  let dirName = timeStamp
   let newDirPath = './public/uploads/' + dirName
   
   req.body.dirName = dirName;
