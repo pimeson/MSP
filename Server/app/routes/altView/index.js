@@ -4,8 +4,17 @@ const Exhibit = require('../../../db/models/exhibit');
 const rp = require('request-promise');
 const sharp = require('sharp');
 const fs = require('fs');
+const adminTest = require('../../configure/authorization').adminTest;
 
 module.exports = router;
+
+const adminPriv =  function (req, res, next) {
+    if (!adminTest(req)) {
+        res.sendStatus(401);
+    } else {
+        next();
+    }
+}
 
 const multer = require('multer');
 
@@ -20,7 +29,7 @@ const storage = multer.diskStorage({
   }
 })
 
-router.post('/', multer({
+router.post('/', adminPriv, multer({
   storage: storage
 }).single('file'), function (req, res, next) {
   let timeStamp = Date.now();
@@ -48,7 +57,7 @@ router.post('/', multer({
   // res.status(204).end();
 })
 
-router.post('/video', function (req, res, next) {
+router.post('/video', adminPriv, function (req, res, next) {
   let options = {
     uri: 'http://vimeo.com/api/v2/video/' + req.body.videoUrl.slice(req.body.videoUrl.lastIndexOf('/') + 1) + '.json',
     json: true
@@ -78,7 +87,7 @@ router.get('/', function (req, res, next) {
     .catch(next);
 })
 
-router.delete('/:id', function (req, res, next) {
+router.delete('/:id', adminPriv, function (req, res, next) {
   AltView.destroy({
       where: {
         id: req.params.id

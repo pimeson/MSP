@@ -4,6 +4,9 @@ app.config($stateProvider => {
     url: '/admin/exhibitManagement/:projId/:id',
     templateUrl: '/js/admin/exhibitManagement/exhibitManagement.html',
     controller: 'exhibitManagementCtrl',
+    data: {
+            authenticate: true
+    },
     resolve: {
       exhibit: function($stateParams, exhibitFactory){
         return exhibitFactory.findById($stateParams.id)
@@ -68,7 +71,7 @@ app.controller('exhibitManagementCtrl', function($state, $scope, exhibit, exhibi
     $scope.$evalAsync();
     console.log("WHAT?")
     Upload.upload({
-      url: 'http://138.197.25.20:1337/api/altview/',
+      url: 'http://localhost:1337/api/altview/',
       data: {
         title: $scope.altForm.title,
         file: file,

@@ -3,6 +3,9 @@ app.config($stateProvider => {
     url: '/admin/project/:projectId',
     templateUrl: '/js/admin/projectManagement/projectManagement.html',
     controller: 'projectMgmtCtrl',
+    data: {
+            authenticate: true
+    },
     resolve: {
       exhibits: function ($stateParams, exhibitFactory) {
         return exhibitFactory.findAllByProjectId($stateParams.projectId);
@@ -32,7 +35,7 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
       specs = [];
     }
     Upload.upload({
-      url: 'http://138.197.25.20:1337/api/exhibit/',
+      url: 'http://localhost:1337/api/exhibit/',
       data: {
         title: $scope.exForm.exTitle,
         type: 'Picture',

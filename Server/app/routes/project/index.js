@@ -5,8 +5,17 @@ const Exhibit = require('../../../db/models/exhibit');
 module.exports = router;
 const _ = require('lodash');
 const fs = require('fs');
+const adminTest = require('../../configure/authorization').adminTest;
 
-router.post('/', function (req, res, next) {
+const adminPriv =  function (req, res, next) {
+    if (!adminTest(req)) {
+        res.sendStatus(401).end();
+    } else {
+        next();
+    }
+}
+
+router.post('/', adminPriv, function (req, res, next) {
   let timeStamp = Date.now();
   let dirName = timeStamp
   let newDirPath = './public/uploads/' + dirName
@@ -45,7 +54,7 @@ router.get('/:id', function (req, res, next) {
     .catch(next);
 })
 
-router.delete('/:id', function (req, res, next) {
+router.delete('/:id', adminPriv, function (req, res, next) {
   Project.destroy({
     where: {
       id: req.params.id
@@ -59,8 +68,8 @@ router.delete('/:id', function (req, res, next) {
 })
 
 
-router.put('/:id', function (req, res, next) {
-  if(req.body.description !== ''){
+router.put('/:id', adminPriv, function (req, res, next) {
+  if(req.body.description){
     req.body.description = req.body.description.split('\n');
   } else {
     req.body.description = [];

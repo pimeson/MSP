@@ -3,10 +3,19 @@ const router = Express.Router();
 const Download = require('../../../db/models/download');
 const fs = require('fs');
 const sharp = require('sharp');
+const adminTest = require('../../configure/authorization').adminTest;
 
 module.exports = router;
 
 const multer = require('multer');
+
+const adminPriv =  function (req, res, next) {
+    if (!adminTest(req)) {
+        res.sendStatus(401);
+    } else {
+        next();
+    }
+}
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -19,7 +28,7 @@ const storage = multer.diskStorage({
   }
 })
 
-router.post('/aboutHtml', multer({
+router.post('/aboutHtml', adminPriv , multer({
   storage: storage
 }).single('file'), function (req, res, next) {
   fs.unlinkSync('./public/about/about.html')

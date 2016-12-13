@@ -3,6 +3,9 @@ app.config($stateProvider => {
     url: '/admin',
     controller: 'adminCtrl',
     templateUrl: 'js/admin/admin.html',
+    data: {
+            authenticate: true
+    },
     resolve: {
       projects: function (projectFactory) {
         return projectFactory.findAll();
@@ -14,7 +17,7 @@ app.config($stateProvider => {
   })
 })
 
-app.controller('adminCtrl', function ($scope, projectFactory, projects, Upload, $state, downloads, fileFactory) {
+app.controller('adminCtrl', function ($scope, projectFactory, projects, Upload, $state, downloads, fileFactory, AuthService) {
 
   projects.sort((x, y) => x.order > y.order ? 1 : -1)
   $scope.projects = projects;
@@ -43,7 +46,7 @@ app.controller('adminCtrl', function ($scope, projectFactory, projects, Upload, 
 
   $scope.uploadAboutHtml = (file) => {
     Upload.upload({
-      url: 'http://138.197.25.20:1337/api/about/aboutHtml',
+      url: 'http://localhost:1337/api/about/aboutHtml',
       data: {
         file: file
       }
@@ -60,7 +63,7 @@ app.controller('adminCtrl', function ($scope, projectFactory, projects, Upload, 
 
   $scope.uploadPortrait = (file) => {
     Upload.upload({
-      url: 'http://138.197.25.20:1337/api/about/aboutPortrait',
+      url: 'http://localhost:1337/api/about/aboutPortrait',
       data: {
         file: file
       }
@@ -74,7 +77,7 @@ app.controller('adminCtrl', function ($scope, projectFactory, projects, Upload, 
     $scope.$evalAsync();
     if ($scope.dlTitle) {
       Upload.upload({
-        url: 'http://138.197.25.20:1337/api/about/upload',
+        url: 'http://localhost:1337/api/about/upload',
         data: {
           file: file,
           title: $scope.dlTitle
@@ -102,5 +105,12 @@ app.controller('adminCtrl', function ($scope, projectFactory, projects, Upload, 
       console.log($scope.projects, x, y);
       console.log("gross");
     }
+  }
+
+  $scope.logOff = () => {
+    AuthService.logOff()
+    .then(() => {
+      $state.go('home');
+    })
   }
 })

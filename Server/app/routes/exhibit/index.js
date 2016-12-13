@@ -9,6 +9,15 @@ const sizeOf = require('image-size');
 const _ = require('lodash');
 const rp = require('request-promise');
 const Vimeo = require('vimeo').Vimeo;
+const adminTest = require('../../configure/authorization').adminTest;
+
+const adminPriv =  function (req, res, next) {
+    if (!adminTest(req)) {
+        res.sendStatus(401);
+    } else {
+        next();
+    }
+}
 
 //Need to hide api keys in env config file;
 const lib = new Vimeo();
@@ -21,7 +30,9 @@ const streamToPromise = stream => {
     stream.on("error", reject);
   });
 }
+
 const multer = require('multer');
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, './public/uploads/')
@@ -33,7 +44,7 @@ const storage = multer.diskStorage({
   }
 })
 
-router.post('/', multer({
+router.post('/', adminPriv, multer({
   storage: storage
 }).single('file'), function (req, res, next) {
   let timeStamp = Date.now();
@@ -64,7 +75,7 @@ router.post('/', multer({
     .catch(next);
 })
 
-router.post('/video', function (req, res, next) {
+router.post('/video', adminPriv, function (req, res, next) {
 
   let vidId = req.body.videoUrl.slice(req.body.videoUrl.lastIndexOf('/') + 1)
   console.log(vidId);
@@ -142,7 +153,7 @@ router.get('/:id', function (req, res, next) {
     .catch(next);
 })
 
-router.delete('/:id', function (req, res, next) {
+router.delete('/:id', adminPriv, function (req, res, next) {
   Exhibit.destroy({
       where: {
         id: req.params.id
@@ -153,7 +164,7 @@ router.delete('/:id', function (req, res, next) {
     .catch(next);
 })
 
-router.put('/:id', function (req, res, next) {
+router.put('/:id', adminPriv, function (req, res, next) {
   Exhibit.update(req.body, {
       where: {
         id: req.params.id
