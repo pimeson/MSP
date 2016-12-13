@@ -1,4 +1,4 @@
-app.controller('GalleryCtrl', function ($scope, project, exhibits) {
+app.controller('GalleryCtrl', function ($scope, project, exhibits, $state) {
 
     $scope.iframeHeight = $(window).height();
     $scope.selected = false;
@@ -38,6 +38,10 @@ app.controller('GalleryCtrl', function ($scope, project, exhibits) {
             console.log("NO LONGER BEING SELECTED!");
         }
     })
+
+    $scope.backToHome = () => {
+        $state.go('home');
+    }
 
 })
 

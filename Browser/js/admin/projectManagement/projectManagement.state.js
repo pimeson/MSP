@@ -32,7 +32,7 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
       specs = [];
     }
     Upload.upload({
-      url: 'http://localhost:1337/api/exhibit/',
+      url: 'http://138.197.25.20:1337/api/exhibit/',
       data: {
         title: $scope.exForm.exTitle,
         type: 'Picture',
@@ -124,7 +124,7 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
         description: $scope.projForm.projectDesc
       })
       .then(() => {
-        $scope.project.description = $scope.projForm.projectDesc;
+        $scope.project.description = $scope.projForm.projectDesc.split('\n');
         $scope.projForm.projectDesc = "";
       })
   }

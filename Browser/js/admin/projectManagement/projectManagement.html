@@ -5,7 +5,7 @@
     <input class="titleInput" type="text" ng-model="projForm.projectTitle">
     <a ng-click="editTitle()">submit new title</a>
     <h4>Project Description</h4>
-    <p id="adminProjDesc">{{project.description}}</p>
+    <p id="adminProjDesc" ng-repeat="desc in project.description track by $index">{{desc}}</p>
     <textarea class="adminProjDesc" ng-model="projForm.projectDesc"></textarea>
     <a ng-click="editDescContent()">submit new description</a>
   </div>

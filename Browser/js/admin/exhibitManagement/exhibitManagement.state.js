@@ -68,7 +68,7 @@ app.controller('exhibitManagementCtrl', function($state, $scope, exhibit, exhibi
     $scope.$evalAsync();
     console.log("WHAT?")
     Upload.upload({
-      url: 'http://localhost:1337/api/altview/',
+      url: 'http://138.197.25.20:1337/api/altview/',
       data: {
         title: $scope.altForm.title,
         file: file,

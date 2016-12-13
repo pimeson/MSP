@@ -60,8 +60,10 @@ router.delete('/:id', function (req, res, next) {
 
 
 router.put('/:id', function (req, res, next) {
-  if(req.body.description){
+  if(req.body.description !== ''){
     req.body.description = req.body.description.split('\n');
+  } else {
+    req.body.description = [];
   }
   Project.update(
       req.body, {
