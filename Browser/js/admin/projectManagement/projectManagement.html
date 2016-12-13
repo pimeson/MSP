@@ -1,57 +1,52 @@
 <div class="adminProject">
-  
-  <div id=control>
   <div id="projectControl">
-  <h2>Project Title</h2>
-  <h3>{{project.title}}</h3>
-  <input class="titleInput" type="text" ng-model="projForm.projectTitle">
-  <a ng-click="editTitle()">submit new title</a>
-  <h4>Project Description</h4>
-  <p id="adminProjDesc" ng-repeat= "desc in project.description track by $index">{{desc}}</p>
-  <textarea class="adminProjDesc" ng-model="projForm.projectDesc"></textarea>
-  <a ng-click="editDescContent()">submit new description</a>
+    <h2 style="margin: 0">Project Title</h2>
+    <h3>{{project.title}}</h3>
+    <input class="titleInput" type="text" ng-model="projForm.projectTitle">
+    <a ng-click="editTitle()">submit new title</a>
+    <h4>Project Description</h4>
+    <p id="adminProjDesc">{{project.description}}</p>
+    <textarea class="adminProjDesc" ng-model="projForm.projectDesc"></textarea>
+    <a ng-click="editDescContent()">submit new description</a>
   </div>
-
-
-
   <div id="exhibitControl">
-  <label>Exhibit Title:</label><input type="text" name="exTitle" ng-model="exForm.exTitle">
-  <label>Exhibit Description:</label><textArea type="text" name="exDesc" ng-model="exForm.exDesc"></textarea>
-  <label>Exhibit Specs:</label><textArea type="text" name="exSpecs" ng-model="exForm.exSpecs" placeholder="separate values by a comma (eg: 2010, 50mm f1.4 1/320s, Film)"></textarea>
-  <md-input-container>
-      <md-select ng-model="exForm.exType" placeholder="Select Type (required)" md-required>
-        <md-option value="Picture">Picture</md-option>
-        <md-option value="Video">Video</md-option>
-      </md-select>
-  </md-input-container>
-  <md-button ng-show="exForm.exType==='Picture'" class="md-raised" ngf-select="upload($file)" ngf-accept="'image/*'">Upload on file select</md-button>
-  <label ng-show="exForm.exType==='Video'">Exhibit Video URL:</label><input type="text" name="videoUrl" ng-model="exForm.videoUrl"></input>
-  <md-button ng-show="exForm.exType==='Video'" class="md-raised" ng-click="addVideo()">Add Video</md-button>
+    <h2 style="align-self = center">Submit new picture/movie</h1>
+      <label>Title:</label><input type="text" name="exTitle" ng-model="exForm.exTitle">
+      <label>Description:</label>
+      <textArea id="exInput" type="text" name="exDesc" ng-model="exForm.exDesc"></textarea>
+      <label>Specs:</label>
+      <textArea type="text" name="exSpecs" ng-model="exForm.exSpecs" placeholder="Separate values by a comma (eg: 2010, 50mm f1.4 1/320s, Film)"></textarea>
+      <md-input-container>
+        <md-select ng-model="exForm.exType" placeholder="Select Type (required)" md-required>
+          <md-option value="Picture">Picture</md-option>
+          <md-option value="Video">Video</md-option>
+        </md-select>
+      </md-input-container>
+      <md-button ng-show="exForm.exType==='Picture'" class="md-raised" ngf-select="upload($file)" ngf-accept="'image/*'">Upload on file select</md-button>
+      <label ng-show="exForm.exType==='Video'">Vimeo URL:<input type="text" name="videoUrl" ng-model="exForm.videoUrl"></label>
+      <md-button ng-show="exForm.exType==='Video'" class="md-raised" ng-click="addVideo()">Add Video</md-button>
   </div>
-  </div>
-
-
-
-
-  <div id="adminExhibits">
+</div>
+<div id="adminExhibits">
   <div class="adminExhibit" ng-repeat="exhibit in exhibits">
     <img ui-sref="exhibitManagement({projId: project.id, id: exhibit.id})" class="exhibitImages" ng-src="{{exhibit.thumbnail}}">
     <p>{{$index+1}} {{exhibit.title}}</p>
     <a ng-click="deleteExhibit(exhibit.id)">delete</a>
   </div>
-  </div>
-  <div id="switch">
-    <md-input-container>
-      <label>Project Pos 1</label>
-      <input type="number" ng-model="pos1" required>
-    </md-input-container>
-    <md-input-container>
-      <label>Project Pos 2</label>
-      <input type="number" ng-model="pos2" required>
-    </md-input-container>
+</div>
 
-    <md-button class="md-raised" ng-click="switch(pos1, pos2)">Switch Order</md-button>
+<div id="switch" style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+  <div style="display: flex; flex-direction: row">
+  <md-input-container>
+    <label>Pic Pos 1</label>
+    <input type="number" ng-model="pos1" required>
+  </md-input-container>
+  <md-input-container>
+    <label>Pic Pos 2</label>
+    <input type="number" ng-model="pos2" required>
+  </md-input-container>
+  <md-button class="md-raised" ng-click="switch(pos1, pos2)">Switch Order</md-button>
   </div>
   <a ng-click="deleteProject()">Delete this project.</a>
   <a ui-sref="admin">Back to Admin Panel</a>
-      </div>
+</div>

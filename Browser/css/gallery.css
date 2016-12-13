@@ -78,6 +78,9 @@ p#showGalDesc {
   width: 30vw;
 }
 
+.notselected {
+  opacity: .85;
+}
 
 
 .galContainer {

@@ -73,3 +73,7 @@ a {
     -ms-user-select: none;
     user-select: none;
 }
+
+.testclass-0 {
+  color: white;
+}

@@ -3,7 +3,7 @@
     <h1>Manage Projects</h1>
     <form name="projectForm" id="projectForm">
       <md-input-container><label>project title</label><input type="text" name="projTitle" ng-model="projTitle"></md-input-container>
-      <label>project description</label><textArea type="text" name="projDesc" ng-model="projDesc"></textarea>
+      <label>project description</label><textarea style="width: 500px;" id="exInput" type="text" name="projDesc" ng-model="projDesc"></textarea>
     </form>
     <md-button class="md-raised" ng-click="makeProject(projTitle, projDesc)">Make project</md-button>
     <ul>
