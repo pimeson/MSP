@@ -30,7 +30,7 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
     if (!file) return;
     let specs;
     if ($scope.exForm.exSpecs) {
-      specs = $scope.exSpecs.split(', ')
+      specs = $scope.exForm.exSpecs.split(', ')
     } else {
       specs = [];
     }
@@ -74,7 +74,7 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
     //if (!$scope.exForm.videoUrl) return;
     let specs;
     if ($scope.exForm.exSpecs && $scope.exForm.exSpecs.length) {
-      specs = $scope.exSpecs.split(', ')
+      specs = $scope.exForm.exSpecs.split(', ')
     } else {
       specs = [];
     }

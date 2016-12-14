@@ -10,6 +10,7 @@ const _ = require('lodash');
 const rp = require('request-promise');
 const Vimeo = require('vimeo').Vimeo;
 const adminTest = require('../../configure/authorization').adminTest;
+require('dotenv').config()
 
 const adminPriv =  function (req, res, next) {
     if (!adminTest(req)) {
@@ -20,7 +21,7 @@ const adminPriv =  function (req, res, next) {
 }
 
 //Need to hide api keys in env config file;
-const lib = new Vimeo();
+const lib = new Vimeo(process.env.VIMEO_ID, process.env.VIMEO_CLIENT, process.env.VIMEO_ACCESS_TOKEN);
 
 module.exports = router;
 
