@@ -2,7 +2,7 @@ app.controller('GalleryCtrl', function ($scope, project, exhibits, $state) {
 
     $scope.iframeHeight = $(window).height();
     $scope.selected = false;
-
+    $scope.hideDesc = true;
 
     $scope.project = project;
     $scope.description = project.description;

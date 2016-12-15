@@ -25,17 +25,9 @@
     <h1>Alternate Views</h1>
     <label>Title</label><input ng-model="altForm.title" type="text">
     <label>Description</label><input ng-model="altForm.desc" type="text">
-    <md-input-container>
-      <md-select ng-model="altForm.type" placeholder="Select Type (required)" md-required>
-        <md-option value="Picture">Picture</md-option>
-        <md-option value="Video">Video</md-option>
-      </md-select>
-    </md-input-container>
-    <md-button ng-if="altForm.type === 'Picture'" class="md-raised" ngf-select="addAltView($file)">Add Alt View</md-button>
-    <div ng-if="altForm.type==='Video'">
+    <md-button class="md-raised" ngf-select="addAltView($file)">Add Alt View</md-button>
     <label>Vimeo URL:</label><input ng-model="altForm.videoUrl" type="text">
-    </div>
-    <md-button ng-if="altForm.type === 'Video'" class="md-raised" ng-click="addAltVideo()">Add Alt Video</md-button>
+    <md-button class="md-raised" ng-click="addAltVideo()">Add Alt Video</md-button>
     <ul>
       <li ng-repeat="altView in exhibit.altViews">
         {{$index + 1}} {{altView.title}} <a ng-click="deleteAltView(altView.id)">x</a>

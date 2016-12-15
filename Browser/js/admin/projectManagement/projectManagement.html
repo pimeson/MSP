@@ -16,15 +16,9 @@
       <textArea id="exInput" type="text" name="exDesc" ng-model="exForm.exDesc"></textarea>
       <label>Specs:</label>
       <textArea type="text" name="exSpecs" ng-model="exForm.exSpecs" placeholder="Separate values by a comma (eg: 2010, 50mm f1.4 1/320s, Film)"></textarea>
-      <md-input-container>
-        <md-select ng-model="exForm.exType" placeholder="Select Type (required)" md-required>
-          <md-option value="Picture">Picture</md-option>
-          <md-option value="Video">Video</md-option>
-        </md-select>
-      </md-input-container>
-      <md-button ng-show="exForm.exType==='Picture'" class="md-raised" ngf-select="upload($file)" ngf-accept="'image/*'">Upload on file select</md-button>
-      <label ng-show="exForm.exType==='Video'">Vimeo URL:<input type="text" name="videoUrl" ng-model="exForm.videoUrl"></label>
-      <md-button ng-show="exForm.exType==='Video'" class="md-raised" ng-click="addVideo()">Add Video</md-button>
+      <md-button class="md-raised" ngf-select="upload($file)" ngf-accept="'image/*'">Upload an image</md-button>
+      <label>Vimeo URL:<input type="text" name="videoUrl" ng-model="exForm.videoUrl"></label>
+      <md-button class="md-raised" ng-click="addVideo()">Add Video</md-button>
   </div>
 </div>
 <div id="adminExhibits">

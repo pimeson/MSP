@@ -1,8 +1,7 @@
 <container>
-  <h1 id="galTitle">{{project.title}}</h1>
+  <a style="font-size: 20px; color: black !important;" id="galTitle" ng-click="hideDesc = !hideDesc">{{project.title}}</a>
   <div id="gallery">
     <table id="initialSpacer"></table>
-    <img id="backArrow" ng-click="backToHome()" src="leftTriangle.svg"></img>
     <div id="galleryPics">
       <table id="initialSpacer"></table>
       <span class="galContainer" ng-repeat="exhibit in exhibits">
@@ -18,17 +17,16 @@
       </div>
      
       </span>
+       <table id="initialSpacer"></table>
       <div>
-        <div class="galDesc noscroll" ng-show="!hide">
+        <div class="galDesc noscroll" ng-show="!hideDesc">
           <span id="galText" class="noscroll">
             <p ng-repeat="desc in description track by $index" class="galParagraph">
               {{desc}}
             </p>
           </span>
-          <p ng-click="hide = true" class="hideGalDesc">hide</p>
         </div>
       </div>
     </div>
   </div>
-  <p id="showGalDesc" ng-show="hide" ng-click="hide = false">Show Description</p>
 </container>

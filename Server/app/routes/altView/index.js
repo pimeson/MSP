@@ -45,7 +45,7 @@ router.post('/', adminPriv, multer({
     })
     .then(creatingAltView => {
       let renaming = fs.rename(req.file.path, newPath, () => console.log('done!'));
-      const transformer = sharp().resize(500, 500).max()
+      const transformer = sharp().resize(2000, 2000).max()
       let resizing = fs.createReadStream(newPath).pipe(transformer).toFile(newPath.slice(0, -4) + 'mini.jpg');
       return Promise.all([renaming, resizing])
     })
