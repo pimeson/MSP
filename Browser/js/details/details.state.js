@@ -10,13 +10,6 @@ app.config($stateProvider => {
       project: function($stateParams, projectFactory){
         return projectFactory.findById($stateParams.projId);
       }
-    },
-    onEnter: function () {
-      //i hide header tabs, you can add your code here
-      console.log('enter click');
-      $('#mainPicContainer').zoom({
-        target: '#target'
-      });
     }
   })
   .state('details.alt', {

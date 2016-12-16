@@ -111,6 +111,14 @@ app.controller('DetailsCtrl', function ($scope, $rootScope, exhibit, project, $s
 
   }, 250));
 
+  //prevent stacking instances of zoom
+  $rootScope.$on('$stateChangeStart',
+    function (event, toState, toParams, fromState, fromParams, options) {
+      if (activeZoom) {
+        activeZoom.destroy();
+      }
+    })
+
   // $(document).ready(function () {
   //   $('#mainPicContainer').zoom({
   //     target: '#target'
