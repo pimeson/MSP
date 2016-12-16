@@ -50,6 +50,7 @@
 #editExhibitContent {
     flex-direction: column;
     display: flex;
+    width: 20vw;
 }
 
 #exhibitMgmtDiv {

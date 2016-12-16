@@ -31,6 +31,7 @@
 .galleryPic {
   width: 100%;
   outline: none;
+  margin-bottom: 10px;
 }
 
 #mainPicContainer {
@@ -84,7 +85,7 @@ ul {
   width: 35vw;
   display: flex;
   flex-direction: column;
-  margin: 8vh 1vw 7.3vh 1vw;
+  margin: 8vh 3vw 7.3vh 1vw;
   overflow-y: scroll;
 }
 
@@ -102,44 +103,6 @@ h2#projTitle {
 
 #picDescContainer {
   margin-top: auto;
-}
-
-
-/* these styles are for the demo, but are not required for the plugin */
-
-.zoom {
-  display: inline-block;
-  position: relative;
-}
-
-
-/* magnifying glass icon */
-
-.zoom:after {
-  content: '';
-  display: block;
-  width: 33px;
-  height: 33px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  background: url(icon.png);
-}
-
-.zoom img {
-  display: block;
-}
-
-.zoomImg {
-  background-color: #f00;
-}
-
-.zoomimg {
-  background-color: green;
-}
-
-.zoom img::selection {
-  background-color: transparent;
 }
 
 a#backToGallery {

@@ -37,7 +37,7 @@ router.post('/', adminPriv, multer({
   AltView.create({
       title: req.body.title,
       type: req.body.type,
-      fileName: req.file.originalname,
+      fileName: req.body.originalname,
       description: req.body.description,
       imageSrc: newPath,
       exhibitId: req.body.exhibitId,

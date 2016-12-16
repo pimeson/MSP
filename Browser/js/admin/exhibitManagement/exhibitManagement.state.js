@@ -74,11 +74,11 @@ app.controller('exhibitManagementCtrl', function($state, $scope, exhibit, exhibi
       url: 'http://localhost:1337/api/altview/',
       data: {
         title: $scope.altForm.title,
-        file: file,
         projectId: $stateParams.projId,
         exhibitId: $stateParams.id,
         description: $scope.altForm.desc,
-        type: $scope.altForm.type,
+        type: 'Picture',
+        file: file,
         dirName: project.dirName
       }
     }).then( res => {
