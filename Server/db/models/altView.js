@@ -36,6 +36,7 @@ module.exports = db.define('altView', {
         } else {
           return this.getDataValue('imageSrc')
         }
+      //Video img is already a thumbnail
       } else {
         return this.getDataValue('imageSrc')
       }

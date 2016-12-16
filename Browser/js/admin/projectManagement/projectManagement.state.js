@@ -37,7 +37,6 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
     Upload.upload({
       url: 'http://localhost:1337/api/exhibit/',
       data: {
-        title: $scope.exForm.exTitle,
         type: 'Picture',
         file: file,
         projId: $stateParams.projectId,

@@ -6,7 +6,7 @@
       <table id="initialSpacer"></table>
       <span class="galContainer" ng-repeat="exhibit in exhibits">
       
-      <div class="galImageContainer underlay underlay-0">
+      <div class="galImageContainer">
       
       <div ng-mouseenter="hoverSelect(exhibit)" ng-mouseleave="hoverLeave(exhibit)" class="galImage" ng-class="{notselected : selected && !exhibit.selected}">
         <img ng-if="exhibit.type === 'Picture' " ui-sref="details({projTitle: project.title, projId: project.id, exhibitId: exhibit.id})" class="galImages" ng-class="{notselected : selected && !exhibit.selected}" ng-src="{{exhibit.thumbnail}}">
@@ -17,7 +17,6 @@
       </div>
      
       </span>
-       <table id="initialSpacer"></table>
       <div>
         <div class="galDesc noscroll" ng-show="!hideDesc">
           <span id="galText" class="noscroll">

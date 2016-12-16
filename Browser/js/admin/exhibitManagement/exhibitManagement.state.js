@@ -59,9 +59,9 @@ app.controller('exhibitManagementCtrl', function($state, $scope, exhibit, exhibi
   $scope.editSpecs = () => {
     $scope.$evalAsync();
     if($scope.exForm.exSpecs){
-      exhibitFactory.updateById(exhibit[0].id, {specs: $scope.exForm.exSpecs.split(', ')})
+      exhibitFactory.updateById(exhibit[0].id, {specs: $scope.exForm.exSpecs.split('\n')})
       .then(updatingSpecs => {
-        $scope.exhibit.specs = $scope.exForm.exSpecs.split(', ');
+        $scope.exhibit.specs = $scope.exForm.exSpecs.split('\n');
         $scope.exForm.exSpecs = "";
       })
     }

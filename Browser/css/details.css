@@ -7,13 +7,13 @@
 
 .galleryBar {
   display: flex;
-    flex-direction: column-reverse;
-    overflow-y: scroll;
-    height: 70vh;
-    width: 15vw;
-    align-items: flex-end;
-    margin-top: 24vh;
-    margin-right: 2vw;
+  flex-direction: column-reverse;
+  overflow-y: scroll;
+  height: 70vh;
+  width: 15vw;
+  align-items: flex-end;
+  margin-top: 24vh;
+  margin-right: 2vw;
 }
 
 .noscroll::-webkit-scrollbar {
@@ -26,7 +26,6 @@
 
 .galleryImg {
   width: 9vw;
-  
 }
 
 .galleryPic {
@@ -35,13 +34,13 @@
 }
 
 #mainPicContainer {
-max-height: 75vh;
-    max-width: 50vw;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-self: center;
-    cursor: crosshair;
+  max-height: 75vh;
+  max-width: 50vw;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-self: center;
+  cursor: crosshair;
 }
 
 #target {
@@ -56,9 +55,9 @@ max-height: 75vh;
 
 #mainPic {
   max-width: 50vw;
-    max-height: 50vw;
-    height: auto;
-    width: auto;
+  max-height: 50vw;
+  height: auto;
+  width: auto;
 }
 
 h2 {
@@ -82,11 +81,11 @@ ul {
 }
 
 .desc {
-     width: 35vw;
-    display: flex;
-    flex-direction: column;
-    margin: 8vh 1vw 7.3vh 1vw;
-    overflow-y: scroll;
+  width: 35vw;
+  display: flex;
+  flex-direction: column;
+  margin: 8vh 1vw 7.3vh 1vw;
+  overflow-y: scroll;
 }
 
 h2#projTitle {
