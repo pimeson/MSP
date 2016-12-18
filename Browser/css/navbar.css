@@ -27,80 +27,156 @@ a {
   font-family: 'Geometric415' !important;
 }
 
-.navTitle {
-  display: block;
-  overflow: hidden;
-  font-family: 'Geometric415';
-  -webkit-transform: rotate(-26deg);
-  color: black;
-  font-size: 15px;
-  margin: 3.9em 1.5em;
-  z-index: 3;
-  position: fixed;
-  cursor: pointer;
+@media only screen and (orientation: landscape) {
+  .navTitle {
+    display: block;
+    overflow: hidden;
+    font-family: 'Geometric415';
+    -webkit-transform: rotate(-26deg);
+    color: black;
+    font-size: 15px;
+    margin: 3.9em 1.5em;
+    z-index: 3;
+    position: fixed;
+    cursor: pointer;
+  }
+  #home p#intro {
+    font-family: 'Geometric415', margin: 20em 2.5em;
+    position: absolute;
+  }
+  .info {
+    display: block;
+    color: black;
+    position: fixed;
+    right: 0;
+    margin: 2vh;
+    overflow: hidden;
+    -webkit-transform: rotate(-46deg);
+    font-family: 'Geometric415';
+    font-size: 12px;
+    z-index: 1;
+  }
+  .goBack {
+    display: block;
+    color: black;
+    position: fixed;
+    right: 0;
+    margin: 2vh 0vw 2vh 0vw;
+    overflow: hidden;
+    -webkit-transform: rotate(-46deg);
+    font-family: 'Geometric415';
+    font-size: 12px;
+    z-index: 1;
+  }
+  .news {
+    display: block;
+    color: black;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    margin: 2vh 1vh;
+    overflow: hidden;
+    -webkit-transform: rotate(-46deg);
+    font-family: 'Geometric415';
+    font-size: 12px;
+    z-index: 1;
+  }
+  .gram {
+    display: block;
+    color: black;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin: 2vh 1vh;
+    overflow: hidden;
+    -webkit-transform: rotate(46deg);
+    font-family: 'Geometric415';
+    font-size: 12px;
+    z-index: 1;
+  }
 }
 
-#home p#intro {
-  font-family: 'Geometric415', margin: 20em 2.5em;
-  position: absolute;
-}
-
-.info {
-  display: block;
-  color: black;
-  position: fixed;
-  right: 0;
-  margin: 2vh;
-  overflow: hidden;
-  -webkit-transform: rotate(-46deg);
-  font-family: 'Geometric415';
-  font-size: 12px;
-  z-index: 1;
-}
-
-.goBack {
-  display: block;
-  color: black;
-  position: fixed;
-  right: 0;
-  margin: 2vh 0vw 2vh 0vw;
-  overflow: hidden;
-  -webkit-transform: rotate(-46deg);
-  font-family: 'Geometric415';
-  font-size: 12px;
-  z-index: 1;
-}
-
-.news {
-  display: block;
-  color: black;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  margin: 2vh 1vh;
-  overflow: hidden;
-  -webkit-transform: rotate(-46deg);
-  font-family: 'Geometric415';
-  font-size: 12px;
-  z-index: 1;
-}
-
-.gram {
-  display: block;
-  color: black;
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  margin: 2vh 1vh;
-  overflow: hidden;
-  -webkit-transform: rotate(46deg);
-  font-family: 'Geometric415';
-  font-size: 12px;
-  z-index: 1;
-}
-
-.navTitle.testclass-0 {
-  color: white;
+@media only screen and (orientation: portrait) {
+  .navTitle {
+    display: block;
+    overflow: hidden;
+    font-family: 'Geometric415';
+    -webkit-transform: rotate(-26deg);
+    color: black;
+    font-size: 12px;
+    margin: 2.9em 0.5em;
+    z-index: 3;
+    position: fixed;
+    cursor: pointer;
+  }
+  .galDesc {
+    position: fixed;
+    font-family: 'Geometric415';
+    font-size: 14px;
+    width: 50vw;
+    margin-top: 15vh;
+    padding: 10px;
+    text-align: center;
+    right: 25vw;
+    height: 75vh;
+    z-index: 5;
+    overflow-y: scroll;
+    background: rgb(250, 250, 250);
+  }
+  #home p#intro {
+    font-family: 'Geometric415', margin: 20em 2.5em;
+    position: absolute;
+  }
+  .info {
+    display: block;
+    color: black;
+    position: fixed;
+    right: 0;
+    margin: 2vh;
+    overflow: hidden;
+    -webkit-transform: rotate(-46deg);
+    font-family: 'Geometric415';
+    font-size: 12px;
+    z-index: 1;
+  }
+  .goBack {
+    display: block;
+    color: black;
+    position: fixed;
+    right: 0;
+    margin: 2vh 0vw 2vh 0vw;
+    overflow: hidden;
+    -webkit-transform: rotate(-46deg);
+    font-family: 'Geometric415';
+    font-size: 12px;
+    z-index: 1;
+  }
+  .news {
+    display: block;
+    color: black;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    margin: 2vh 1vh;
+    overflow: hidden;
+    -webkit-transform: rotate(-46deg);
+    font-family: 'Geometric415';
+    font-size: 12px;
+    z-index: 1;
+  }
+  .gram {
+    display: block;
+    color: black;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin: 2vh 1vh;
+    overflow: hidden;
+    -webkit-transform: rotate(46deg);
+    font-family: 'Geometric415';
+    font-size: 12px;
+    z-index: 1;
+  }
 }
 
 #TitleBox {
@@ -113,4 +189,11 @@ a:link,
 a:active {
   cursor: pointer;
   text-decoration: none;
+}
+
+img#waves {
+  position: fixed;
+  right: 0;
+  height: 6vh;
+  margin: 1vh 1vh;
 }

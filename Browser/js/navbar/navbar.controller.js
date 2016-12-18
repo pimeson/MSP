@@ -6,6 +6,8 @@ app.controller('NavbarCtrl', function ($scope, $rootScope, $state, $window) {
   
   $scope.goBack = $rootScope.goBack;
 
+  $scope.currWidth = $(window).width();
+
   $scope.back = false;
 
   $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams, options){

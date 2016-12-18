@@ -1,27 +1,5 @@
-.detailsSection {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  height: 100vh;
-}
-
-.galleryBar {
-  display: flex;
-  flex-direction: column-reverse;
-  overflow-y: scroll;
-  height: 70vh;
-  width: 15vw;
-  align-items: flex-end;
-  margin-top: 24vh;
-  margin-right: 2vw;
-}
-
 .noscroll::-webkit-scrollbar {
   display: none;
-}
-
-#projDesc {
-  height: 70vh;
 }
 
 .galleryImg {
@@ -34,16 +12,6 @@
   margin-bottom: 10px;
 }
 
-#mainPicContainer {
-  max-height: 75vh;
-  max-width: 50vw;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-self: center;
-  cursor: crosshair;
-}
-
 #target {
   overflow: scroll !important;
 }
@@ -52,13 +20,6 @@
   width: 100%;
   max-height: 10vh;
   overflow-y: scroll;
-}
-
-#mainPic {
-  max-width: 50vw;
-  max-height: 50vw;
-  height: auto;
-  width: auto;
 }
 
 h2 {
@@ -81,16 +42,9 @@ ul {
   padding-left: 0;
 }
 
-.desc {
-  width: 35vw;
-  display: flex;
-  flex-direction: column;
-  margin: 8vh 3vw 7.3vh 1vw;
-  overflow-y: scroll;
-}
-
 h2#projTitle {
   align-self: center;
+  outline: none;
   font-size: 13px;
   margin-top: 0;
 }
@@ -107,11 +61,6 @@ h2#projTitle {
 
 a#backToGallery {
   align-self: center;
-}
-
-.bar {
-  display: flex;
-  flex-direction: column;
 }
 
 #collapseDesc {
@@ -134,4 +83,93 @@ a#backToGallery {
   height: 5vh;
   margin-top: 50vh;
   transform: translate(0, -50%);
+}
+
+@media only screen and (orientation: landscape) {
+  .detailsSection {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100vh;
+  }
+  .bar {
+    display: flex;
+    flex-direction: column;
+  }
+  #projDesc {
+    height: 70vh;
+  }
+  .galleryBar {
+    display: flex;
+    flex-direction: column-reverse;
+    overflow-y: scroll;
+    height: 70vh;
+    width: 15vw;
+    align-items: flex-end;
+    margin-top: 24vh;
+    margin-right: 2vw;
+  }
+  .desc {
+    width: 35vw;
+    display: flex;
+    flex-direction: column;
+    margin: 8vh 3vw 7.3vh 1vw;
+    overflow-y: scroll;
+  }
+  #mainPic {
+    max-width: 50vw;
+    max-height: 85vh;
+    height: auto;
+    width: auto;
+  }
+  #mainPicContainer {
+    max-height: 75vh;
+    max-width: 50vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-self: center;
+    cursor: crosshair;
+  }
+}
+
+@media only screen and (orientation: portrait) {
+  #mainPicContainer {
+    max-width: 75vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-self: center;
+    cursor: crosshair;
+    order: -1;
+    margin-top: 12vh;
+  }
+  #mainPic {
+    max-width: 75vw;
+    max-height: 50vh;
+    height: auto;
+    width: auto;
+  }
+  .detailsSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .bar {
+    display: flex;
+    flex-direction: row;
+    order: 1;
+    height: 15vh;
+    width: 75vw;
+  }
+  #projDesc {
+    height: 30vh;
+  }
+  .desc {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+  }
 }

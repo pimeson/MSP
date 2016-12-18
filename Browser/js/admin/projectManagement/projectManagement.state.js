@@ -30,9 +30,14 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
     if (!file) return;
     let specs;
     if ($scope.exForm.exSpecs) {
-      specs = $scope.exForm.exSpecs.split(', ')
+      specs = $scope.exForm.exSpecs.split('\n')
     } else {
       specs = [];
+    }
+    if ($scope.exForm.exDesc) {
+      exDesc = $scope.exForm.exDesc.split('\n')
+    } else {
+      exDesc = [];
     }
     Upload.upload({
       url: 'http://localhost:1337/api/exhibit/',
@@ -40,7 +45,7 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
         type: 'Picture',
         file: file,
         projId: $stateParams.projectId,
-        description: $scope.exForm.exDesc,
+        description: exDesc,
         dirName: project.dirName,
         specs: specs
       }

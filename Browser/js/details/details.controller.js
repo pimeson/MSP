@@ -1,5 +1,13 @@
 app.controller('DetailsCtrl', function ($scope, $rootScope, exhibit, project, $state, $stateParams, $window) {
 
+  $scope.iframeHeight = $(window).height();
+  $scope.iframeWidth = $(window).width();
+
+  $scope.isLandscape = function () {
+    return $(window).width() >= $(window).height();
+  }
+
+
   $scope.hover = false;
   //description is collapsed by default
   $scope.collapsed = true;
@@ -23,14 +31,22 @@ app.controller('DetailsCtrl', function ($scope, $rootScope, exhibit, project, $s
   });
 
   //Square zoom options for CloudZoom
-  let zoomOptions = {
-    zoomPosition: 3,
-    zoomWidth: $(window).width() * .35,
-    zoomHeight: $(window).height() * .60
+  let zoomOptions = () => {
+    if ($(window).height() <= $(window).width()) {
+      return {
+        zoomPosition: '#target'
+      }
+    } else {
+      return {
+        zoomOffsetX: 0,
+        zoomPosition: 'inside'
+      }
+    }
   }
 
+
   //Initiate cloud zoom on load
-  let activeZoom = new CloudZoom($('#mainPic'), zoomOptions);
+  let activeZoom = new CloudZoom($('#mainPic'), zoomOptions());
   //This variable will be set to a vimeo video object
   let player;
 
@@ -55,7 +71,7 @@ app.controller('DetailsCtrl', function ($scope, $rootScope, exhibit, project, $s
       alt.showing = false;
       $scope.showVideo = false;
       $scope.currImage = exhibit[0];
-      activeZoom = new CloudZoom($('#mainPic'), zoomOptions);
+      activeZoom = new CloudZoom($('#mainPic'), zoomOptions());
       activeZoom.loadImage(exhibit[0].thumbnail, exhibit[0].imageSrc.slice(9));
     } else {
       //Loops over altviews and makes sure that they are not active. All off.
@@ -71,7 +87,7 @@ app.controller('DetailsCtrl', function ($scope, $rootScope, exhibit, project, $s
         $scope.currImage = alt;
         $scope.showVideo = false;
         //create zoom window for alt view
-        let newZoom = new CloudZoom($('#mainPic'), zoomOptions);
+        let newZoom = new CloudZoom($('#mainPic'), zoomOptions());
         newZoom.loadImage(alt.thumbnail, alt.imageSrc.slice(9));
 
       } else if (alt.type === 'Video') {
@@ -98,15 +114,10 @@ app.controller('DetailsCtrl', function ($scope, $rootScope, exhibit, project, $s
   };
 
   $(window).on('resize', _.debounce(() => {
-    zoomOptions = {
-      zoomPosition: 3,
-      zoomWidth: $(window).width() * .35,
-      zoomHeight: $(window).height() * .60
-    }
     if (activeZoom) {
       activeZoom.destroy();
     }
-    activeZoom = new CloudZoom($('#mainPic'), zoomOptions);
+    activeZoom = new CloudZoom($('#mainPic'), zoomOptions());
     activeZoom.loadImage($scope.currImage.thumbnail, $scope.currImage.imageSrc.slice(9));
 
   }, 250));

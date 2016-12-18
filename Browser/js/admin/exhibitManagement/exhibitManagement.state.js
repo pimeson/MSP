@@ -48,9 +48,9 @@ app.controller('exhibitManagementCtrl', function($state, $scope, exhibit, exhibi
   $scope.editDesc = () => {
     $scope.$evalAsync();
     if($scope.exForm.exDesc){
-      exhibitFactory.updateById(exhibit[0].id, {description: $scope.exForm.exDesc})
+      exhibitFactory.updateById(exhibit[0].id, {description: $scope.exForm.exDesc.split('\n')})
       .then(updatingDesc => {
-        $scope.exhibit.description = $scope.exForm.exDesc;
+        $scope.exhibit.description = $scope.exForm.exDesc.split('\n');
         $scope.exForm.exDesc = "";
       })
     }

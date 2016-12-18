@@ -2,46 +2,8 @@
   width: 15vw;
 }
 
-container {
-  max-height: 100vh;
-  overflow: hidden;
-}
-
 .pattern {
   display: flex;
-}
-
-.alone {
-  height: 90vh;
-  /*width: 30vw;*/
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-right: 25px;
-  margin-top: 7vh;
-  overflow-x: hidden;
-  cursor: pointer;
-}
-
-img.projects {
-  height: 90%;
-}
-
-img.projects2 {
-  height: 80%;
-}
-
-img.projects3 {
-  height: 80%;
-}
-
-.num {
-  display: flex;
-  justify-content: flex-start;
-  align-content: center;
-  align-items: center;
-  flex-direction: row;
 }
 
 body {
@@ -66,14 +28,61 @@ html {
 }
 
 a {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-.testclass-0 {
-  color: white;
+#LandingContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+  align-items: center;
+}
+
+@media only screen and (orientation: landscape) {
+  #LandingContainer {
+    flex-direction: row;
+  }
+  .projectPanel {
+    height: 90vh;
+    /*width: 30vw;*/
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 25px;
+    margin-top: 7vh;
+    overflow-x: hidden;
+    cursor: pointer;
+  }
+  container {
+    max-height: 100vh;
+    overflow: hidden;
+  }
+  img.projects {
+    height: 90%;
+  }
+}
+
+@media only screen and (orientation: portrait) {
+  #LandingContainer {
+    flex-direction: column;
+  }
+  .projectPanel {
+    width: 80vw;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 7vh;
+    overflow-x: hidden;
+    cursor: pointer;
+  }
+  img.projects {
+    width: 90%;
+  }
 }

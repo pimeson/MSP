@@ -1,21 +1,4 @@
-
-.galImageContainer {
-  height: 92vh;
-  /*display: flex;
-  flex-direction: column;
-  justify-content: center;*/
-  margin-right: 10px;
-}
-
-.galImage {
-  align-items: center;
-  height: 95%;
-  margin-top: 8vh;
-  justify-content: center;
-}
-
 #galTitle {
-  position: fixed;
   font-family: 'Geometric415';
   font-size: 14px;
   margin: 5% auto;
@@ -34,22 +17,7 @@
   flex-direction: column;
 }
 
-.galDesc {
-  position: fixed;
-  font-family: 'Geometric415';
-  font-size: 14px;
-  width: 50vw;
-  margin-top: 7vh;
-  padding: 10px;
-  text-align: center;
-  right: 25vw;
-  height: 86vh;
-  overflow-y: scroll;
-  background: rgb(250, 250, 250);
-}
-
 .galImages {
-  height: 95%;
   cursor: pointer;
 }
 
@@ -74,9 +42,9 @@ p#showGalDesc {
   text-align: left;
 }
 
-.exhibitTitle {
-  position: absolute;
-  width: 30vw;
+.exhibitGalDesc {
+  height: 8vh;
+  display: flex;
 }
 
 .notselected {
@@ -85,5 +53,83 @@ p#showGalDesc {
 
 .galContainer {
   width: 100%;
-  margin-left: 1vw;
+}
+
+@media only screen and (orientation: portrait) {
+  .galImage {
+    align-items: center;
+    height: 95%;
+    justify-content: center;
+  }
+  #galTitle {
+    margin-top: 8vh;
+    position: absolute;
+  }
+  #galleryPics {
+    display: flex;
+    flex-direction: column;
+  }
+  .galImages {
+    width: 75%;
+    cursor: pointer;
+  }
+  .galImage {
+    display: flex;
+    align-items: center;
+    height: 95%;
+    margin-top: 2vh;
+    justify-content: center;
+  }
+  #initialSpacer {
+    height: 8vh;
+  }
+  .galDesc {
+    position: fixed;
+    font-family: 'Geometric415';
+    font-size: 14px;
+    width: 75vw;
+    margin-top: 15vh;
+    padding: 10px;
+    text-align: center;
+    right: 12.5vw;
+    height: 75vh;
+    z-index: 5;
+    overflow-y: scroll;
+    background: rgb(250, 250, 250);
+  }
+}
+
+@media only screen and (orientation: landscape) {
+  .galDesc {
+    position: fixed;
+    font-family: 'Geometric415';
+    font-size: 14px;
+    width: 50vw;
+    margin-top: 7vh;
+    padding: 10px;
+    text-align: center;
+    right: 25vw;
+    height: 86vh;
+    overflow-y: scroll;
+    background: rgb(250, 250, 250);
+  }
+  .galContainer {
+    margin-left: 1vw;
+  }
+  .galImageContainer {
+    height: 92vh;
+    margin-right: 10px;
+  }
+  .galImage {
+    align-items: center;
+    height: 100%;
+    margin-top: 8vh;
+    justify-content: center;
+  }
+  .galImages {
+    height: 92%;
+  }
+  #galTitle {
+    position: fixed;
+  }
 }

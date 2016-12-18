@@ -15,19 +15,19 @@
       
     </div>
    
-    <article class="desc">
-      <h2 id="projTitle">PROJECT DESCRIPTION <a id="collapseDesc" ng-click="collapsed = !collapsed">{{collapsed ? '+' : '-'}}</a></h2>
-      <section id="projDesc">
-        <div id='target' ng-show="hover && !showVideo" style='height: 70vh; margin-top: 2.5vh; overflow-x: hidden !Important'></div>
+    <article id='target' class="desc">
+      <h2 ng-if="isLandscape()" id="projTitle" ng-click="collapsed = !collapsed">PROJECT DESCRIPTION</h2>
+      <section ng-if="isLandscape()" id="projDesc">
+        <div ng-show="hover && !showVideo" style='height: 70vh; margin-top: 2.5vh; overflow-x: hidden !Important'></div>
         <div ng-show="!collapsed && (!hover || showVideo)">
           <p ng-repeat="paragraph in projDesc track by $index"> {{paragraph}} </p>
         </div>
       </section>
       <div id=picDescContainer>
-        <p id="picDesc">{{exhibit.description}}</p>
+        <p id="picDesc" ng-repeat="desc in exhibit.description track by $index">{{desc}}</p>
         <div id="picDetails">
           <ul id="picSpecs">
-            <li ng-repeat="spec in exhibit.specs">{{spec}}</li>
+            <li ng-repeat="spec in exhibit.specs track by $index">{{spec}}</li>
           </ul>
         </div>
       </div>

@@ -16,7 +16,8 @@ const Exhibit = db.define('exhibit', {
     type: Sequelize.STRING,
   },
   description: {
-    type: Sequelize.TEXT
+    type: Sequelize.ARRAY(Sequelize.STRING),
+    defaultValue: []
   },
   imageSrc: {
     type: Sequelize.STRING,

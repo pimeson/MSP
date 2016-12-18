@@ -1,11 +1,12 @@
 <section id="home">
   <container>
-    <div class="num">
+    <div id="LandingContainer">
       <table id="initialSpacer"></table>
       <section ng-repeat="project in allProjects">
       <div class="pattern" ui-sref="gallery({projId: project.id})">
-      <div class="alone" ng-style="{width: project.width}">
-        <img ng-mousemove="incrementer(project, project.exhibits.length)" id="proj-{{$index}}" class="projects" ng-src="{{project.exhibits[project.num].type==='Picture' ? project.exhibits[project.num].thumbnail : project.exhibits[project.num].imageSrc}}">
+      <div class="projectPanel" ng-style="{width: isLandscape() && project.width}">
+        <img ng-mousemove="incrementer(project, project.exhibits.length)" md-swipe-left="swipeLeftDecrement(project, project.exhibits.length)" 
+        md-swipe-right="swipeRightIncrement(project, project.exhibits.length)" id="proj-{{$index}}" class="projects" ng-src="{{project.exhibits[project.num].type==='Picture' ? project.exhibits[project.num].thumbnail : project.exhibits[project.num].imageSrc}}">
         <div id="galleryTag">
           <p>{{project.title}}</p>
         </div>
