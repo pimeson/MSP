@@ -1,12 +1,12 @@
 <container>
-  <a style="font-size: 20px; color: black !important;" id="galTitle" ng-click="hideDesc = !hideDesc">{{project.title}}</a>
+  <a id="galTitle" ng-style="{'position' : titlePosition}" ng-click="hideDesc = !hideDesc">{{title()}}</a>
   <div class="galDesc noscroll" ng-show="!hideDesc">
-      <span id="galText" class="noscroll">
+    <span id="galText" class="noscroll">
             <p ng-repeat="desc in description track by $index" class="galParagraph">
               {{desc}}
             </p>
           </span>
-    </div>
+  </div>
   <div id="gallery">
     <table id="initialSpacer"></table>
     <div id="galleryPics">
@@ -15,13 +15,13 @@
       
       <div class="galImageContainer">
       
-      <div ng-mouseenter="hoverSelect(exhibit)" ng-mouseleave="hoverLeave(exhibit)" class="galImage" ng-class="{notselected : selected && !exhibit.selected}">
+      <div ng-mouseenter="isLandscape() && hoverSelect(exhibit)" ng-mouseleave="isLandscape() && hoverLeave(exhibit)" class="galImage" ng-class="{notselected : selected && !exhibit.selected}">
         <img ng-if="exhibit.type === 'Picture' " ui-sref="details({projTitle: project.title, projId: project.id, exhibitId: exhibit.id})" class="galImages" ng-class="{notselected : selected && !exhibit.selected}" ng-src="{{exhibit.thumbnail}}">
         <iframe ng-if="exhibit.type === 'Video' && isLandscape()" ng-src="{{exhibit.video | trusted}}" height = "{{iframeHeight * .82}}" width = "{{iframeHeight * .82 * 16/9}}"  frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-        <iframe ng-if="exhibit.type === 'Video' && !isLandscape()" ng-src="{{exhibit.video | trusted}}" height = "{{iframeWidth * .82}}" width = "{{iframeWidth * .75 * 16/9}}"  frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-      <div class="exhibitGalDesc" ng-show="exhibit.showDesc">
+        <iframe ng-if="exhibit.type === 'Video' && !isLandscape()" ng-src="{{exhibit.video | trusted}}" height = "{{iframeWidth * .85 * (9/16)}}" width = "{{iframeWidth * .85}}"  frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+         <div class="exhibitGalDesc" ng-show="exhibit.showDesc">
         <span style="display: flex; flex-direction: row; flex-wrap: wrap; margin-bottom : -3px; width: 100%;" ng-repeat="desc in exhibit.description">
-          <ul>
+          <ul id="exDescs">
           <li>{{desc[0]}}</li>
           <li>{{desc[1]}}</li>
           <li>{{desc[2]}}</li>
@@ -31,6 +31,7 @@
   </div>
   </div>
   </span>
+  </div>
   </div>
   </div>
 </container>

@@ -9,6 +9,20 @@ app.controller('GalleryCtrl', function ($scope, project, exhibits, $state) {
     $scope.selected = false;
     $scope.hideDesc = true;
 
+    $scope.title = () => {
+        if ($scope.hideDesc) {
+            if (!$scope.isLandscape()) {
+                $scope.titlePosition = 'absolute';
+            }
+            return project.title;
+        } else {
+            if (!$scope.isLandscape()) {
+                $scope.titlePosition = 'fixed';
+            }
+            return "Hide Description"
+        }
+    }
+
     $scope.project = project;
     $scope.description = project.description;
     console.log(exhibits);

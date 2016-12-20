@@ -5,6 +5,11 @@
   margin-top: 3vh;
   width: 100%;
   text-align: center;
+  color: black;
+}
+
+a#galTitle:hover {
+  color: slategray;
 }
 
 #galleryPics {
@@ -62,6 +67,7 @@ p#showGalDesc {
     justify-content: center;
   }
   #galTitle {
+    font-size: 17px;
     margin-top: 8vh;
     position: absolute;
   }
@@ -75,10 +81,16 @@ p#showGalDesc {
   }
   .galImage {
     display: flex;
+    flex-direction: column;
     align-items: center;
     height: 95%;
     margin-top: 2vh;
     justify-content: center;
+  }
+  .galContainer {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
   }
   #initialSpacer {
     height: 8vh;
@@ -94,8 +106,16 @@ p#showGalDesc {
     right: 12.5vw;
     height: 75vh;
     z-index: 5;
+    opacity: .95;
     overflow-y: scroll;
     background: rgb(250, 250, 250);
+  }
+  .exhibitGalDesc {
+    width: 80vw;
+    overflow: overlay;
+  }
+  #exDescs li {
+    font-size: 6px;
   }
 }
 
@@ -104,12 +124,14 @@ p#showGalDesc {
     position: fixed;
     font-family: 'Geometric415';
     font-size: 14px;
-    width: 50vw;
+    width: 35vw;
     margin-top: 7vh;
     padding: 10px;
     text-align: center;
-    right: 25vw;
+    right: 32.5vw;
+    z-index: 5;
     height: 86vh;
+    opacity: .95;
     overflow-y: scroll;
     background: rgb(250, 250, 250);
   }
@@ -117,12 +139,12 @@ p#showGalDesc {
     margin-left: 1vw;
   }
   .galImageContainer {
-    height: 92vh;
+    height: 100vh;
     margin-right: 10px;
   }
   .galImage {
     align-items: center;
-    height: 100%;
+    height: 90%;
     margin-top: 8vh;
     justify-content: center;
   }
@@ -130,6 +152,7 @@ p#showGalDesc {
     height: 92%;
   }
   #galTitle {
+    font-size: 17px;
     position: fixed;
   }
 }

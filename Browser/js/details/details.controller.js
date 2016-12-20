@@ -1,5 +1,11 @@
 app.controller('DetailsCtrl', function ($scope, $rootScope, exhibit, project, $state, $stateParams, $window) {
 
+  let activeZoom; 
+
+  if (activeZoom) {
+    activeZoom.destroy();
+  }
+
   $scope.iframeHeight = $(window).height();
   $scope.iframeWidth = $(window).width();
 
@@ -46,7 +52,7 @@ app.controller('DetailsCtrl', function ($scope, $rootScope, exhibit, project, $s
 
 
   //Initiate cloud zoom on load
-  let activeZoom = new CloudZoom($('#mainPic'), zoomOptions());
+  activeZoom = new CloudZoom($('#mainPic'), zoomOptions());
   //This variable will be set to a vimeo video object
   let player;
 
@@ -56,9 +62,9 @@ app.controller('DetailsCtrl', function ($scope, $rootScope, exhibit, project, $s
   //Triggered with ng-click on sidebar gallery pics, takes ng-repeated el as argument
   $scope.changeToAltView = (alt) => {
     //Destroy current zoom window
-    if (activeZoom) {
-      activeZoom.destroy();
-    }
+    // if (activeZoom) {
+    //   activeZoom.destroy();
+    // }
     //Stop video from playing when not visible
     if (player) {
       player.pause()
@@ -71,7 +77,7 @@ app.controller('DetailsCtrl', function ($scope, $rootScope, exhibit, project, $s
       alt.showing = false;
       $scope.showVideo = false;
       $scope.currImage = exhibit[0];
-      activeZoom = new CloudZoom($('#mainPic'), zoomOptions());
+      //activeZoom = new CloudZoom($('#mainPic'), zoomOptions());
       activeZoom.loadImage(exhibit[0].thumbnail, exhibit[0].imageSrc.slice(9));
     } else {
       //Loops over altviews and makes sure that they are not active. All off.
@@ -87,12 +93,12 @@ app.controller('DetailsCtrl', function ($scope, $rootScope, exhibit, project, $s
         $scope.currImage = alt;
         $scope.showVideo = false;
         //create zoom window for alt view
-        let newZoom = new CloudZoom($('#mainPic'), zoomOptions());
-        newZoom.loadImage(alt.thumbnail, alt.imageSrc.slice(9));
+        //let newZoom = new CloudZoom($('#mainPic'), zoomOptions());
+        activeZoom.loadImage(alt.thumbnail, alt.imageSrc.slice(9));
 
       } else if (alt.type === 'Video') {
 
-        $scope.showVideo = true;
+        
         /*player takes video id as an argument, really should be a virtual field
         makes sure if player exists, change the video for the player*/
         if (player) {
@@ -102,22 +108,25 @@ app.controller('DetailsCtrl', function ($scope, $rootScope, exhibit, project, $s
         } else {
           const exhibitOptions = {
             id: alt.videoUrl.slice(alt.videoUrl.lastIndexOf('/') + 1),
-            width: screen.width * .5,
+            width: $(window).width() * .5,
             loop: true
           }
           player = new Vimeo.Player('exhibitVideo', exhibitOptions);
         }
+        $scope.showVideo = true;
       }
+      
+      
     }
 
     $scope.$evalAsync();
   };
 
   $(window).on('resize', _.debounce(() => {
-    if (activeZoom) {
-      activeZoom.destroy();
-    }
-    activeZoom = new CloudZoom($('#mainPic'), zoomOptions());
+    // if (activeZoom) {
+    //   activeZoom.destroy();
+    // }
+    //activeZoom = CloudZoom($('#mainPic'), zoomOptions());
     activeZoom.loadImage($scope.currImage.thumbnail, $scope.currImage.imageSrc.slice(9));
 
   }, 250));

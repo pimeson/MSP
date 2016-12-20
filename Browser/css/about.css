@@ -56,9 +56,9 @@
   margin-bottom: 10vh;
 }
 
- #portraitContainer {
-    height: 40vh;
- }
+#portraitContainer {
+  height: 40vh;
+}
 
 .adminExhibit {
   height: 25vh;
@@ -87,13 +87,15 @@
 @media only screen and (orientation: portrait) {
   #CV {
     width: 65vw;
-    margin-top: 5vh;
-    margin-bottom: 10vh;
+    margin-top: 15vh;
+    margin-bottom: 5vh;
     margin-left: 7vh;
   }
   #portraitAndLinks {
-    margin-top: 10vh;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
     align-self: center;
+    order: 1
   }
   #about,
   #bio,

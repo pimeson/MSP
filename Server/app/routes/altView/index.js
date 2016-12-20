@@ -5,16 +5,18 @@ const rp = require('request-promise');
 const sharp = require('sharp');
 const fs = require('fs');
 const adminTest = require('../../configure/authorization').adminTest;
-
+const bluebird = require('bluebird');
 module.exports = router;
 
-const adminPriv =  function (req, res, next) {
-    if (!adminTest(req)) {
-        res.sendStatus(401);
-    } else {
-        next();
-    }
+const adminPriv = function (req, res, next) {
+  if (!adminTest(req)) {
+    res.sendStatus(401);
+  } else {
+    next();
+  }
 }
+
+const renameAsync = bluebird.promisify(fs.rename);
 
 const multer = require('multer');
 
@@ -25,7 +27,7 @@ const storage = multer.diskStorage({
   filename: (req, file, cb) => {
     console.log(file);
     let datetimestamp = Date.now();
-    cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length - 1]);
+    cb(null, datetimestamp + '.jpg');
   }
 })
 
@@ -33,7 +35,7 @@ router.post('/', adminPriv, multer({
   storage: storage
 }).single('file'), function (req, res, next) {
   let timeStamp = Date.now();
-  let newPath = './public/uploads/' + req.body.dirName + '/' + timeStamp + req.file.originalname;
+  let newPath = './public/uploads/' + req.body.dirName + '/' + timeStamp + '.jpg';
   AltView.create({
       title: req.body.title,
       type: req.body.type,
@@ -44,17 +46,14 @@ router.post('/', adminPriv, multer({
       projectId: req.body.projectId
     })
     .then(creatingAltView => {
-      let renaming = fs.rename(req.file.path, newPath, () => console.log('done!'));
-      const transformer = sharp().resize(2000, 2000).max()
-      let resizing = fs.createReadStream(newPath).pipe(transformer).toFile(newPath.slice(0, -4) + 'mini.jpg');
-      return Promise.all([renaming, resizing])
+      return renameAsync(req.file.path, newPath);
     })
-    .then(makingThumbnailAndRenaming => res.sendStatus(200))
+    .then(renaming => {
+      const transformer = sharp().resize(2000, 2000).max()
+      return fs.createReadStream(newPath).pipe(transformer).toFile(newPath.slice(0, -4) + 'mini.jpg');
+    })
+    .then(makingThumbnail => res.sendStatus(200))
     .catch(next);
-
-  // console.log(req.body); //form fields
-  // console.log(req.file.path); //form files
-  // res.status(204).end();
 })
 
 router.post('/video', adminPriv, function (req, res, next) {

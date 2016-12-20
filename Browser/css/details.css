@@ -2,16 +2,6 @@
   display: none;
 }
 
-.galleryImg {
-  width: 9vw;
-}
-
-.galleryPic {
-  width: 100%;
-  outline: none;
-  margin-bottom: 10px;
-}
-
 #target {
   overflow: scroll !important;
 }
@@ -55,10 +45,6 @@ h2#projTitle {
   padding: 0;
 }
 
-#picDescContainer {
-  margin-top: auto;
-}
-
 a#backToGallery {
   align-self: center;
 }
@@ -86,6 +72,9 @@ a#backToGallery {
 }
 
 @media only screen and (orientation: landscape) {
+  #picDescContainer {
+    margin-top: auto;
+  }
   .detailsSection {
     display: flex;
     flex-direction: row;
@@ -131,22 +120,31 @@ a#backToGallery {
     align-self: center;
     cursor: crosshair;
   }
+  .galleryPic {
+    width: 100%;
+    outline: none;
+    margin-bottom: 10px;
+  }
+  .galleryImg {
+    width: 9vw;
+  }
 }
 
 @media only screen and (orientation: portrait) {
   #mainPicContainer {
-    max-width: 75vw;
+    max-width: 85vw;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-self: center;
     cursor: crosshair;
     order: -1;
-    margin-top: 12vh;
+    margin-top: 15vh;
   }
   #mainPic {
+    margin-bottom: 8vh;
     max-width: 75vw;
-    max-height: 50vh;
+    max-height: 75vh;
     height: auto;
     width: auto;
   }
@@ -155,7 +153,6 @@ a#backToGallery {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
   }
   .bar {
     display: flex;
@@ -171,5 +168,23 @@ a#backToGallery {
     display: flex;
     flex-direction: row;
     width: 100vw;
+    height: 15vh;
+    justify-content: center;
+    overflow: overlay;
+  }
+  .galleryBar {
+    display: flex;
+    flex-direction: row;
+    height: 15vh;
+    width: 75vw;
+    overflow-x: scroll;
+  }
+  .galleryPic {
+    height: 100%;
+    outline: none;
+  }
+  .galleryImg {
+    margin-right: 10px;
+    height: 15vh;
   }
 }

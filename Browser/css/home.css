@@ -43,6 +43,10 @@ a {
   align-items: center;
 }
 
+.navTitle.testclass-0 {
+   color: white;
+}
+
 @media only screen and (orientation: landscape) {
   #LandingContainer {
     flex-direction: row;
@@ -60,8 +64,7 @@ a {
     cursor: pointer;
   }
   container {
-    max-height: 100vh;
-    overflow: hidden;
+    max-height: 110vh;
   }
   img.projects {
     height: 90%;
