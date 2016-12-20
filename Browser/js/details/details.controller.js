@@ -1,6 +1,6 @@
 app.controller('DetailsCtrl', function ($scope, $rootScope, exhibit, project, $state, $stateParams, $window) {
 
-  let activeZoom; 
+  let activeZoom;
 
   if (activeZoom) {
     activeZoom.destroy();
@@ -18,6 +18,11 @@ app.controller('DetailsCtrl', function ($scope, $rootScope, exhibit, project, $s
   //description is collapsed by default
   $scope.collapsed = true;
 
+
+  $scope.collapse = () => {
+    $scope.collapsed = !$scope.collapsed;
+  }
+
   //Exhibit is resolved as an array, there should only be one.
   $scope.exhibit = exhibit[0];
   $scope.projDesc = project.description;
@@ -28,8 +33,6 @@ app.controller('DetailsCtrl', function ($scope, $rootScope, exhibit, project, $s
 
   $scope.altViews = exhibit[0].altViews;
   $scope.showVideo = false;
-
-  $scope.iframeHeight = $(window).height();
 
 
   $scope.backToGallery = () => $state.go('gallery', {
@@ -98,7 +101,7 @@ app.controller('DetailsCtrl', function ($scope, $rootScope, exhibit, project, $s
 
       } else if (alt.type === 'Video') {
 
-        
+
         /*player takes video id as an argument, really should be a virtual field
         makes sure if player exists, change the video for the player*/
         if (player) {
@@ -106,17 +109,18 @@ app.controller('DetailsCtrl', function ($scope, $rootScope, exhibit, project, $s
             .then(() => console.log("loaded other video!"));
           //If player does not exist...
         } else {
+let width = $scope.isLandscape() ? $scope.iframeWidth * .5 : 320;
           const exhibitOptions = {
             id: alt.videoUrl.slice(alt.videoUrl.lastIndexOf('/') + 1),
-            width: $(window).width() * .5,
+            width: width,
             loop: true
           }
           player = new Vimeo.Player('exhibitVideo', exhibitOptions);
         }
         $scope.showVideo = true;
       }
-      
-      
+
+
     }
 
     $scope.$evalAsync();

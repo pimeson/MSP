@@ -16,10 +16,10 @@
     </div>
    
     <article id='target' class="desc">
-      <h2 ng-if="isLandscape()" id="projTitle" ng-click="collapsed = !collapsed">PROJECT DESCRIPTION</h2>
+      <h2 ng-click="collapse()" ng-if="isLandscape()" id="projTitle">PROJECT DESCRIPTION</h2>
       <section ng-if="isLandscape()" id="projDesc">
         <div ng-show="hover && !showVideo" style='height: 70vh; margin-top: 2.5vh; overflow-x: hidden !Important'></div>
-        <div ng-show="!collapsed && (!hover || showVideo)">
+        <div ng-show="!collapsed">
           <p ng-repeat="paragraph in projDesc track by $index"> {{paragraph}} </p>
         </div>
       </section>
