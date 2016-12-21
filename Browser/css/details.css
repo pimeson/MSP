@@ -53,8 +53,6 @@ a#backToGallery {
   font-size: 15px;
 }
 
-#picBar {}
-
 #exTitle {
   font-size: 12px;
   text-align: center;
@@ -72,6 +70,14 @@ a#backToGallery {
 }
 
 @media only screen and (orientation: landscape) {
+  h2#projTitle:hover {
+    color: slategrey;
+}
+  #projDesc {
+    height: 70vh;
+    overflow-y: overlay;
+    margin-bottom: 10px;
+  }
   #picDescContainer {
     margin-top: auto;
   }
@@ -84,9 +90,6 @@ a#backToGallery {
   .bar {
     display: flex;
     flex-direction: column;
-  }
-  #projDesc {
-    height: 70vh;
   }
   .galleryBar {
     display: flex;
