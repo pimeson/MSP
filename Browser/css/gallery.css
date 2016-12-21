@@ -117,9 +117,16 @@ p#showGalDesc {
   #exDescs li {
     font-size: 6px;
   }
+  #lastSpacer {
+    width: 5vh;
+  }
 }
 
 @media only screen and (orientation: landscape) {
+  #lastSpacer {
+    width: 5vw;
+    height:100vh
+  }
   .galDesc {
     position: fixed;
     font-family: 'Geometric415';
@@ -139,12 +146,12 @@ p#showGalDesc {
     margin-left: 1vw;
   }
   .galImageContainer {
-    height: 100vh;
+    height: 90vh;
     margin-right: 10px;
-  }
+}
   .galImage {
     align-items: center;
-    height: 90%;
+    height: 100%;
     margin-top: 8vh;
     justify-content: center;
   }

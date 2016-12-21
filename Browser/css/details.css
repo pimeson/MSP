@@ -131,6 +131,11 @@ a#backToGallery {
 }
 
 @media only screen and (orientation: portrait) {
+  #picDescContainer {
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+  }
   #mainPicContainer {
     max-width: 85vw;
     display: flex;
