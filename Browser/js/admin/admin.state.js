@@ -68,7 +68,7 @@ app.controller('adminCtrl', function ($scope, projectFactory, projects, Upload, 
         file: file
       }
     }).then((res) => {
-      alert("Updated portrait!");
+      alert("Updated portrait! Please refresh the page to see the new portrait.");
       $state.reload();
     })
   }

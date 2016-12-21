@@ -1,5 +1,10 @@
 app.controller('NavbarCtrl', function ($scope, $rootScope, $state, $window) {
 
+
+  $scope.isLandscape = function () {
+    return $(window).width() >= $(window).height();
+  }
+
   $scope.state = $rootScope.$state;
 
   console.log($scope.state)

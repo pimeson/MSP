@@ -24,7 +24,9 @@
         </div>
       </section>
       <div id=picDescContainer>
-        <p id="picDesc" ng-repeat="desc in exhibit.description track by $index">{{desc}}</p>
+        <div id="picDesc" >
+          <p ng-repeat="exDesc in exhibit.description track by $index">{{exDesc}}</p>
+        </div>
         <div id="picDetails">
           <ul id="picSpecs">
             <li ng-repeat="spec in exhibit.specs track by $index">{{spec}}</li>

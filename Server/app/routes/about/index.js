@@ -1,6 +1,7 @@
 const Express = require('express');
 const router = Express.Router();
 const Download = require('../../../db/models/download');
+const bluebird = require('bluebird');
 const fs = require('fs');
 const sharp = require('sharp');
 const adminTest = require('../../configure/authorization').adminTest;
@@ -69,8 +70,10 @@ router.post('/aboutPortrait', multer({
   storage: storage
 }).single('file'), function (req, res, next) {
   const transformer = sharp().resize(2000).max()
-  let deletingImage = fs.unlink('./public/about/portrait/portrait.jpg',() => console.log('deleted portrait'));
-  let convertingPortrait = fs.createReadStream(req.file.path).pipe(transformer).toFile('./public/about/portrait/portrait.jpg');
-  Promise.all([deletingImage, convertingPortrait])
+  let unlinkAsync = bluebird.promisify(fs.unlink);
+  unlinkAsync('./public/about/portrait/portrait.jpg')
+  .then( deletingPortrait => {
+    return fs.createReadStream(req.file.path).pipe(transformer).toFile('./public/about/portrait/portrait.jpg')
+  })
   .then( updatingPortrait => res.sendStatus(204));
 })

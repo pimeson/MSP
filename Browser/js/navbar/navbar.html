@@ -1,8 +1,10 @@
 <div id="TitleBox">
-  <title class="navTitle" ui-sref="home">MATTHEW SPIEGELMAN</title>
+  <title ng-if="isLandscape()" class="navTitle" ui-sref="home">MATTHEW SPIEGELMAN
+  </title>
+  <div ng-if="!isLandscape()" class="navTitle" ui-sref="home"><p id="firstName">MATTHEW</p><p> SPIEGELMAN</p>
+  </div>
   <a class="info" ui-sref="about" ng-show="!back">Info</a>
   <img id="waves" src="wavy.png" ng-click="goBack()" ng-show="back">
   <a class="news" href="http://matthewspiegelman.tumblr.com/" target="_blank">News</a>
   <a href="https://www.instagram.com/matthewspiegelman/" target="_blank" class="gram">gram</a>
 </div>
-
