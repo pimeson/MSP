@@ -66,12 +66,12 @@ a#backToGallery {
 @media only screen and (orientation: landscape) {
   h2#projTitle:hover {
     color: slategrey;
-}
-#picDesc {
-  width: 100%;
-  max-height: 25vh;
-  overflow-y: scroll;
-}
+  }
+  #picDesc {
+    width: 100%;
+    max-height: 25vh;
+    overflow-y: scroll;
+  }
   #projDesc {
     height: 70vh;
     overflow-y: overlay;
@@ -133,6 +133,15 @@ a#backToGallery {
 }
 
 @media only screen and (orientation: portrait) {
+  #target {
+    height: 35vh;
+    margin-top: 5vh;
+  }
+  .detailsSection {
+    flex-direction: column;
+    display: flex;
+    justify-content: space-around;
+  }
   #picDescContainer {
     display: flex;
     flex-direction: column;

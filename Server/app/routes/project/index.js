@@ -22,7 +22,11 @@ router.post('/', adminPriv, function (req, res, next) {
   
   req.body.dirName = dirName;
   req.body.dirPath = newDirPath;
-  req.body.description = req.body.description && req.body.description.split('\n');
+  try {
+    req.body.description = req.body.description.split('\n');
+  } catch (error) {
+    req.body.description = [];
+  }
   
   //Promises
   let makingDir = fs.mkdirSync(newDirPath)

@@ -2,35 +2,35 @@
   <container>
     <div id="LandingContainer">
       <table id="initialSpacer"></table>
-        <div ng-if="!isLandscape()" infinite-scroll='loadMore()' 
-        infinite-scroll-distance='2' infinite-scroll-immediate-check='false'>
-  
-      <section ng-repeat="project in allProjects">
-      <div class="pattern" ui-sref="gallery({projId: project.id})">
-      <div class="projectPanel" ng-style="{width: isLandscape() && project.width}">
-        <img data-jq-clipthru="testclass-0" ng-mousemove="incrementer(project, project.exhibits.length)" id="proj-{{$index}}" class="projects" ng-src="{{project.exhibits[project.num].type==='Picture' ? project.exhibits[project.num].thumbnail : project.exhibits[project.num].imageSrc}}">
-        <div id="galleryTag">
-          <p>{{::project.title}}</p>
-        </div>
+      <!--For portrait mode, images display in column-->
+      <div ng-if="!isLandscape()" infinite-scroll='loadMore()' infinite-scroll-distance='2' infinite-scroll-immediate-check='false'>
+        <section ng-repeat="project in allProjects">
+          <div class="pattern" ui-sref="gallery({projId: project.id})">
+            <div class="projectPanel" ng-style="{width: isLandscape() && project.width}">
+              <img data-jq-clipthru="testclass-0" ng-mousemove="incrementer(project, project.exhibits.length)" id="proj-{{$index}}" class="projects"
+                ng-src="{{project.exhibits[project.num].type==='Picture' ? project.exhibits[project.num].thumbnail : project.exhibits[project.num].imageSrc}}">
+              <div id="galleryTag">
+                <p>{{::project.title}}</p>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
+      <!--For landscape mode, images display horizontally-->
+      <div style="display:flex; flex-direction:row" ng-if="isLandscape()" infinite-scroll='loadMore()' infinite-scroll-distance='2'
+        infinite-scroll-immediate-check='false'>
+        <section ng-repeat="project in allProjects">
+          <div class="pattern" ui-sref="gallery({projId: project.id})">
+            <div class="projectPanel" ng-style="{width: isLandscape() && project.width}">
+              <img data-jq-clipthru="testclass-0" ng-mousemove="incrementer(project, project.exhibits.length)" id="proj-{{$index}}" class="projects"
+                ng-src="{{project.exhibits[project.num].type==='Picture' ? project.exhibits[project.num].thumbnail : project.exhibits[project.num].imageSrc}}">
+              <div id="galleryTag">
+                <p>{{::project.title}}</p>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
-      </section>
-      </div>
-  
-       <div style="display:flex; flex-direction:row" ng-if="isLandscape()" infinite-scroll='loadMore()' 
-        infinite-scroll-distance='2' infinite-scroll-immediate-check='false'>
-
-      <section ng-repeat="project in allProjects">
-      <div class="pattern" ui-sref="gallery({projId: project.id})">
-      <div class="projectPanel" ng-style="{width: isLandscape() && project.width}">
-        <img data-jq-clipthru="testclass-0" ng-mousemove="incrementer(project, project.exhibits.length)" id="proj-{{$index}}" class="projects" ng-src="{{project.exhibits[project.num].type==='Picture' ? project.exhibits[project.num].thumbnail : project.exhibits[project.num].imageSrc}}">
-        <div id="galleryTag">
-          <p>{{::project.title}}</p>
-        </div>
-      </div>
-      </div>
-      </section>
-      </div>
-  <div style='clear: both;'></div>
+      <div style='clear: both;'></div>
   </container>
 </section>
