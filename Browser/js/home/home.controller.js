@@ -16,6 +16,10 @@ app.controller('homeCtrl', function ($scope, $state, $rootScope, allProjects) {
     return $(window).width() >= $(window).height();
   }
 
+  console.log($scope.isLandscape())
+
+  console.log(allProjects);
+
   allProjects
     .sort((x, y) => x.order > y.order ? 1 : -1)
     .map(project => {
@@ -27,7 +31,22 @@ app.controller('homeCtrl', function ($scope, $state, $rootScope, allProjects) {
       return project;
     })
 
-  $scope.allProjects = allProjects;
+  //if (!$scope.isLandscape()) {
+    let chunkedProjects = _.chunk(allProjects, 10);
+
+    $scope.allProjects = chunkedProjects.shift();
+
+    $scope.loadMore = _.debounce(() => {
+      console.log('triggered!')
+      if (chunkedProjects.length) {
+        $scope.allProjects = [...$scope.allProjects, ...chunkedProjects.shift()];
+      }
+      $scope.$evalAsync();
+    }, 250);
+  //}
+  // else {
+  //   $scope.allProjects = allProjects;
+  // }
 
   $rootScope.$state = $state;
 
@@ -64,5 +83,5 @@ app.controller('homeCtrl', function ($scope, $state, $rootScope, allProjects) {
   // }
 
   let loaded = false;
-  
+
 })

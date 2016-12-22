@@ -3,7 +3,7 @@
   <div class="galDesc noscroll" ng-show="!hideDesc">
     <span id="galText" class="noscroll">
             <p ng-repeat="desc in description track by $index" class="galParagraph">
-              {{desc}}
+              {{::desc}}
             </p>
           </span>
   </div>

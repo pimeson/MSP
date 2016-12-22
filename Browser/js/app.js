@@ -1,6 +1,6 @@
 'use strict';
 
-const app = angular.module('MSP', ['ui.router', 'ui.bootstrap', 'ngAnimate', 'ngMaterial', 'ngFileUpload', 'angular-loading-bar', 'auth']);
+const app = angular.module('MSP', ['ui.router', 'ui.bootstrap', 'ngAnimate', 'ngMaterial', 'ngFileUpload', 'angular-loading-bar', 'auth', 'infinite-scroll']);
 
 app.config( ($urlRouterProvider, $locationProvider) => {
 

@@ -20,16 +20,16 @@
       <section ng-if="isLandscape()" id="projDesc">
         <div ng-show="hover && !showVideo" style='height: 70vh; margin-top: 2.5vh; overflow-x: hidden !Important'></div>
         <div ng-show="!collapsed">
-          <p ng-repeat="paragraph in projDesc track by $index"> {{paragraph}} </p>
+          <p ng-repeat="paragraph in projDesc track by $index"> {{::paragraph}} </p>
         </div>
       </section>
       <div id=picDescContainer>
         <div id="picDesc" >
-          <p ng-repeat="exDesc in exhibit.description track by $index">{{exDesc}}</p>
+          <p ng-repeat="exDesc in exhibit.description track by $index">{{::exDesc}}</p>
         </div>
         <div id="picDetails">
           <ul id="picSpecs">
-            <li ng-repeat="spec in exhibit.specs track by $index">{{spec}}</li>
+            <li ng-repeat="spec in exhibit.specs track by $index">{{::spec}}</li>
           </ul>
         </div>
       </div>
