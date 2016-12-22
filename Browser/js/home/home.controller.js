@@ -53,7 +53,7 @@ app.controller('homeCtrl', function ($scope, $state, $rootScope, allProjects) {
   $scope.incrementer = (project, maxNum) => {
     console.log(project.count);
     project.count++;
-    if (project.count >= 10) {
+    if (project.count >= 25) {
       if (project.num < maxNum) {
         project.num += 1;
       } else {
