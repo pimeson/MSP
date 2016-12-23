@@ -1,5 +1,5 @@
 <container>
-  <a id="galTitle" ng-style="{'position' : titlePosition}" ng-click="hideDesc = !hideDesc">{{title()}}</a>
+  <a id="galTitle" ng-click="hideDesc = !hideDesc">{{title()}}</a>
   <div class="galDesc noscroll" ng-show="!hideDesc">
     <span id="galText" class="noscroll">
             <p ng-repeat="desc in description track by $index" class="galParagraph">

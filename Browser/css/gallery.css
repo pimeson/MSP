@@ -1,8 +1,5 @@
 #galTitle {
   font-family: 'Geometric415';
-  font-size: 14px;
-  margin: 5% auto;
-  margin-top: 3vh;
   width: 100%;
   text-align: center;
   color: black;
@@ -67,9 +64,9 @@ p#showGalDesc {
     justify-content: center;
   }
   #galTitle {
-    font-size: 17px;
-    margin-top: 8vh;
-    position: absolute;
+    font-size: 14px;
+    margin-top: 10vh;
+    position: fixed;
   }
   #galleryPics {
     display: flex;
@@ -123,9 +120,14 @@ p#showGalDesc {
 }
 
 @media only screen and (orientation: landscape) {
+  #galTitle {
+    font-size: 14px !important;
+    margin: 5% auto;
+    margin-top: 2vh;
+  }
   #lastSpacer {
     width: 5vw;
-    height:100vh
+    height: 100vh
   }
   .galDesc {
     position: fixed;
@@ -148,7 +150,7 @@ p#showGalDesc {
   .galImageContainer {
     height: 90vh;
     margin-right: 10px;
-}
+  }
   .galImage {
     align-items: center;
     height: 100%;
@@ -159,7 +161,7 @@ p#showGalDesc {
     height: 92%;
   }
   #galTitle {
-    font-size: 17px;
+    font-size: 12px;
     position: fixed;
   }
 }
