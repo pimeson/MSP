@@ -73,10 +73,8 @@ router.delete('/:id', adminPriv, function (req, res, next) {
 
 
 router.put('/:id', adminPriv, function (req, res, next) {
-  if(req.body.description){
+  if(typeof req.body.description === 'string'){
     req.body.description = req.body.description.split('\n');
-  } else {
-    req.body.description = [];
   }
   Project.update(
       req.body, {
