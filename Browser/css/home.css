@@ -4,6 +4,9 @@
 
 .pattern {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
 }
 
 body {
@@ -12,7 +15,11 @@ body {
 }
 
 #galleryTag {
-  margin-top: 2vh;
+    margin-top: 87.5vh;
+    position: relative;
+    /* margin-bottom: 2vh; */
+    /* bottom: 0; */
+    width: 95%;
 }
 
 #galleryTag p {
@@ -47,27 +54,38 @@ a {
    color: white;
 }
 
+img.projects {
+  clip: rect(auto, auto, auto, auto);
+}
+
 @media only screen and (orientation: landscape) {
+  #clip {
+    color: white; 
+    margin: 1.9em -3.5em;
+  }
   #LandingContainer {
     flex-direction: row;
+    display: flex;
+    align-items: center;
   }
   .projectPanel {
-    height: 90vh;
-    /*width: 30vw;*/
-    align-items: center;
-    display: flex;
+    height: 100%;
+    /* width: 30vw; */
+    /* clip: rect(auto, auto, auto, auto); */
+    /* align-items: center; */
+    justify-content: center;
     flex-direction: column;
     justify-content: center;
     margin-right: 25px;
-    margin-top: 7vh;
+    margin-top: 8vh;
     overflow-x: hidden;
     cursor: pointer;
-  }
+ }
   container {
-    max-height: 110vh;
+    max-height: 100vh;
   }
   img.projects {
-    height: 90%;
+    width: 95%
   }
 }
 

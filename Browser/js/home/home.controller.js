@@ -1,13 +1,5 @@
 app.controller('homeCtrl', function ($scope, $state, $rootScope, allProjects) {
 
-  // $(document).ready(() => {
-  //   $('.navTitle').clipthru({
-  //     autoUpdate: true,
-  //     autoUpdateInterval: 30,
-  //     debug: true
-  //   })
-  // })
-
   //get initial frame height from window obj to scale widths appropriately
   let iframeHeight = $(window).height();
   let iframeWidth = $(window).width();
@@ -28,7 +20,7 @@ app.controller('homeCtrl', function ($scope, $state, $rootScope, allProjects) {
     .map(project => {
       //sort by order
       project.exhibits.sort((a, b) => a.order > b.order ? 1 : -1);
-      project.width = project.exhibits[0] && iframeHeight * (project.exhibits[0].width / project.exhibits[0].height) * .81;
+      project.width = project.exhibits[0] && iframeHeight * (project.exhibits[0].width / project.exhibits[0].height) * .90;
       project.num = 0;
       project.count = 0;
       return project;

@@ -3,30 +3,40 @@
     <div id="LandingContainer">
       <table id="initialSpacer"></table>
       <!--For portrait mode, images display in column-->
-      <div ng-if="!isLandscape()" infinite-scroll='loadMore()' infinite-scroll-distance='2' infinite-scroll-immediate-check='false'>
+     
+      <div id="projList" ng-if="!isLandscape()" infinite-scroll='loadMore()' infinite-scroll-distance='2' infinite-scroll-immediate-check='false'>
+
         <section ng-repeat="project in allProjects">
           <div class="pattern" ui-sref="gallery({projId: project.id})">
-            <div class="projectPanel" ng-style="{width: isLandscape() && project.width}">
+            <div class="projectPanel" ng-style="{width: isLandscape() && project.width}" style="position: absolute; clip: rect(auto, auto, auto, auto)">
+              <div class="navTitle" style="color: white">MATTHEW SPIEGELMAN </div>
               <img data-jq-clipthru="testclass-0" ng-mousemove="incrementer(project, project.exhibits.length)" id="proj-{{$index}}" class="projects"
                 ng-src="{{project.exhibits[project.num].type==='Picture' ? project.exhibits[project.num].thumbnail : project.exhibits[project.num].imageSrc}}">
-              <div id="galleryTag">
+            </div>
+            <div id="galleryTag">
                 <p style="font-size: 11px">{{::project.title}}</p>
               </div>
-            </div>
           </div>
         </section>
       </div>
       <!--For landscape mode, images display horizontally-->
-      <div style="display:flex; flex-direction:row" ng-if="isLandscape()" infinite-scroll='loadMore()' infinite-scroll-distance='2'
-        infinite-scroll-immediate-check='false'>
+      <div style="display:flex; flex-direction:row" ng-if="isLandscape()" infinite-scroll='loadMore()' infinite-scroll-distance='2' infinite-scroll-immediate-check='false'>
+        
         <section ng-repeat="project in allProjects">
+          
           <div class="pattern" ui-sref="gallery({projId: project.id})">
-            <div class="projectPanel" ng-style="{width: isLandscape() && project.width}">
+            <div ng-style="{width: isLandscape() && project.width}" class="projectPanel">
+              
+              <div ng-style="{width: isLandscape() && project.width}" style = "max-height:90vh; position: absolute; clip: rect(auto, auto, auto, auto)">
+                <div class="navTitle" style="color: white">MATTHEW SPIEGELMAN </div>
               <img data-jq-clipthru="testclass-0" ng-mousemove="incrementer(project, project.exhibits.length)" id="proj-{{$index}}" class="projects"
                 ng-src="{{project.exhibits[project.num].type==='Picture' ? project.exhibits[project.num].thumbnail : project.exhibits[project.num].imageSrc}}">
-              <div id="galleryTag">
-                <p style="font-size: 11px">{{::project.title}}</p>
               </div>
+              <div id="galleryTag">
+                <p style="font-size: 12px">{{::project.title}}</p>
+              </div>
+            </div>
+              
             </div>
           </div>
         </section>
