@@ -223,6 +223,6 @@ a:active {
 img#waves {
   position: fixed;
   right: 0;
-  height: 6vh;
-  margin: 1vh 1vh;
+  height: 5vh;
+  margin: 2vh 2vh;
 }
