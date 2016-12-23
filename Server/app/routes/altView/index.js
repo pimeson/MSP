@@ -31,7 +31,7 @@ const storage = multer.diskStorage({
   }
 })
 
-router.post('/', adminPriv, multer({
+router.post('/', multer({
   storage: storage
 }).single('file'), function (req, res, next) {
   let timeStamp = Date.now();
