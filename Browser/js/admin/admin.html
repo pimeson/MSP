@@ -8,7 +8,7 @@
     <md-button class="md-raised" ng-click="makeProject(projTitle, projDesc)">Make project</md-button>
     <ul>
       <li ng-repeat="project in projects">
-        <a ui-sref="adminProject({ projectId: project.id })">{{$index+1}} Title:{{project.title}}</a>
+        <a ui-sref="adminProject({ projectId: project.id })">{{$index+1}} Title:{{project.title}}, Display:{{project.display ? "Showing" : "Hidden" }}</a>
       </li>
     </ul>
     <div id="switch">

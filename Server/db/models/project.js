@@ -21,6 +21,10 @@ const Project = db.define('project', {
   },
   order: {
     type: Sequelize.INTEGER
+  },
+  display: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: true
   }
 }, {
   hooks: {

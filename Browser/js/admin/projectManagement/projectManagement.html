@@ -29,6 +29,7 @@
 </div>
 
 <div id="switch" style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+  <md-button ng-click="toggleVisibility()" class="md-raised">{{project.display ? "Hide Project" : "Show Project"}}</md-button>
   <div style="display: flex; flex-direction: row">
   <md-input-container>
     <label>Pic To</label>
@@ -40,6 +41,7 @@
   </md-input-container>
   <md-button class="md-raised" ng-click="switch(pos1, pos2)">Switch Order</md-button>
   </div>
-  <a ng-click="deleteProject()">Delete this project.</a>
+   
+  <md-button ng-click="deleteProject()" class="md-raised">Delete this project</md-button>
   <a ui-sref="admin">Back to Admin Panel</a>
 </div>

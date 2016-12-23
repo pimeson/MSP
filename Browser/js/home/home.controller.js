@@ -20,6 +20,9 @@ app.controller('homeCtrl', function ($scope, $state, $rootScope, allProjects) {
 
   console.log(allProjects);
 
+  allProjects = allProjects
+    .filter(x => x.display)
+
   allProjects
     .sort((x, y) => x.order > y.order ? 1 : -1)
     .map(project => {

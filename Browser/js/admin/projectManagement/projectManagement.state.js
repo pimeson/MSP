@@ -144,7 +144,7 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
   $scope.deleteProject = () => {
     let confirmation = window.prompt("Are you sure? Please enter the name of the project (" + project.title + ") to confirm.");
     if (confirmation === project.title) {
-      projectFactory.deleteProject($stateParams.projectId)
+      projectFactory.deleteProject(project.id)
         .then(deletedProject => $state.go('admin'));
     }
   }
@@ -163,6 +163,11 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
       console.log($scope.exhibits, x, y);
       console.log("gross");
     }
+  }
+
+  $scope.toggleVisibility = () => {
+    projectFactory.updateById($scope.project.id, {display: !project.display})
+    .then(() => $state.reload());
   }
 
 })
