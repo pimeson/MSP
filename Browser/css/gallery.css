@@ -2,6 +2,7 @@
   font-family: 'Geometric415';
   text-align: center;
   color: black;
+  outline: none;
 }
 
 #galTitle:hover {
@@ -88,7 +89,7 @@ p#showGalDesc {
     margin-bottom: 10px;
   }
   #initialSpacer {
-    height: 8vh;
+    height: 10vh;
   }
   .galDesc {
     position: fixed;
