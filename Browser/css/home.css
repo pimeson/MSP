@@ -2,6 +2,10 @@
   width: 15vw;
 }
 
+#lastSpacer {
+  width: 5vw;
+}
+
 .pattern {
   display: flex;
 }
@@ -53,21 +57,23 @@ a {
 }
 
 @media only screen and (orientation: landscape) {
-  .projects:hover {
-    webkit-box-shadow: -7px -7px 0px -4px #95a5a6;
-    -moz-box-shadow: -7px -7px 0px -4px #95a5a6;
+  /*.projects:hover {
+    webkit-box-shadow: -7px -6px 0px -4px #95a5a6;
+    -moz-box-shadow: -7px -6px 0px -4px #95a5a6;
     box-shadow: -7px -7px 0px -4px #95a5a6;
-    border: 3px white solid;
+    border-left: 3px white solid;
+    border-top: 2px white solid;
     padding: 0px;
-  }
-
+  }*/
   #LandingContainer {
     flex-direction: row;
   }
   .projectPanel {
+    margin-left: .5vw;
     height: 90vh;
     align-items: center;
     display: flex;
+    overflow-x: hidden;
     flex-direction: column;
     justify-content: center;
     margin-top: 7vh;
@@ -77,9 +83,14 @@ a {
     max-height: 110vh;
   }
   img.projects {
-    height: auto;
-    width: 100%;
-    padding: 3px;
+    height: 90%;
+    width: auto;
+    padding-left: 3px;
+    padding-top: 2px;
+  }
+  .pattern {
+    display: flex;
+    height: 90vh;
   }
 }
 

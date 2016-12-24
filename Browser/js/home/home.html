@@ -26,12 +26,16 @@
             <div class="projectPanel" ng-style="{width: isLandscape() && project.width}">
               <img data-jq-clipthru="testclass-0" ng-mousemove="incrementer(project, project.exhibits.length)" id="proj-{{$index}}" class="projects"
                 ng-src="{{project.exhibits[project.num].type==='Picture' ? project.exhibits[project.num].thumbnail : project.exhibits[project.num].imageSrc}}">
-              <div id="galleryTag">
+                    <div id="galleryTag">
                 <p style="font-size: 12px">{{::project.title}}</p>
               </div>
-            </div>
           </div>
+             
+            </div>
+         
+          
         </section>
+        <table id="initialSpacer"></table>
       </div>
       <div style='clear: both;'></div>
   </container>
