@@ -23,11 +23,16 @@ html {
   background-color: white !important;
 }
 
-.selected {
-  box-shadow: -5px -5px #777777;
+a {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-a {
+.unselectable {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -44,16 +49,22 @@ a {
 }
 
 .navTitle.testclass-0 {
-   color: white;
+  color: white;
 }
 
 @media only screen and (orientation: landscape) {
+  .projects:hover {
+    webkit-box-shadow: -5px -5px 0px 0px #95a5a6;
+    -moz-box-shadow: -5px -5px 0px 0px #95a5a6;
+    box-shadow: -5px -5px 0px 0px #95a5a6;
+  }
   #LandingContainer {
     flex-direction: row;
   }
   .projectPanel {
     height: 90vh;
     /*width: 30vw;*/
+    padding-left: 20px;
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -72,6 +83,9 @@ a {
 }
 
 @media only screen and (orientation: portrait) {
+  #portraitLanding {
+    margin-top: 10vh;
+  }
   #LandingContainer {
     flex-direction: column;
   }

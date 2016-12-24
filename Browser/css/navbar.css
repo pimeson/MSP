@@ -27,6 +27,10 @@ a {
   font-family: 'Geometric415' !important;
 }
 
+.navTitle:hover{
+  color: #8503FF;
+}
+
 @media only screen and (orientation: landscape) {
   .navTitle {
     display: block;
@@ -113,9 +117,9 @@ a {
     display: block;
     overflow: hidden;
     font-family: 'Geometric415';
-    -webkit-transform: rotate(-41deg);
+    -webkit-transform: rotate(41deg);
     color: black;
-    font-size: 10px;
+    font-size: 14px;
     margin: 3.9em -0.54em;
     z-index: 3;
     position: fixed;
@@ -125,9 +129,9 @@ a {
     display: block;
     overflow: hidden;
     font-family: 'Geometric415';
-    -webkit-transform: rotate(-41deg);
+    -webkit-transform: rotate(41deg);
     color: white;
-    font-size: 10px;
+    font-size: 14px;
     margin: 4em -0.53em;
     z-index: 2;
     position: fixed;

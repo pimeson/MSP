@@ -1,5 +1,6 @@
 <div class="adminProject">
   <div id="projectControl">
+    <a ui-sref="admin">Back to Admin Panel</a>
     <h2 style="margin: 0">Project Title</h2>
     <h3>{{project.title}}</h3>
     <input class="titleInput" type="text" ng-model="projForm.projectTitle">
@@ -27,21 +28,18 @@
     <a ng-click="deleteExhibit(exhibit.id)">delete</a>
   </div>
 </div>
-
 <div id="switch" style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
   <md-button ng-click="toggleVisibility()" class="md-raised">{{project.display ? "Hide Project" : "Show Project"}}</md-button>
   <div style="display: flex; flex-direction: row">
-  <md-input-container>
-    <label>Pic To</label>
-    <input type="number" ng-model="pos1" required>
-  </md-input-container>
-  <md-input-container>
-    <label>Pic From</label>
-    <input type="number" ng-model="pos2" required>
-  </md-input-container>
-  <md-button class="md-raised" ng-click="switch(pos1, pos2)">Switch Order</md-button>
+    <md-input-container>
+      <label>Pic To</label>
+      <input type="number" ng-model="pos1" required>
+    </md-input-container>
+    <md-input-container>
+      <label>Pic From</label>
+      <input type="number" ng-model="pos2" required>
+    </md-input-container>
+    <md-button class="md-raised" ng-click="switch(pos1, pos2)">Switch Order</md-button>
   </div>
-   
   <md-button ng-click="deleteProject()" class="md-raised">Delete this project</md-button>
-  <a ui-sref="admin">Back to Admin Panel</a>
 </div>

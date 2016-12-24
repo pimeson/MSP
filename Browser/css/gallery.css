@@ -1,12 +1,11 @@
 #galTitle {
   font-family: 'Geometric415';
-  width: 100%;
   text-align: center;
   color: black;
 }
 
-a#galTitle:hover {
-  color: slategray;
+#galTitle:hover {
+  color: #8503FF;
 }
 
 #galleryPics {
@@ -67,6 +66,8 @@ p#showGalDesc {
     font-size: 14px;
     margin-top: 10vh;
     position: fixed;
+    left: 0;
+    right: 0;
   }
   #galleryPics {
     display: flex;
@@ -120,10 +121,20 @@ p#showGalDesc {
 }
 
 @media only screen and (orientation: landscape) {
+  .galImages:hover {
+     webkit-box-shadow: -5px -5px 0px 0px #95a5a6;
+    -moz-box-shadow: -5px -5px 0px 0px #95a5a6;
+    box-shadow: -5px -5px 0px 0px #95a5a6;
+  }
   #galTitle {
     font-size: 14px !important;
-    margin: 5% auto;
+    left: 0;
+    right: 0;
     margin-top: 2vh;
+    margin-left: auto;
+    margin-right: auto;
+    width: 25vw;
+    outline: none;
   }
   #lastSpacer {
     width: 5vw;
@@ -158,7 +169,7 @@ p#showGalDesc {
     justify-content: center;
   }
   .galImages {
-    height: 92%;
+    height: 95%;
   }
   #galTitle {
     font-size: 12px;
