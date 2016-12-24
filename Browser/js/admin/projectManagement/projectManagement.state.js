@@ -78,16 +78,21 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
     //if (!$scope.exForm.videoUrl) return;
     let specs;
     if ($scope.exForm.exSpecs && $scope.exForm.exSpecs.length) {
-      specs = $scope.exForm.exSpecs.split(', ')
+      specs = $scope.exForm.exSpecs.split('\n')
     } else {
       specs = [];
+    }
+    if ($scope.exForm.exDesc && $scope.exForm.exDesc.length) {
+      desc = $scope.exForm.exDesc.split('\n')
+    } else {
+      descs = [];
     }
     let payload = {
       title: $scope.exForm.exTitle,
       type: 'Video',
       videoUrl: $scope.exForm.videoUrl,
       projectId: $stateParams.projectId,
-      description: $scope.exForm.exDesc,
+      description: descs || [],
       specs: specs || []
     }
     exhibitFactory.makeVideo(payload)
