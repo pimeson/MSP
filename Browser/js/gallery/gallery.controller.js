@@ -19,7 +19,7 @@ app.controller('GalleryCtrl', function ($scope, project, exhibits, $state) {
             if (!$scope.isLandscape()) {
                 $scope.titlePosition = 'fixed';
             }
-            return "Hide Description"
+            return "hide"
         }
     }
 

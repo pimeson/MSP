@@ -20,7 +20,7 @@
       <section ng-if="isLandscape()" id="projDesc">
         <div ng-show="hover && !showVideo" style='height: 70vh; margin-top: 2.5vh; overflow-x: hidden !Important'></div>
         <div ng-show="!collapsed">
-          <p ng-repeat="paragraph in projDesc track by $index"> {{::paragraph}} </p>
+          <p style="text-align: left" ng-repeat="paragraph in projDesc track by $index"> {{::paragraph}} </p>
         </div>
       </section>
       <div id=picDescContainer>

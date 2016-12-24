@@ -95,7 +95,7 @@ a:hover {
 
 @media only screen and (orientation: portrait) {
   #portraitLanding {
-    margin-top: 10vh;
+    margin-top: 5vh;
   }
   #LandingContainer {
     flex-direction: column;

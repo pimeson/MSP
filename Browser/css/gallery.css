@@ -96,7 +96,7 @@ p#showGalDesc {
     font-family: 'Geometric415';
     font-size: 14px;
     width: 75vw;
-    margin-top: 15vh;
+    margin-top: 22vh;
     padding: 10px;
     text-align: center;
     right: 12.5vw;
@@ -149,7 +149,7 @@ p#showGalDesc {
     text-align: center;
     right: 32.5vw;
     z-index: 5;
-    height: 86vh;
+    height: 90vh;
     opacity: .95;
     overflow-y: scroll;
     background: rgb(250, 250, 250);
@@ -164,7 +164,7 @@ p#showGalDesc {
   .galImage {
     
     align-items: center;
-    height: 100%;
+    height: 97%;
     margin-top: 8vh;
     justify-content: center;
   }

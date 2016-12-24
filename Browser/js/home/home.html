@@ -4,7 +4,7 @@
       <table id="initialSpacer"></table>
       <!--For portrait mode, images display in column-->
       <div id="portraitLanding" ng-if="!isLandscape()" infinite-scroll='loadMore()' infinite-scroll-distance='2' infinite-scroll-immediate-check='false'>
-        <h3 style="text-align: center">Projects</h3>
+        <h5 style="text-align: center; margin-top: -5vh; margin-bottom: 5vh;">PROJECTS</h5>
         <section ng-repeat="project in allProjects">
           <div class="pattern" ui-sref="gallery({projId: project.id})">
             <div class="projectPanel" ng-style="{width: isLandscape() && project.width}">
