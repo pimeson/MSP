@@ -48,10 +48,6 @@ p#showGalDesc {
   display: flex;
 }
 
-.notselected {
-  opacity: .85;
-}
-
 .galContainer {
   width: 100%;
 }
@@ -88,6 +84,7 @@ p#showGalDesc {
   .galContainer {
     display: flex;
     flex-direction: column;
+    align-items: center;
     margin-bottom: 10px;
   }
   #initialSpacer {
