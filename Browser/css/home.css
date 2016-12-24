@@ -77,7 +77,8 @@ a {
     max-height: 110vh;
   }
   img.projects {
-    height: 90%;
+    height: auto;
+    width: 100%;
     padding: 3px;
   }
 }
