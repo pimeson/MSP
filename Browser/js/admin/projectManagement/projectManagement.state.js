@@ -60,8 +60,8 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
       path: 'public/uploads/file-1480376741574.jpg',
       size: 547530 }*/
       $scope.exForm = {};
-      $scope.getGalleries();
       console.log('Success ' + resp.config.data + 'uploaded. Response: ' + resp.data);
+      $state.reload();
     }, (resp) => {
       console.log('Error status: ' + resp.status);
     }, (evt) => {
