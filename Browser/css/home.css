@@ -54,24 +54,23 @@ a {
 
 @media only screen and (orientation: landscape) {
   .projects:hover {
-    webkit-box-shadow: -5px -5px 0px 0px #95a5a6;
-    -moz-box-shadow: -5px -5px 0px 0px #95a5a6;
-    box-shadow: -5px -5px 0px 0px #95a5a6;
+    webkit-box-shadow: -7px -7px 0px -2px #95a5a6;
+    -moz-box-shadow: -7px -7px 0px -2px #95a5a6;
+    box-shadow: -7px -7px 0px -2px #95a5a6;
+    border: 3px white solid;
+    padding: 0px;
   }
+
   #LandingContainer {
     flex-direction: row;
   }
   .projectPanel {
     height: 90vh;
-    /*width: 30vw;*/
-    padding-left: 20px;
     align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-right: 25px;
     margin-top: 7vh;
-    overflow-x: hidden;
     cursor: pointer;
   }
   container {
@@ -79,6 +78,7 @@ a {
   }
   img.projects {
     height: 90%;
+    padding: 3px;
   }
 }
 

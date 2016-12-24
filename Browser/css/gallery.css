@@ -122,6 +122,7 @@ p#showGalDesc {
      webkit-box-shadow: -5px -5px 0px 0px #95a5a6;
     -moz-box-shadow: -5px -5px 0px 0px #95a5a6;
     box-shadow: -5px -5px 0px 0px #95a5a6;
+    border: -3px white solid;
   }
   #galTitle {
     font-size: 14px !important;
@@ -160,6 +161,7 @@ p#showGalDesc {
     margin-right: 10px;
   }
   .galImage {
+    
     align-items: center;
     height: 100%;
     margin-top: 8vh;
@@ -167,6 +169,7 @@ p#showGalDesc {
   }
   .galImages {
     height: 95%;
+    padding: 3px;
   }
   #galTitle {
     font-size: 12px;
