@@ -56,7 +56,7 @@ router.post('/', multer({
     .catch(next);
 })
 
-router.post('/video', adminPriv, function (req, res, next) {
+router.post('/video', function (req, res, next) {
   let options = {
     uri: 'http://vimeo.com/api/v2/video/' + req.body.videoUrl.slice(req.body.videoUrl.lastIndexOf('/') + 1) + '.json',
     json: true
