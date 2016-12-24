@@ -101,9 +101,6 @@ app.controller('adminCtrl', function ($scope, projectFactory, projects, Upload, 
       let secondSwitch = projectFactory.updateById($scope.projects[y-1].id, {order: x});
       Promise.all(firstSwitch, secondSwitch)
       .then(switched => $state.reload());
-    } else {
-      console.log($scope.projects, x, y);
-      console.log("gross");
     }
   }
 

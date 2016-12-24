@@ -40,7 +40,6 @@ app.controller('GalleryCtrl', function ($scope, project, exhibits, $state) {
     $scope.hoverSelect = (selection) => {
         selection.showDesc = true
         $scope.$evalAsync();
-        console.log("hovering!")
         if (!$scope.selected) {
             $scope.selected = true
         }
@@ -52,12 +51,6 @@ app.controller('GalleryCtrl', function ($scope, project, exhibits, $state) {
         selection.selected = false;
         selection.showDesc = false;
     }
-
-    $scope.$watch($scope.selected, () => {
-        if (!$scope.selected) {
-            console.log("NO LONGER BEING SELECTED!");
-        }
-    })
 
     $scope.backToHome = () => {
         $state.go('home');

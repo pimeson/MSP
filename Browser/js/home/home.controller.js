@@ -40,7 +40,6 @@ app.controller('homeCtrl', function ($scope, $state, $rootScope, allProjects) {
     $scope.allProjects = chunkedProjects.shift();
 
     $scope.loadMore = _.debounce(() => {
-      console.log('triggered!')
       if (chunkedProjects.length) {
         $scope.allProjects = [...$scope.allProjects, ...chunkedProjects.shift()];
       }
@@ -54,7 +53,7 @@ app.controller('homeCtrl', function ($scope, $state, $rootScope, allProjects) {
   $rootScope.$state = $state;
 
   $scope.incrementer = (project, maxNum) => {
-    console.log(project.count);
+    //console.log(project.count);
     project.count++;
     if (project.count >= 25) {
       if (project.num < maxNum) {

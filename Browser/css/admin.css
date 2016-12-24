@@ -54,11 +54,11 @@
 }
 
 #exhibitMgmtDiv {
-  height: 90vh;
+  width: 33vw;
 }
 
 #exhibitMgmtImg {
-  height: 100%;
+  width: 100%;
 }
 
 #adminExhibits {

@@ -144,6 +144,10 @@ app.controller('DetailsCtrl', function ($scope, $rootScope, exhibit, project, $s
         activeZoom = new CloudZoom($('#mainPic'), zoomOptions());
       }
       activeZoom.loadImage($scope.currImage.thumbnail, $scope.currImage.imageSrc.slice(9));
+    } else {
+      if(activeZoom){
+        activeZoom.destroy();
+      }
     }
   }, 250));
 
@@ -162,7 +166,6 @@ app.controller('DetailsCtrl', function ($scope, $rootScope, exhibit, project, $s
   // })
 
   // $scope.$watch(() => {
-  //   console.log("weird!")
   //   if (!$scope.showVideo) {
   //     $('#mainPicContainer').zoom({
   //       target: '#target'

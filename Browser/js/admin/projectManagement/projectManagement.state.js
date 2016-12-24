@@ -159,9 +159,6 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
       });
       Promise.all(firstSwitch, secondSwitch)
         .then(switched => $state.reload());
-    } else {
-      console.log($scope.exhibits, x, y);
-      console.log("gross");
     }
   }
 
