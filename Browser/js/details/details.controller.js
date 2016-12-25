@@ -117,7 +117,7 @@ app.controller('DetailsCtrl', function ($scope, $rootScope, exhibit, project, $s
             .then(() => console.log("loaded other video!"));
           //If player does not exist...
         } else {
-          let width = $scope.isLandscape() ? $scope.iframeWidth * .5 : 320;
+          let width = $scope.isLandscape() ? 640 : 320;
           const exhibitOptions = {
             id: alt.videoUrl.slice(alt.videoUrl.lastIndexOf('/') + 1),
             width: width,
