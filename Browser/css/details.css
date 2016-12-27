@@ -64,6 +64,16 @@ a#backToGallery {
   transform: translate(0, -50%);
 }
 
+#picDesc::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+#target::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
 @media only screen and (orientation: landscape) {
   h2#projTitle:hover {
     color:  #8503FF;
