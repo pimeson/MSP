@@ -141,6 +141,16 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
       })
   }
 
+  $scope.clearDescContent = () => {
+     projectFactory.updateById($stateParams.projectId, {
+        description: []
+      })
+      .then(() => {
+        $scope.project.description = [];
+        $scope.projForm.projectDesc = "";
+      })
+  }
+
   $scope.deleteExhibit = (id) => {
     exhibitFactory.deleteById(id)
       .then((deletingExhibit) => $state.reload());

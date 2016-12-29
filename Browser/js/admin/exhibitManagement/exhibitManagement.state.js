@@ -56,6 +56,14 @@ app.controller('exhibitManagementCtrl', function($state, $scope, exhibit, exhibi
     }
   }
 
+  $scope.clearDesc = () => {
+      exhibitFactory.updateById(exhibit[0].id, {description: []})
+      .then(updatingDesc => {
+        $scope.exhibit.description = "";
+        $scope.exForm.exDesc = "";
+      })
+  }
+
   $scope.editSpecs = () => {
     $scope.$evalAsync();
     if($scope.exForm.exSpecs){
@@ -65,6 +73,14 @@ app.controller('exhibitManagementCtrl', function($state, $scope, exhibit, exhibi
         $scope.exForm.exSpecs = "";
       })
     }
+  }
+
+   $scope.clearSpecs = () => {
+      exhibitFactory.updateById(exhibit[0].id, {specs: []})
+      .then(updatingDesc => {
+        $scope.exhibit.specs = [];
+        $scope.exForm.exSpecs = "";
+      })
   }
 
   $scope.addAltView = (file) => {

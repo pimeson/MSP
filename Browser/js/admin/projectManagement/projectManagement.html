@@ -9,6 +9,7 @@
     <p id="adminProjDesc" ng-repeat="desc in project.description track by $index">{{desc}}</p>
     <textarea class="adminProjDesc" ng-model="projForm.projectDesc"></textarea>
     <a ng-click="editDescContent()">submit new description</a>
+    <a ng-click="clearDescContent()">clear description</a>
   </div>
   <div id="exhibitControl">
     <h2 style="align-self : center">Submit new picture/movie</h1>

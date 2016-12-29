@@ -9,13 +9,14 @@
     </ul>
     <textarea class="adminExDesc" ng-model="exForm.exDesc"></textarea>
     <a ng-click="editDesc()">submit new description</a>
+    <a ng-click="clearDesc()">clear description</a>
     <h4>Specs</h4>
     <ul>
     <li ng-repeat="exSpec in exhibit.specs track by $index">{{exSpec}}</li>
     </ul>
     <textarea class="adminExSpecs" ng-model="exForm.exSpecs"></textarea>
     <a ng-click="editSpecs()">submit new specs</a>
-    
+    <a ng-click="clearSpecs()">clear specs</a>
   </div>
   
   <div id="exhibitMgmtDiv">
