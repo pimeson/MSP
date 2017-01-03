@@ -31,6 +31,7 @@ app.controller('homeCtrl', function ($scope, $state, $rootScope, allProjects) {
       project.width = project.exhibits[0] && iframeHeight * (project.exhibits[0].width / project.exhibits[0].height) * .82;
       project.num = 0;
       project.count = 0;
+      project.currImage = project.exhibits[0].thumbnail
       return project;
     })
 
@@ -65,6 +66,11 @@ app.controller('homeCtrl', function ($scope, $state, $rootScope, allProjects) {
       $scope.$evalAsync();
     }
   };
+
+  $scope.changeImage = (num, project) => {
+    project.exhibits[num].type==='Picture' ? project.currImage = project.exhibits[num].thumbnail : project.currImage = project.exhibits[num].imageSrc;
+    $scope.$evalAsync();
+  }
 
   // $scope.swipeLeftDecrement = (project, maxNum) => {
   //   if (project.num > 0) {
