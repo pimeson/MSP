@@ -16,9 +16,10 @@ app.controller('NavbarCtrl', function ($scope, $rootScope, $state, $window) {
   $scope.back = false;
 
   $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams, options) {
-    document.body.scrollTop = document.documentElement.scrollTop = 0;
-    document.body.scrollLeft = document.documentElement.scrollLeft = 0;
-    console.log(toState.name);
+    if (toState.name === 'home' || toState.name === 'gallery' || toState.name === 'details') {
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
+      document.body.scrollLeft = document.documentElement.scrollLeft = 0;
+    }
     if (toState.name === 'about') {
       $scope.back = true;
     } else {

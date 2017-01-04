@@ -4,7 +4,7 @@ app.config($stateProvider => {
     templateUrl: '/js/admin/projectManagement/projectManagement.html',
     controller: 'projectMgmtCtrl',
     data: {
-            authenticate: true
+      authenticate: true
     },
     resolve: {
       exhibits: function ($stateParams, exhibitFactory) {
@@ -75,7 +75,7 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
   $scope.addVideo = () => {
     $scope.$evalAsync();
     console.log("I was clicked!")
-    //if (!$scope.exForm.videoUrl) return;
+      //if (!$scope.exForm.videoUrl) return;
     let specs;
     if ($scope.exForm.exSpecs && $scope.exForm.exSpecs.length) {
       specs = $scope.exForm.exSpecs.split('\n')
@@ -96,9 +96,9 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
       specs: specs || []
     }
     exhibitFactory.makeVideo(payload)
-    .then(res => {
-      $state.reload();
-    })
+      .then(res => {
+        $state.reload();
+      })
   }
 
 
@@ -142,7 +142,7 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
   }
 
   $scope.clearDescContent = () => {
-     projectFactory.updateById($stateParams.projectId, {
+    projectFactory.updateById($stateParams.projectId, {
         description: []
       })
       .then(() => {
@@ -178,13 +178,19 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
   }
 
   $scope.switchPicPos = (x, y) => {
-    exhibitFactory.updateOrderById( $scope.exhibits[x - 1].id,$stateParams.projectId, x, y)
-     .then(() => $state.reload());
+    if (x <= $scope.exhibits.length && x > 0 && y <= $scope.exhibits.length && y > 0 && x !== y) {
+      exhibitFactory.updateOrderById($scope.exhibits[x - 1].id, $stateParams.projectId, x, y)
+        .then(() => $state.reload());
+    } else {
+      alert('invalid inputs!')
+    }
   }
 
   $scope.toggleVisibility = () => {
-    projectFactory.updateById($scope.project.id, {display: !project.display})
-    .then(() => $state.reload());
+    projectFactory.updateById($scope.project.id, {
+        display: !project.display
+      })
+      .then(() => $state.reload());
   }
 
 })
