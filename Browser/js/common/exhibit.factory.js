@@ -16,6 +16,11 @@ app.factory('exhibitFactory', function($http){
     return $http.put('/api/exhibit/' + exhibitId, payload)
     .then(res => res.data);
   }
+
+  exObj.updateOrderById = (exhibitId, projectId, posOne, posTwo) => {
+    return $http.put('/api/exhibit/order/' + projectId +'/'+ exhibitId + '/' + posOne + '/' + posTwo)
+    .then(res => res.data);
+  }
   
   exObj.deleteById = (exhibitId) => {
     return $http.delete('/api/exhibit/' + exhibitId)

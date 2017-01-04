@@ -12,12 +12,12 @@ const Vimeo = require('vimeo').Vimeo;
 const adminTest = require('../../configure/authorization').adminTest;
 require('dotenv').config()
 
-const adminPriv =  function (req, res, next) {
-    if (!adminTest(req)) {
-        res.sendStatus(401);
-    } else {
-        next();
-    }
+const adminPriv = function (req, res, next) {
+  if (!adminTest(req)) {
+    res.sendStatus(401);
+  } else {
+    next();
+  }
 }
 
 //Need to hide api keys in env config file;
@@ -83,34 +83,34 @@ router.post('/video', adminPriv, function (req, res, next) {
 
   let libAsync = (id) => {
     return new Promise((resolve, reject) => {
-        lib.request({
-          method: 'GET',
-          path: '/videos/' + id + '/pictures'
-        }, function (error, body, status_code, headers) {
-          if (error) {
-            console.log('error');
-            reject();
-          } else {
-            console.log('body');
-            resolve(body.data[0].uri.slice(body.data[0].uri.lastIndexOf('/') + 1));
-          }
-        })
+      lib.request({
+        method: 'GET',
+        path: '/videos/' + id + '/pictures'
+      }, function (error, body, status_code, headers) {
+        if (error) {
+          console.log('error');
+          reject();
+        } else {
+          console.log('body');
+          resolve(body.data[0].uri.slice(body.data[0].uri.lastIndexOf('/') + 1));
+        }
+      })
     })
   }
 
-  
+
 
   libAsync(vidId)
     .then(gettingVidInfo => {
-        Exhibit.create({
-            title: req.body.title,
-            type: req.body.type,
-            description: req.body.description,
-            videoUrl: req.body.videoUrl,
-            imageSrc: 'https://i.vimeocdn.com/video/'+ gettingVidInfo +'_1920x1080.jpg',
-            width: 1920,
-            height: 1080,
-            projectId: req.body.projectId
+      Exhibit.create({
+        title: req.body.title,
+        type: req.body.type,
+        description: req.body.description,
+        videoUrl: req.body.videoUrl,
+        imageSrc: 'https://i.vimeocdn.com/video/' + gettingVidInfo + '_1920x1080.jpg',
+        width: 1920,
+        height: 1080,
+        projectId: req.body.projectId
       })
     })
     .then(makingDbRow => {
@@ -173,4 +173,47 @@ router.put('/:id', adminPriv, function (req, res, next) {
     })
     .then(updating => res.sendStatus(200))
     .catch(next)
+})
+
+router.put('/order/:projectId/:id/:posOne/:posTwo', adminPriv, function (req, res, next) {
+  console.log(req.params);
+  Exhibit.update({
+      order: req.params.posTwo
+    }, {
+      where: {
+        id: req.params.id
+      }
+    })
+    .then(findingExhibit => {
+      console.log(req.params.projectId);
+      return Exhibit.findAll({
+        where: {
+          projectId: req.params.projectId,
+          id: {
+            $ne: req.params.id
+          }
+        }
+      })
+    })
+    .then(findingExhibits => {
+      let reorderingExhibits = findingExhibits.map(foundExhibit => {
+        if (req.params.posOne < foundExhibit.order) {
+          if (foundExhibit.order <= req.params.posTwo) {
+            foundExhibit.order--;
+          }
+          return foundExhibit.save();
+        } else {
+          if (foundExhibit.order >= req.params.posTwo) {
+            foundExhibit.order++;
+          }
+          return foundExhibit.save();
+        }
+      })
+    })
+    .then(reorderingExhibits => res.sendStatus(201))
+    .catch(err => {
+      console.log(err);
+    })
+
+
 })

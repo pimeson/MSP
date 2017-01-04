@@ -29,7 +29,8 @@
     <a ng-click="deleteExhibit(exhibit.id)">delete</a>
   </div>
 </div>
-<div id="switch" style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+
+<!--<div id="switch" style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
   <md-button ng-click="toggleVisibility()" class="md-raised">{{project.display ? "Hide Project" : "Show Project"}}</md-button>
   <div style="display: flex; flex-direction: row">
     <md-input-container>
@@ -41,6 +42,21 @@
       <input type="number" ng-model="pos2" required>
     </md-input-container>
     <md-button class="md-raised" ng-click="switch(pos1, pos2)">Switch Order</md-button>
+  </div>-->
+
+
+  <div style="display: flex; flex-direction: row">
+    <md-input-container>
+      <label>Current Picture Position (from)</label>
+      <input type="number" ng-model="x" required>
+    </md-input-container>
+    <md-input-container>
+      <label>Desired Picture Postion (to)</label>
+      <input type="number" ng-model="y" required>
+    </md-input-container>
+    <md-button class="md-raised" ng-click="switchPicPos(x, y)">Switch Pic Position</md-button>
   </div>
+
+
   <md-button ng-click="deleteProject()" class="md-raised">Delete this project</md-button>
 </div>

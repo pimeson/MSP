@@ -177,6 +177,11 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
     }
   }
 
+  $scope.switchPicPos = (x, y) => {
+    exhibitFactory.updateOrderById( $scope.exhibits[x - 1].id,$stateParams.projectId, x, y)
+     .then(() => $state.reload());
+  }
+
   $scope.toggleVisibility = () => {
     projectFactory.updateById($scope.project.id, {display: !project.display})
     .then(() => $state.reload());
