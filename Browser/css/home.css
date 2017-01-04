@@ -69,13 +69,13 @@ a:hover {
   }
   .projectPanel {
     margin-left: .5vw;
-    height: 90vh;
+    height: 92vh;
     align-items: center;
     display: flex;
     overflow-x: hidden;
     flex-direction: column;
     justify-content: center;
-    margin-top: 7vh;
+    margin-top: 5vh;
     cursor: pointer;
   }
   container {

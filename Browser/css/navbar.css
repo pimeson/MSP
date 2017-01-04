@@ -39,7 +39,8 @@ a {
     -webkit-transform: rotate(-26deg);
     color: black;
     font-size: 15px;
-    margin: 3.9em 1.5em;
+    top: 3.9em;
+    left: 2em;
     z-index: 0;
     position: fixed;
     cursor: pointer;
@@ -120,7 +121,8 @@ a {
     -webkit-transform: rotate(41deg);
     color: black;
     font-size: 14px;
-    margin: 3.9em -0.54em;
+    top: 3.9em;
+    left: -.54em;
     z-index: 3;
     position: fixed;
     cursor: pointer;
