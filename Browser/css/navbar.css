@@ -40,7 +40,7 @@ a {
     color: black;
     font-size: 15px;
     margin: 3.9em 1.5em;
-    z-index: 3;
+    z-index: 0;
     position: fixed;
     cursor: pointer;
   }
@@ -51,7 +51,7 @@ a {
     -webkit-transform: rotate(-26deg);
     color: white;
     font-size: 15px;
-    margin: 4.0em 1.59em;
+    margin: -.75em -8.83em;
     z-index: 2;
     position: fixed;
     cursor: pointer;
