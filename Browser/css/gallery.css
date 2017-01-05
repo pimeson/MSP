@@ -123,7 +123,7 @@ p#showGalDesc {
 }
 
 @media only screen and (orientation: landscape) {
-  .galImages:hover {
+  .current {
     webkit-box-shadow: -5px -5px 0px -3px #95a5a6;
     -moz-box-shadow: -5px -5px 0px -3px #95a5a6;
     box-shadow: -5px -5px 0px -3px #95a5a6;
