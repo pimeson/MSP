@@ -85,3 +85,42 @@ router.put('/:id', adminPriv, function (req, res, next) {
     .then(updatingProjects => res.sendStatus(201))
     .catch(next);
 })
+
+router.put('/order/:projectId/:posOne/:posTwo', adminPriv, function (req, res, next) {
+  console.log(req.params);
+  Project.update({
+      order: req.params.posTwo
+    }, {
+      where: {
+        id: req.params.projectId
+      }
+    })
+    .then(findingProject => {
+      return Project.findAll({
+        where: {
+          id: {
+            $ne: req.params.projectId
+          }
+        }
+      })
+    })
+    .then(findingProjects => {
+      let reorderingProjects = findingProjects.map(foundProject => {
+        if (req.params.posOne < foundProject.order) {
+          if (foundProject.order <= req.params.posTwo) {
+            foundProject.order--;
+          }
+        } else {
+          if (foundProject.order >= req.params.posTwo) {
+            foundProject.order++;
+          }
+        }
+        return foundProject.save();
+      })
+    })
+    .then(reorderingProjects => res.sendStatus(201))
+    .catch(err => {
+      console.log(err);
+    })
+
+});

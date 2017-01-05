@@ -11,6 +11,8 @@ app.controller('homeCtrl', function ($scope, $state, $rootScope, allProjects) {
   //get initial frame height from window obj to scale widths appropriately
   let iframeHeight = $(window).height();
   let iframeWidth = $(window).width();
+  $scope.iframeWidth = iframeWidth;
+  $scope.iframeHeight = iframeHeight;
 
   $scope.isLandscape = function () {
     return $(window).width() >= $(window).height();
@@ -29,6 +31,7 @@ app.controller('homeCtrl', function ($scope, $state, $rootScope, allProjects) {
       //sort by order
       project.exhibits.sort((a, b) => a.order > b.order ? 1 : -1);
       project.width = project.exhibits[0] && iframeHeight * (project.exhibits[0].width / project.exhibits[0].height) * .82;
+      project.height = project.exhibits[0] && iframeWidth * (project.exhibits[0].height / project.exhibits[0].width) * .725;
       project.num = 0;
       project.count = 0;
       project.currImage = project.exhibits[0].thumbnail

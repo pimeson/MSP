@@ -8,7 +8,11 @@
         <section ng-repeat="project in allProjects">
           <div class="pattern" ui-sref="gallery({projId: project.id})">
             <div class="projectPanel" ng-style="{width: isLandscape() && project.width}">
+              <div id="hoverOverlay" style="position: absolute; clip: rect(auto, auto, auto, auto); margin-left: 4vw;" ng-style="{width: iframeWidth * .72, height: project.height}">
+                <title style="color: white" class="navTitle" ui-sref="home">MATTHEW SPIEGELMAN</title>
+              </div>
               <img ng-mousemove="incrementer(project, project.exhibits.length)" id="proj-{{$index}}" class="projects" ng-src="{{project.exhibits[project.num].type==='Picture' ? project.exhibits[project.num].thumbnail : project.exhibits[project.num].imageSrc}}">
+              
               <div id="galleryTag">
                 <p style="font-size: 14px">{{::project.title}}</p>
               </div>
@@ -20,7 +24,7 @@
       <!--For landscape mode, images display horizontally-->
       <div style="display:flex; flex-direction:row" ng-if="isLandscape()" infinite-scroll='loadMore()' infinite-scroll-distance='2'
         infinite-scroll-immediate-check='false'>
-        <section style="max-height: 100vh" ng-repeat="project in allProjects">
+        <section ng-repeat="project in allProjects">
           <div class="pattern" ui-sref="gallery({projId: project.id})">
             <div class="projectPanel" ng-style="{width: isLandscape() && project.width}">
               <div id="hoverOverlay" style="position: absolute; height: 87vh; clip: rect(auto, auto, auto, auto)" ng-style="{width: project.width}">
