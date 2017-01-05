@@ -104,6 +104,15 @@ app.controller('adminCtrl', function ($scope, projectFactory, projects, Upload, 
     }
   }
 
+   $scope.switchProjPos = (x, y) => {
+    if (x <= $scope.projects.length && x > 0 && y <= $scope.projects.length && y > 0 && x !== y) {
+      projectFactory.updateOrderById($scope.projects[x - 1].id, x, y)
+        .then(() => $state.reload());
+    } else {
+      alert('invalid inputs!')
+    }
+  }
+
   $scope.logOff = () => {
     AuthService.logOff()
     .then(() => {

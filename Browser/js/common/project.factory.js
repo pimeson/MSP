@@ -32,5 +32,10 @@ app.factory('projectFactory', function($http){
     .then(res => res.data);
   }
 
+  projObj.updateOrderById = (projectId, posOne, posTwo) => {
+    return $http.put('/api/project/order/' + projectId + '/' + posOne + '/' + posTwo)
+    .then(res => res.data);
+  }
+
   return projObj;
 });

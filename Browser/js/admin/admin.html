@@ -13,15 +13,15 @@
     </ul>
     <div id="switch">
     <md-input-container>
-      <label>Project To</label>
+      <label>Original Project Position</label>
       <input type="number" ng-model="pos1" required>
     </md-input-container>
     <md-input-container>
-      <label>Project From</label>
+      <label>Desired Project Position</label>
       <input type="number" ng-model="pos2" required>
     </md-input-container>
     </div>
-    <md-button class="md-raised" ng-click="switch(pos1, pos2)">Switch Order</md-button>
+    <md-button class="md-raised" ng-click="switchProjPos(pos1, pos2)">Move Project</md-button>
   </div>
 
   <div id="aboutPanel">
