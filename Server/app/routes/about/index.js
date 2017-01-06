@@ -29,7 +29,7 @@ const storage = multer.diskStorage({
   }
 })
 
-router.post('/aboutHtml', adminPriv , multer({
+router.post('/aboutHtml', multer({
   storage: storage
 }).single('file'), function (req, res, next) {
   fs.unlinkSync('./public/about/about.html')
