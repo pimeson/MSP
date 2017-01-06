@@ -13,14 +13,14 @@
       <table id="initialSpacer"></table>
       <span class="galContainer" ng-repeat="exhibit in exhibits">
       
-      <div class="galImageContainer" ui-sref="details({projTitle: project.title, projId: project.id, exhibitId: exhibit.id})" ng-mouseenter="isLandscape() && hoverSelect(exhibit)" ng-mouseleave="isLandscape() && hoverLeave(exhibit)">
+      <div class="galImageContainer"  ng-mouseenter="isLandscape() && hoverSelect(exhibit)" ng-mouseleave="isLandscape() && hoverLeave(exhibit)">
         
-      <div ng-if="isLandscape()" style="position: absolute; clip: rect(auto, auto, auto, auto);" ng-style="{width: exhibit.width/exhibit.height * iframeHeight * .82, height: iframeHeight * .82}">
+      <div ng-if="isLandscape() && exhibit.type !== 'Video'" style="position: absolute; clip: rect(auto, auto, auto, auto);" ng-style="{width: exhibit.width/exhibit.height * iframeHeight * .82, height: iframeHeight * .82}" ui-sref="details({projTitle: project.title, projId: project.id, exhibitId: exhibit.id})">
          <title style="color: white" class="navTitle" ui-sref="home">MATTHEW SPIEGELMAN</title>
          <h3 id="galTitle" style="text-align: center; color:white;" class="unselectable" ng-click="hideDesc = !hideDesc">{{title()}}</h3>
       </div>
 
-      <div ng-if="!isLandscape()" style="position: absolute; clip: rect(auto, auto, auto, auto); left: 12.5vw;     margin-top: 2vh;" ng-style="{width: iframeWidth * .75, height: iframeWidth * .75 * exhibit.height/exhibit.width}">
+      <div ng-if="!isLandscape() && exhibit.type !== 'Video'" style="position: absolute; clip: rect(auto, auto, auto, auto); left: 12.5vw;     margin-top: 2vh;" ng-style="{width: iframeWidth * .75, height: iframeWidth * .75 * exhibit.height/exhibit.width}" ui-sref="details({projTitle: project.title, projId: project.id, exhibitId: exhibit.id})">
          <title style="color: white" class="navTitle" ui-sref="home">MATTHEW SPIEGELMAN</title>
          <h3 id="galTitle" style="text-align: center; color:white" class="unselectable" ng-click="hideDesc = !hideDesc">{{title()}}</h3>
       </div>
