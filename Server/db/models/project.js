@@ -25,6 +25,10 @@ const Project = db.define('project', {
   display: {
     type: Sequelize.BOOLEAN,
     defaultValue: true
+  },
+  detailsEnabled: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: true
   }
 }, {
   hooks: {

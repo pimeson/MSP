@@ -19,9 +19,9 @@
   flex-direction: column;
 }
 
-.galImages {
+/*.galImages {
   cursor: pointer;
-}
+}*/
 
 p.hideGalDesc {
   position: fixed;
@@ -53,9 +53,9 @@ p#showGalDesc {
   width: 100%;
 }
 
-.galImageContainer {
+/*.galImageContainer {
   cursor: pointer;
-}
+}*/
 
 @media only screen and (orientation: portrait) {
   .galImage {
@@ -76,7 +76,7 @@ p#showGalDesc {
   }
   .galImages {
     width: 75%;
-    cursor: pointer;
+    /*cursor: pointer;*/
   }
   .galImage {
     display: flex;

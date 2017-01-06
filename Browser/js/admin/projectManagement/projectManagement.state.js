@@ -193,4 +193,12 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
       .then(() => $state.reload());
   }
 
+  $scope.toggleDetails = () => {
+    console.log(project.detailsEnabled)
+    projectFactory.updateById($scope.project.id, {
+        detailsEnabled: !project.detailsEnabled
+      })
+      .then(() => $state.reload());
+  }
+
 })

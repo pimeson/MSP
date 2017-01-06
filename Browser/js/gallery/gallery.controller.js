@@ -56,6 +56,12 @@ app.controller('GalleryCtrl', function ($scope, project, exhibits, $state) {
         $state.go('home');
     }
 
+    $scope.goToDetails = (exhibit) => {
+        if(project.detailsEnabled){
+            $state.go('details', {projTitle: project.title, projId: project.id, exhibitId: exhibit.id})
+        }
+    }
+
 })
 
 app.filter('trusted', ['$sce', function ($sce) {
