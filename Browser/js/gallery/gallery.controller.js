@@ -57,9 +57,6 @@ app.controller('GalleryCtrl', function ($scope, project, exhibits, $state) {
     }
 
     $scope.goToDetails = (exhibit) => {
-        console.log(exhibit);
-        console.log(project);
-        console.log(clicked);
         if(project.detailsEnabled){
             $state.go('details', {projTitle: project.title, projId: project.id, exhibitId: exhibit.id})
         }
