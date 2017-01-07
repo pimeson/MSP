@@ -1,3 +1,5 @@
+module.exports = function(app) {
+
 app.config( $stateProvider => {
   $stateProvider.state('gallery', {
     url: '/gallery/:projId',
@@ -13,3 +15,5 @@ app.config( $stateProvider => {
     }
   })
 })
+
+}

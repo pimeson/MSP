@@ -1,3 +1,5 @@
+module.exports = function(app) {
+
 (function () {
 
   'use strict';
@@ -98,4 +100,6 @@
 
 
 
-}());
+}())
+
+};

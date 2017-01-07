@@ -1,3 +1,4 @@
+module.exports = function(app) {
 app.config($stateProvider => {
 
   $stateProvider.state('exhibitManagement', {
@@ -123,3 +124,4 @@ app.controller('exhibitManagementCtrl', function($state, $scope, exhibit, exhibi
   }
   
 })
+};

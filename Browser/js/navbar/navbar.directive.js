@@ -1,3 +1,4 @@
+module.exports = function(app) {
 app.directive('navbar', ($rootScope, $state, $mdSticky) => {
   
 
@@ -18,4 +19,5 @@ app.directive('navbar', ($rootScope, $state, $mdSticky) => {
 
 
 
-});
+})
+};

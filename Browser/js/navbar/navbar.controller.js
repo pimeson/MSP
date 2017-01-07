@@ -1,3 +1,4 @@
+module.exports = function(app) {
 app.controller('NavbarCtrl', function ($scope, $rootScope, $state, $window) {
 
 
@@ -16,9 +17,13 @@ app.controller('NavbarCtrl', function ($scope, $rootScope, $state, $window) {
   $scope.back = false;
 
   $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams, options) {
+    console.log(toState, fromState);
     if (toState.name === 'home' || toState.name === 'gallery' || toState.name === 'details' || toState.name === 'about') {
-      document.body.scrollTop = document.documentElement.scrollTop = 0;
-      document.body.scrollLeft = document.documentElement.scrollLeft = 0;
+      if(fromState.name !== 'details'){
+        console.log("Triggering")
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+        document.body.scrollLeft = document.documentElement.scrollLeft = 0;
+      }
     }
     if (toState.name === 'about') {
       $scope.back = true;
@@ -31,4 +36,5 @@ app.controller('NavbarCtrl', function ($scope, $rootScope, $state, $window) {
   $(window).on('resize', _.debounce(() => $scope.$evalAsync(), 250));
 
 
-});
+})
+}

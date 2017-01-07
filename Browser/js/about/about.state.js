@@ -1,3 +1,4 @@
+module.exports = function(app) {
 app.config($stateProvider => {
   $stateProvider.state('about', {
     url: '/about',
@@ -10,3 +11,4 @@ app.config($stateProvider => {
     }
   })
 })
+}

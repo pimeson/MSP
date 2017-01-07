@@ -1,8 +1,20 @@
-'use strict';
+const angular = require('angular');
+const $ = require('jquery');
+const vimeo = require('@vimeo/player');
+const lodash = require('lodash');
+const bluebird = require('bluebird');
+const angular_animate = require('angular-animate');
+const angular_material = require('angular-material')
+const angular_aria = require('angular-aria');
+const angular_ui_router = require('angular-ui-router');
+const angular_loading_bar = require('angular-loading-bar');
+const ngFileUpload = require('ng-file-upload');
+const ngInfiniteScroll = require('ng-infinite-scroll');
 
-const app = angular.module('MSP', ['ui.router', 'ui.bootstrap', 'ngAnimate', 'ngMaterial', 'ngFileUpload', 'angular-loading-bar', 'auth', 'infinite-scroll']);
+const app = angular.module('MSP', ['ui.router', 'ngAnimate', 'ngMaterial', 'ngFileUpload', 'angular-loading-bar', 'auth', 'infinite-scroll']);
 
-app.config( ($urlRouterProvider, $locationProvider) => {
+
+app.config( function($urlRouterProvider, $locationProvider) {
 
   $locationProvider.html5Mode(true);
 
@@ -47,3 +59,13 @@ app.config( ($urlRouterProvider, $locationProvider) => {
 
 
  })
+
+require('./about')(app);
+require('./admin')(app);
+require('./auth')(app);
+require('./common')(app);
+require('./details')(app);
+require('./gallery')(app);
+require('./home')(app);
+require('./login')(app);
+require('./navbar')(app);2
