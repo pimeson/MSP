@@ -3,7 +3,7 @@ app.config($stateProvider => {
 
   $stateProvider.state('exhibitManagement', {
     url: '/admin/exhibitManagement/:projId/:id',
-    templateUrl: '/js/admin/exhibitManagement/exhibitManagement.html',
+    templateUrl: '/js/exhibitManagement/exhibitManagement.html',
     controller: 'exhibitManagementCtrl',
     data: {
             authenticate: true

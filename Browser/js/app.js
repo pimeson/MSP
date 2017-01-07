@@ -68,4 +68,6 @@ require('./details')(app);
 require('./gallery')(app);
 require('./home')(app);
 require('./login')(app);
-require('./navbar')(app);2
+require('./navbar')(app);
+require('./exhibitManagement')(app);
+require('./projectManagement')(app);

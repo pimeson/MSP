@@ -2,7 +2,7 @@ module.exports = function(app) {
 app.config($stateProvider => {
   $stateProvider.state('adminProject', {
     url: '/admin/project/:projectId',
-    templateUrl: '/js/admin/projectManagement/projectManagement.html',
+    templateUrl: '/js/projectManagement/projectManagement.html',
     controller: 'projectMgmtCtrl',
     data: {
       authenticate: true
