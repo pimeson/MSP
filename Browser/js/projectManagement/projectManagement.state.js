@@ -1,3 +1,4 @@
+module.exports = function(app) {
 app.config($stateProvider => {
   $stateProvider.state('adminProject', {
     url: '/admin/project/:projectId',
@@ -202,3 +203,4 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
   }
 
 })
+}
