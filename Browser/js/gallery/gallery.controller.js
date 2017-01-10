@@ -1,5 +1,5 @@
 module.exports = function (app) {
-    app.controller('GalleryCtrl', function ($scope, project, exhibits, $state, $document, $window) {
+    app.controller('GalleryCtrl', function ($scope, project, exhibits, $state, $document, $window, $rootScope) {
 
         $scope.iframeHeight = $(window).height();
         $scope.iframeWidth = $(window).width();
@@ -9,13 +9,16 @@ module.exports = function (app) {
         }
         $scope.selected = false;
         $scope.hideDesc = true;
-        let scrollPos;
+        let scrollPosY;
 
         $document.on('scroll', () => {
             $scope.$apply( () => {
-                scrollPos = $window.scrollY;
-                $scope.scrollY = scrollPos;
-                console.log(scrollPos);
+                scrollPosY = $window.scrollY;
+                scrollPosX = $window.scrollY;
+                $scope.scrollY = scrollPosY;
+                $scope.scrollX = scrollPosX;
+                $rootScope.scrollX = scrollPosX;
+                $rootScope.scrollY = scrollPosY;
             })
         })
 
@@ -26,18 +29,18 @@ module.exports = function (app) {
                         overflow: '',
                         position: '',
                         top: ''
-                    }).scrollTop($scope.scrollPosFixed);
+                    }).scrollTop($scope.scrollPosYFixed);
             } else if (!$scope.isLandscape() && !$scope.hideDesc) {
-                 console.log("I should be here!:", scrollPos)
+                 console.log("I should be here!:", scrollPosY)
                     $('body').css({
                         overflow: 'hidden',
                         position: 'fixed',
-                        top: -scrollPos + 'px'
+                        top: -scrollPosY + 'px'
                     });
-                    $scope.scrollPosFixed = scrollPos;
+                    $scope.scrollPosYFixed = scrollPosY;
             }
             $scope.$evalAsync();
-            console.log(scrollPos);
+            console.log(scrollPosY);
         }
 
         $scope.title = () => {

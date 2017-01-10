@@ -170,6 +170,7 @@ p#showGalDesc {
   }*/
   .galImageContainer {
     height: 90vh;
+    margin-right: 1vw;
     /*margin-right: 10px;*/
   }
   .galImage {
