@@ -1,6 +1,6 @@
 <container>
   <h3 id="galTitle" style="text-align: center" class="unselectable" ng-click="toggleTitle()">{{title()}}</h3>
-  <div class="galDesc noscroll" ng-show="!hideDesc" ng-style="{'margin-top': scrollPosYFixed + iframeHeight * .15}">
+  <div class="galDesc noscroll" ng-show="!hideDesc" ng-style="{'margin-top': isLandscape() ? 0 : scrollPosYFixed + iframeHeight * .15}">
     <span id="galText" class="noscroll">
             <p ng-repeat="desc in description track by $index" class="galParagraph">
               {{::desc}}
