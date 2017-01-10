@@ -33,7 +33,10 @@ app.controller('NavbarCtrl', function ($scope, $rootScope, $state, $window) {
     $scope.$evalAsync();
   })
 
-  $(window).on('resize', _.debounce(() => $scope.$evalAsync(), 250));
+  $(window).on('resize', _.debounce(() => {
+    console.log('resized!')
+    $scope.$evalAsync();
+  }, 250));
 
 
 })

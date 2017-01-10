@@ -94,10 +94,12 @@ a:hover {
 }
 
 @media only screen and (orientation: portrait) {
+  
   #portraitLanding {
     margin-top: 5vh;
   }
   #LandingContainer {
+    width: 100vw;
     flex-direction: column;
   }
   .projectPanel {

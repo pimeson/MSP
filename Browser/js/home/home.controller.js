@@ -15,6 +15,8 @@ app.controller('homeCtrl', function ($scope, $state, $rootScope, allProjects) {
   $scope.iframeWidth = iframeWidth;
   $scope.iframeHeight = iframeHeight;
 
+  $scope.isFF = 'MozAppearance' in document.documentElement.style;
+
   $scope.isLandscape = function () {
     return $(window).width() >= $(window).height();
   }
@@ -32,10 +34,10 @@ app.controller('homeCtrl', function ($scope, $state, $rootScope, allProjects) {
       //sort by order
       project.exhibits.sort((a, b) => a.order > b.order ? 1 : -1);
       project.width = project.exhibits[0] && iframeHeight * (project.exhibits[0].width / project.exhibits[0].height) * .82;
-      project.height = project.exhibits[0] && iframeWidth * (project.exhibits[0].height / project.exhibits[0].width) * .725;
+    project.height = project.exhibits[0] && iframeWidth * .68 * (project.exhibits[0].height / project.exhibits[0].width) * .94;
       project.num = 0;
       project.count = 0;
-      project.currImage = project.exhibits[0].thumbnail
+      project.currImage = project.exhibits[0] && project.exhibits[0].thumbnail;
       return project;
     })
 

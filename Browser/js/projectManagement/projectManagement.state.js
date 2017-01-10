@@ -29,7 +29,7 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
   $scope.upload = (file) => {
     $scope.$evalAsync();
     if (!file) return;
-    let specs;
+    let specs, exDesc;
     if ($scope.exForm.exSpecs) {
       specs = $scope.exForm.exSpecs.split('\n')
     } else {
@@ -78,6 +78,7 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
     console.log("I was clicked!")
       //if (!$scope.exForm.videoUrl) return;
     let specs;
+    let desc;
     if ($scope.exForm.exSpecs && $scope.exForm.exSpecs.length) {
       specs = $scope.exForm.exSpecs.split('\n')
     } else {

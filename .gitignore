@@ -5,3 +5,4 @@ npm-debug.log
 coverage
 .env
 Browser/bundle.js
+public/uploads
