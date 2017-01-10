@@ -1,3 +1,5 @@
+module.exports = function(app) {
+
 app.config(function ($stateProvider) {
 
     $stateProvider.state('login', {
@@ -23,4 +25,6 @@ app.controller('LoginCtrl', function ($scope, AuthService, $state) {
 
     };
 
-});
+})
+
+};

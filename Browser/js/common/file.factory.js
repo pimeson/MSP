@@ -1,3 +1,4 @@
+module.exports = function(app) {
 app.factory('fileFactory', function($http){
 
   const fileObj = {};
@@ -15,3 +16,4 @@ app.factory('fileFactory', function($http){
   return fileObj;
 
 })
+}

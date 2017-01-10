@@ -1,3 +1,4 @@
+module.exports = function(app) {
 app.config($stateProvider => {
   $stateProvider.state('details', {
     url: '/details/:projTitle/:projId/:exhibitId',
@@ -16,3 +17,4 @@ app.config($stateProvider => {
     templateUrl: 'js/details/details.alt.html'
   })
 })
+}

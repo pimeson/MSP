@@ -65,10 +65,13 @@ p#showGalDesc {
   }
   #galTitle {
     font-size: 14px;
-    top: 5vh;
+    top: 4vh;
+    height: 5vh;
+    padding-top: 2vh;
     position: fixed;
     left: 0;
     right: 0;
+    z-index: 5;
   }
   #galleryPics {
     display: flex;
@@ -99,7 +102,7 @@ p#showGalDesc {
     position: fixed;
     font-family: 'Geometric415';
     font-size: 14px;
-    width: 75vw;
+    width: 100vw;
     margin-top: 22vh;
     padding: 10px;
     text-align: center;
@@ -139,6 +142,7 @@ p#showGalDesc {
     margin-right: auto;
     width: 25vw;
     outline: none;
+    z-index: 5;
   }
   #lastSpacer {
     width: 5vw;

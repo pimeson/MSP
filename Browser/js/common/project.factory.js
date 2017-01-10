@@ -1,3 +1,4 @@
+module.exports = function(app) {
 app.factory('projectFactory', function($http){
   
   const projObj = {};
@@ -38,4 +39,5 @@ app.factory('projectFactory', function($http){
   }
 
   return projObj;
-});
+})
+};

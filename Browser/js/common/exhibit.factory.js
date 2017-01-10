@@ -1,3 +1,5 @@
+module.exports = function(app) {
+
 app.factory('exhibitFactory', function($http){
   
   const exObj = {};
@@ -38,4 +40,6 @@ app.factory('exhibitFactory', function($http){
   }
 
   return exObj;
-});
+})
+
+};

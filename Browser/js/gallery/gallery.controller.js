@@ -1,3 +1,4 @@
+module.exports = function(app) {
 app.controller('GalleryCtrl', function ($scope, project, exhibits, $state) {
 
     $scope.iframeHeight = $(window).height();
@@ -55,6 +56,7 @@ app.controller('GalleryCtrl', function ($scope, project, exhibits, $state) {
     $scope.backToHome = () => {
         $state.go('home');
     }
+    
 
     $scope.goToDetails = (exhibit) => {
         if(project.detailsEnabled){
@@ -69,3 +71,5 @@ app.filter('trusted', ['$sce', function ($sce) {
         return $sce.trustAsResourceUrl(url);
     };
 }]);
+
+};

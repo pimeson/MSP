@@ -1,8 +1,9 @@
+module.exports = function(app) {
 app.config($stateProvider => {
 
   $stateProvider.state('exhibitManagement', {
     url: '/admin/exhibitManagement/:projId/:id',
-    templateUrl: '/js/admin/exhibitManagement/exhibitManagement.html',
+    templateUrl: '/js/exhibitManagement/exhibitManagement.html',
     controller: 'exhibitManagementCtrl',
     data: {
             authenticate: true
@@ -123,3 +124,4 @@ app.controller('exhibitManagementCtrl', function($state, $scope, exhibit, exhibi
   }
   
 })
+};

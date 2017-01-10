@@ -1,3 +1,4 @@
+module.exports = function(app) {
 app.controller('homeCtrl', function ($scope, $state, $rootScope, allProjects) {
 
   // $(document).ready(() => {
@@ -96,3 +97,4 @@ app.controller('homeCtrl', function ($scope, $state, $rootScope, allProjects) {
   let loaded = false;
 
 })
+}

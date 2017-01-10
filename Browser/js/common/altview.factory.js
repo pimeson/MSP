@@ -1,3 +1,5 @@
+module.exports = function(app) {
+
 app.factory('altViewFactory', function($http){
 
   const altObj = {}
@@ -30,3 +32,5 @@ app.factory('altViewFactory', function($http){
   return altObj;
 
 })
+
+};
