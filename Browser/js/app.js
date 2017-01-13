@@ -1,6 +1,5 @@
 const angular = require('angular');
 const $ = require('jquery');
-const vimeo = require('@vimeo/player');
 const lodash = require('lodash');
 const bluebird = require('bluebird');
 const angular_animate = require('angular-animate');

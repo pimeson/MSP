@@ -2,6 +2,10 @@
   display: none;
 }
 
+.noscroll::-moz-scrollbar {
+  display: none;
+}
+
 #target {
   overflow: scroll !important;
 }
@@ -92,17 +96,17 @@ a#backToGallery {
     margin-top: auto;
   }
   .detailsSection {
-    display: flex;
+    -js-display: flex; display:flex;
     flex-direction: row;
     justify-content: space-between;
     height: 100vh;
   }
   .bar {
-    display: flex;
+    -js-display: flex; display:flex;
     flex-direction: column;
   }
   .galleryBar {
-    display: flex;
+    -js-display: flex; display:flex;
     flex-direction: column-reverse;
     overflow-y: scroll;
     height: 70vh;
@@ -113,7 +117,7 @@ a#backToGallery {
   }
   .desc {
     width: 35vw;
-    display: flex;
+    -js-display: flex; display:flex;
     flex-direction: column;
     margin: 8vh 3vw 7.3vh 1vw;
     overflow-y: scroll;
@@ -127,7 +131,7 @@ a#backToGallery {
   #mainPicContainer {
     max-height: 75vh;
     max-width: 50vw;
-    display: flex;
+    -js-display: flex; display:flex;
     justify-content: center;
     flex-direction: column;
     align-self: center;
@@ -150,17 +154,17 @@ a#backToGallery {
   }
   .detailsSection {
     flex-direction: column;
-    display: flex;
+    -js-display: flex; display:flex;
     justify-content: space-around;
   }
   #picDescContainer {
-    display: flex;
+    -js-display: flex; display:flex;
     flex-direction: column;
     width: 75vw;
   }
   #mainPicContainer {
     max-width: 85vw;
-    display: flex;
+    -js-display: flex; display:flex;
     justify-content: center;
     flex-direction: column;
     align-self: center;
@@ -176,13 +180,13 @@ a#backToGallery {
     width: auto;
   }
   .detailsSection {
-    display: flex;
+    -js-display: flex; display:flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
   .bar {
-    display: flex;
+    -js-display: flex; display:flex;
     flex-direction: row;
     order: 1;
     height: 15vh;
@@ -192,14 +196,14 @@ a#backToGallery {
     height: 30vh;
   }
   .desc {
-    display: flex;
+    -js-display: flex; display:flex;
     flex-direction: row;
     width: 100vw;
     justify-content: center;
     overflow: overlay;
   }
   .galleryBar {
-    display: flex;
+    -js-display: flex; display:flex;
     flex-direction: row;
     height: 15vh;
     width: 75vw;

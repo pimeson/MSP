@@ -1,5 +1,5 @@
 #test {
-  display: flex;
+  -js-display: flex; display:flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -10,7 +10,7 @@
 }
 
 #projectForm {
-  display: flex;
+  -js-display: flex; display:flex;
   flex-direction: column;
   justify-content: center;
 }
@@ -18,7 +18,7 @@
 .adminExhibit {
   height: 25vh;
   margin: 2vw;
-  display: flex;
+  -js-display: flex; display:flex;
   flex-direction: column;
   align-items: center;
 }
@@ -28,7 +28,7 @@
 }
 
 .adminProject {
-    display: flex;
+    -js-display: flex; display:flex;
     justify-content: space-around;
     flex-direction: row;
     padding-top: 20vh;
@@ -39,7 +39,7 @@
 }
 
 #exhibitManagement {
-    display: flex;
+    -js-display: flex; display:flex;
     justify-content: space-around;
     flex-direction: row;
     align-items: center;
@@ -49,7 +49,7 @@
 
 #editExhibitContent {
     flex-direction: column;
-    display: flex;
+    -js-display: flex; display:flex;
     width: 20vw;
 }
 
@@ -62,7 +62,7 @@
 }
 
 #adminExhibits {
-  display: flex;
+  -js-display: flex; display:flex;
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
@@ -74,7 +74,7 @@ input {
 }
 
 #altViewsMgmt {
-  display: flex;
+  -js-display: flex; display:flex;
   flex-direction: column;
 }
 
@@ -85,17 +85,17 @@ input {
 #exhibitControl {
     flex-direction: column;
     justify-content: space-between;
-    display: flex;
+    -js-display: flex; display:flex;
     width: 40vw;
 }
 
 #control {
-    display: flex;
+    -js-display: flex; display:flex;
     margin-top: 20vh;
 }
 
 #projectControl {
-    display: flex;
+    -js-display: flex; display:flex;
     flex-grow: .5;
     flex-direction: column;
 }
@@ -108,13 +108,13 @@ textarea {
 
 #login-form {
     padding-top: 20vh;
-    display: flex;
+    -js-display: flex; display:flex;
     flex-direction: column;
     flex-grow: .5;
     align-items: center;
 }
 
 a#logout {
-    display: flex;
+    -js-display: flex; display:flex;
     justify-content: center;
 }

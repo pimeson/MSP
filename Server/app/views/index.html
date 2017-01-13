@@ -16,12 +16,17 @@
   <link rel="stylesheet" type="text/css" href="/angular-material/angular-material.min.css" />
   <link href='/Geometric415-Medium.ttf' rel='stylesheet' type='text/css'>
   <link href='/Geometric415-MediumItalic.ttf' rel='stylesheet' type='text/css'>
+  <script src="@vimeo/player/dist/player.min.js" defer></script>
   <script src="jquery/dist/jquery.min.js" defer></script>
+  <script src="flexibility/flexibility.js"></script>
   <script src="/cloudzoom/cloudzoom.js" defer></script>
   <script src="js/bundle.js" defer></script>  
 </head>
 
 <body ng-app="MSP">
+  <script> 
+   flexibility(document.body);
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <navbar></navbar>
     <ui-view></ui-view>

@@ -25,12 +25,13 @@ module.exports = function (app) {
       console.log(toState, fromState);
       if (toState.name === 'home' || toState.name === 'gallery' || toState.name === 'details' || toState.name === 'about') {
         console.log(fromState.name, fromState.name !== 'details')
-        if (fromState.name !== 'details') {
+        if (fromState.name !== 'details' && fromState.name !== 'about') {
           console.log("Triggering")
           document.body.scrollTop = document.documentElement.scrollTop = 0;
           document.body.scrollLeft = document.documentElement.scrollLeft = 0;
         } else {
-          
+          document.body.scrollTop = document.documentElement.scrollTop = $rootScope.scrollY
+          document.body.scrollLeft = document.documentElement.scrollLeft = $rootScope.scrollX
         }
       }
       if (toState.name === 'about') {

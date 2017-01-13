@@ -9,12 +9,12 @@ module.exports = function (app) {
         }
         $scope.selected = false;
         $scope.hideDesc = true;
-        let scrollPosY;
+        let scrollPosY, scrollPosX;
 
         $document.on('scroll', () => {
             $scope.$apply( () => {
                 scrollPosY = $window.scrollY;
-                scrollPosX = $window.scrollY;
+                scrollPosX = $window.scrollX;
                 $scope.scrollY = scrollPosY;
                 $scope.scrollX = scrollPosX;
                 $rootScope.scrollX = scrollPosX;

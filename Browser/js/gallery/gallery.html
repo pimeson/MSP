@@ -28,7 +28,7 @@
         <iframe ng-if="exhibit.type === 'Video' && isLandscape()" ng-src="{{exhibit.video | trusted}}" height = "{{iframeHeight * .82}}" width = "{{iframeHeight * .82 * 16/9}}"  frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
         <iframe ng-if="exhibit.type === 'Video' && !isLandscape()" ng-src="{{exhibit.video | trusted}}" height = "{{iframeWidth * .85 * (9/16)}}" width = "{{iframeWidth * .85}}"  frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
          <div class="exhibitGalDesc" ng-show="exhibit.showDesc">
-        <span style="display: flex; flex-direction: row; flex-wrap: wrap; margin-bottom : -3px; width: 100%;" ng-repeat="desc in exhibit.description">
+        <span style="-js-display: flex; display:flex; flex-direction: row; flex-wrap: wrap; margin-bottom : -3px; width: 100%;" ng-repeat="desc in exhibit.description">
           <ul id="exDescs">
           <li>{{desc[0]}}</li>
           <li>{{desc[1]}}</li>
