@@ -80,7 +80,6 @@ app.controller('DetailsCtrl', function ($scope, $rootScope, exhibit, project, $s
       player.pause()
         .then(() => console.log("paused!"));
     }
-    console.log("clicked!");
 
     //If a user had clicked an alt view and wants to go back to the original view.
     if (alt.showing) {

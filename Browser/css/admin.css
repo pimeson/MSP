@@ -1,5 +1,6 @@
 #test {
-  -js-display: flex; display:flex;
+  -js-display: flex; 
+  display:flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -18,8 +19,12 @@
 .adminExhibit {
   height: 25vh;
   margin: 2vw;
-  -js-display: flex; display:flex;
+  -js-display: flex;
+  display: -webkit-flex; 
+  display:flex;
+  -webkit-flex-direction: column;
   flex-direction: column;
+  -webkit-align-items: center;
   align-items: center;
 }
 
@@ -28,8 +33,12 @@
 }
 
 .adminProject {
-    -js-display: flex; display:flex;
+    -js-display: flex;
+    display: -webkit-flex; 
+    display:flex;
+    -webkit-justify-content: space-around;
     justify-content: space-around;
+    -webkit-flex-direction: row;
     flex-direction: row;
     padding-top: 20vh;
 }
@@ -39,7 +48,8 @@
 }
 
 #exhibitManagement {
-    -js-display: flex; display:flex;
+    -js-display: flex; 
+    display:flex;
     justify-content: space-around;
     flex-direction: row;
     align-items: center;
@@ -115,6 +125,7 @@ textarea {
 }
 
 a#logout {
-    -js-display: flex; display:flex;
+    -js-display: flex; 
+    display:flex;
     justify-content: center;
 }

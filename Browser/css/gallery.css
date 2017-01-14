@@ -1,21 +1,27 @@
 #galTitle {
   font-family: 'Geometric415';
   text-align: center;
-  color: black;
+  color: #8503FF;
   outline: none;
 }
 
 #galTitle:hover {
-  color: #8503FF;
+  color: black;
 }
 
 #galleryPics {
-  -js-display: flex; display:flex;
+  -js-display: flex; 
+  display: -webkit-flex;
+  display:flex;
+  -webkit-flex-direction: row;
   flex-direction: row;
 }
 
 #gallery {
-  -js-display: flex; display:flex;
+  -js-display: flex;
+  display: -webkit-flex; 
+  display:flex;
+  -webkit-flex-direction: column;
   flex-direction: column;
 }
 
@@ -46,7 +52,9 @@ p#showGalDesc {
 
 .exhibitGalDesc {
   height: 8vh;
-  -js-display: flex; display:flex;
+  -js-display: flex; 
+  display: -webkit-flex;
+  display:flex;
 }
 
 .galContainer {
@@ -59,8 +67,10 @@ p#showGalDesc {
 
 @media only screen and (orientation: portrait) {
   .galImage {
+    -webkit-align-items: center;
     align-items: center;
     height: 95%;
+    -webkit-justify-content: center;
     justify-content: center;
   }
   #galTitle {
@@ -76,7 +86,10 @@ p#showGalDesc {
     width: 25vw;
   }
   #galleryPics {
-    -js-display: flex; display:flex;
+    -js-display: flex; 
+    display: -webkit-flex;
+    display:flex;
+    -webkit-flex-direction: column;
     flex-direction: column;
   }
   .galImages {
@@ -84,16 +97,25 @@ p#showGalDesc {
     /*cursor: pointer;*/
   }
   .galImage {
-    -js-display: flex; display:flex;
+    -js-display: flex; 
+    display: -webkit-flex;
+    display:flex;
+    -webkit-flex-direction: column;
     flex-direction: column;
+    -webkit-align-items: center;
     align-items: center;
     height: 95%;
     margin-top: 2vh;
+    -webkit-justify-content: center;
     justify-content: center;
   }
   .galContainer {
-    -js-display: flex; display:flex;
+    -js-display: flex; 
+    display: -webkit-flex;
+    display:flex;
+    -webkit-flex-direction: column;
     flex-direction: column;
+    -webkit-align-items: center;
     align-items: center;
     margin-bottom: 10px;
   }
@@ -173,9 +195,11 @@ p#showGalDesc {
     /*margin-right: 10px;*/
   }
   .galImage {
+    -webkit-align-items: center;
     align-items: center;
     height: 100%;
     margin-top: 8vh;
+    -webkit-justify-content: center;
     justify-content: center;
   }
   .galImages {

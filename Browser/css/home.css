@@ -1,5 +1,7 @@
 .pattern {
-  -js-display: flex; display:flex;
+  -js-display: flex; 
+  display: -webkit-flex;
+  display: flex;
 }
 
 body {
@@ -42,9 +44,14 @@ a:hover {
 }
 
 #LandingContainer {
-  -js-display: flex; display:flex;
+  -js-display: flex; 
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: flex-start;
   justify-content: flex-start;
+  -webkit-align-content: center;
   align-content: center;
+  -webkit-align-items: center;
   align-items: center;
 }
 
@@ -65,15 +72,21 @@ a:hover {
     width: 15vw;
   }
   #LandingContainer {
+    -webkit-flex-direction: row;
     flex-direction: row;
   }
   .projectPanel {
     margin-left: .5vw;
     height: 92vh;
+    -webkit-align-items: center;
     align-items: center;
-    -js-display: flex; display:flex;
+    -js-display: flex; 
+    -webkit-display: flex;
+    display:flex;
     overflow-x: hidden;
+    -webkit-flex-direction: column;
     flex-direction: column;
+    -webkit-justify-content: center;
     justify-content: center;
     margin-top: 5vh;
     cursor: pointer;
@@ -89,7 +102,9 @@ a:hover {
     padding-top: 2px;
   }
   .pattern {
-    -js-display: flex; display:flex;
+    -js-display: flex; 
+    -webkit-display: flex;
+    display:flex;
     height: 90vh;
   }
 }

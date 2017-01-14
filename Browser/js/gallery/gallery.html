@@ -16,11 +16,11 @@
       <div class="galImageContainer"  ng-mouseenter="isLandscape() && hoverSelect(exhibit)" ng-mouseleave="isLandscape() && hoverLeave(exhibit)">
         
       <div ng-if="isLandscape() && exhibit.type !== 'Video'" style="position: absolute; clip: rect(auto, auto, auto, auto);" ng-style="{width: exhibit.width/exhibit.height * iframeHeight * .82, height: iframeHeight * .82, cursor: project.detailsEnabled ? 'pointer' : 'default'}" ng-click="goToDetails(exhibit)">
-         <title style="color: white" class="navTitle" ui-sref="home">MATTHEW SPIEGELMAN</title>
+         <title style="color: white; font-weight: 600;" class="navTitle" ui-sref="home">MATTHEW SPIEGELMAN</title>
       </div>
 
       <div ng-if="!isLandscape() && exhibit.type !== 'Video'" style="position: absolute; clip: rect(auto, auto, auto, auto); left: 12.5vw;     margin-top: 2vh;" ng-style="{width: iframeWidth * .75, height: iframeWidth * .75 * exhibit.height/exhibit.width}" ng-click="goToDetails(exhibit)">
-         <title style="color: white" class="navTitle" ui-sref="home">MATTHEW SPIEGELMAN</title>
+         <title style="color: white;" class="navTitle" ui-sref="home">MATTHEW SPIEGELMAN</title>
       </div>
 
       <div class="galImage">

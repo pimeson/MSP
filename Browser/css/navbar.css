@@ -60,7 +60,8 @@ a {
     transform: rotate(-26deg);
   }
   #home p#intro {
-    font-family: 'Geometric415', margin: 20em 2.5em;
+    font-family: 'Geometric415'; 
+    margin: 20em 2.5em;
     position: absolute;
   }
   .info {
