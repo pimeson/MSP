@@ -46,9 +46,9 @@ module.exports = function (app) {
 
         $scope.title = () => {
             if ($scope.hideDesc) {
-                return project.title;
+                return project.title + " +";
             } else {
-                return "hide"
+                return "hide -"
             }
         }
 
