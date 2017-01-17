@@ -24,11 +24,11 @@
       <!--For landscape mode, images display horizontally-->
       <div style="display: -webkit-flex; display:flex; -webkit-flex-direction: row; flex-direction:row" ng-if="isLandscape()" infinite-scroll='loadMore()' infinite-scroll-distance='2'
         infinite-scroll-immediate-check='false'>
-        <section ng-repeat="project in allProjects">
-          <div class="pattern" ui-sref="gallery({projId: project.id})">
+        <section style="-webkit-flex-shrink: 0;" ng-repeat="project in allProjects">
+          <div class="pattern" ui-sref="gallery({projId: project.id})"  ng-style="{width: isLandscape() && project.width}" >
             <div class="projectPanel" ng-style="{width: isLandscape() && project.width}">
               <div id="hoverOverlay" style="position: absolute; height: 87.5vh; clip: rect(auto, auto, auto, auto)" ng-style="{width: project.width, 'margin-left': isFF ? -.5 * project.width : 0}">
-                <title style="color: white; font-weight: 600;" class="navTitle" ui-sref="home">MATTHEW SPIEGELMAN</title>
+                <title style="color: white;" class="navTitle" ui-sref="home">MATTHEW SPIEGELMAN</title>
                 <span ng-repeat="exhibit in project.exhibits" ng-style="{width: project.width/project.exhibits.length}" style="height: 84vh; display:inline-block "
                   ng-mouseenter="changeImage($index, project)">
               </span>

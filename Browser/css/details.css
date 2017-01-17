@@ -82,6 +82,10 @@ a#backToGallery {
 }
 
 @media only screen and (orientation: landscape) {
+  #target {
+    display: -webkit-flex;
+    -webkit-flex-direction: column;
+  }
   h2#projTitle:hover {
     color:  #8503FF;
   }

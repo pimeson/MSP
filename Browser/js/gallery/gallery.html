@@ -16,14 +16,14 @@
       <div class="galImageContainer"  ng-mouseenter="isLandscape() && hoverSelect(exhibit)" ng-mouseleave="isLandscape() && hoverLeave(exhibit)">
         
       <div ng-if="isLandscape() && exhibit.type !== 'Video'" style="position: absolute; clip: rect(auto, auto, auto, auto);" ng-style="{width: exhibit.width/exhibit.height * iframeHeight * .82, height: iframeHeight * .82, cursor: project.detailsEnabled ? 'pointer' : 'default'}" ng-click="goToDetails(exhibit)">
-         <title style="color: white; font-weight: 600;" class="navTitle" ui-sref="home">MATTHEW SPIEGELMAN</title>
-      </div>
-
-      <div ng-if="!isLandscape() && exhibit.type !== 'Video'" style="position: absolute; clip: rect(auto, auto, auto, auto); left: 12.5vw;     margin-top: 2vh;" ng-style="{width: iframeWidth * .75, height: iframeWidth * .75 * exhibit.height/exhibit.width}" ng-click="goToDetails(exhibit)">
          <title style="color: white;" class="navTitle" ui-sref="home">MATTHEW SPIEGELMAN</title>
       </div>
 
-      <div class="galImage">
+      <div ng-if="!isLandscape() && exhibit.type !== 'Video'" style="position: absolute; clip: rect(auto, auto, auto, auto); left: 12.5vw; margin-top: 2vh;" ng-style="{width: iframeWidth * .75, height: iframeWidth * .75 * exhibit.height/exhibit.width}" ng-click="goToDetails(exhibit)">
+         <title style="color: white;" class="navTitle" ui-sref="home">MATTHEW SPIEGELMAN</title>
+      </div>
+
+      <div ng-if="isLandscape()" class="galImage" ng-style="{width: exhibit.width/exhibit.height * iframeHeight * .82}">
         <img ng-if="exhibit.type === 'Picture' " class="galImages" ng-class="{current : exhibit.selected}" ng-src="{{exhibit.thumbnail}}">
         <iframe ng-if="exhibit.type === 'Video' && isLandscape()" ng-src="{{exhibit.video | trusted}}" height = "{{iframeHeight * .82}}" width = "{{iframeHeight * .82 * 16/9}}"  frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
         <iframe ng-if="exhibit.type === 'Video' && !isLandscape()" ng-src="{{exhibit.video | trusted}}" height = "{{iframeWidth * .85 * (9/16)}}" width = "{{iframeWidth * .85}}"  frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
@@ -36,6 +36,23 @@
           </ul>
         </span>
     </div>
+      </div>
+
+    <div ng-if="!isLandscape()" class="galImage">
+        <img ng-if="exhibit.type === 'Picture' " class="galImages" ng-class="{current : exhibit.selected}" ng-src="{{exhibit.thumbnail}}">
+        <iframe ng-if="exhibit.type === 'Video' && isLandscape()" ng-src="{{exhibit.video | trusted}}" height = "{{iframeHeight * .82}}" width = "{{iframeHeight * .82 * 16/9}}"  frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        <iframe ng-if="exhibit.type === 'Video' && !isLandscape()" ng-src="{{exhibit.video | trusted}}" height = "{{iframeWidth * .85 * (9/16)}}" width = "{{iframeWidth * .85}}"  frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+         <div class="exhibitGalDesc" ng-show="exhibit.showDesc">
+        <span style="-js-display: flex; display:flex; flex-direction: row; flex-wrap: wrap; margin-bottom : -3px; width: 100%;" ng-repeat="desc in exhibit.description">
+          <ul id="exDescs">
+          <li>{{desc[0]}}</li>
+          <li>{{desc[1]}}</li>
+          <li>{{desc[2]}}</li>
+          </ul>
+        </span>
+    </div>
+    </div>
+
   </div>
   </div>
   </span>
