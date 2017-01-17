@@ -34,6 +34,7 @@ module.exports = function (app) {
                  console.log("I should be here!:", scrollPosY)
                     $('body').css({
                         overflow: 'hidden',
+                        width: '100vw',
                         position: 'fixed',
                         top: -scrollPosY + 'px'
                     });
