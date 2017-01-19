@@ -14,7 +14,7 @@ app.config($stateProvider => {
 
 app.controller('allExCtrl', function(exhibits, $scope){
 
-  $scope.exhibits = exhibits;
+  $scope.exhibits = _.shuffle(exhibits);
 
 });
 
