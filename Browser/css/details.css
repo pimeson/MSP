@@ -176,6 +176,9 @@ a#backToGallery {
     height: 35vh;
     margin-top: 2.5vh;
   }
+  #exDescs li{
+    font-size: 1em;
+  }
   .detailsSection {
     -webkit-flex-direction: column;
     flex-direction: column;
