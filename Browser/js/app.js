@@ -70,3 +70,4 @@ require('./login')(app);
 require('./navbar')(app);
 require('./exhibitManagement')(app);
 require('./projectManagement')(app);
+require('./allExhibits')(app);
