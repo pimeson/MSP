@@ -18,7 +18,7 @@ app.controller('allExCtrl', function(exhibits, $scope){
     return $(window).width() >= $(window).height();
   }
 
-  let chunkedExhibits = _.chunk(_.shuffle(exhibits), 15);
+  let chunkedExhibits = _.chunk(_.shuffle(exhibits.filter(exhibit => exhibit.project.display)), 15);
 
     $scope.allExhibits = chunkedExhibits.shift();
 
