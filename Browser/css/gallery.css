@@ -23,7 +23,6 @@
   display: flex;
   -webkit-flex-direction: column;
   flex-direction: column;
-  height: 110vh;
 }
 
 
@@ -209,6 +208,9 @@ p#showGalDesc {
     padding: 3px;
   }
   #galleryPics {
+    height: 110vh;
+  }
+  #gallery {
     height: 110vh;
   }
 }
