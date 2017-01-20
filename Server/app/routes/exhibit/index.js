@@ -1,5 +1,6 @@
 'use strict';
 const Exhibit = require('../../../db/models/exhibit');
+const Project = require('../../../db/models/project');
 const router = require('express').Router();
 const fs = require('fs');
 const sharp = require('sharp')
@@ -120,7 +121,9 @@ router.post('/video', adminPriv, function (req, res, next) {
 })
 
 router.get('/', function (req, res, next) {
-  Exhibit.findAll({})
+  Exhibit.findAll({
+    include:[Project]
+  })
     .then(findingExhibits => res.send(findingExhibits))
     .catch(next);
 })
