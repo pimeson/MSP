@@ -1,5 +1,5 @@
 module.exports = function(app) {
-app.directive('navbar', ($rootScope, $state, $mdSticky) => {
+app.directive('navbar', ($rootScope, $state) => {
   
 
 
@@ -8,11 +8,6 @@ app.directive('navbar', ($rootScope, $state, $mdSticky) => {
     restrict: 'E',
     scope: {},
     templateUrl: 'js/navbar/navbar.html',
-    link: (scope, element) => {
-
-      $mdSticky(scope, element);
-
-    },
     controller: 'NavbarCtrl'
   }
 

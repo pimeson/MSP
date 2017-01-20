@@ -27,6 +27,7 @@ app.controller('DetailsCtrl', function ($scope, $rootScope, exhibit, project, $s
 
   //Exhibit is resolved as an array, there should only be one.
   $scope.exhibit = exhibit[0];
+  $scope.project = project;
   $scope.projDesc = project.description;
 
   $scope.projTitle = $stateParams.projTitle;

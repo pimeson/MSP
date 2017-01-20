@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const ngAnnotatePlugin = require('ng-annotate-webpack-plugin');
 
 module.exports = {
   context: __dirname + '/Browser',
@@ -10,26 +11,9 @@ module.exports = {
     filename: 'bundle.js'
   },
   module: {
-    loaders: [{
-      test: /\.js$/,
-      loader: 'babel-loader',
-      exclude: [/node_modules/],
-      query: {
-        presets: ['es2015']
-      }
-    }, {
-      test: /\.html$/,
-      loader: 'html-loader',
-      exclude: [/node_modules/]
-    }, {
-      test: /\.css$/,
-      loader: "style!css",
-      exclude: [/node_modules/]
-    }, {
-      test: /\.scss$/,
-      loader: "style!css!sass",
-      exclude: [/node_modules/]
-    }],
+    loaders: [
+      { test: /\.js$/, loader: 'ng-annotate!babel', exclude: /node_modules/ },
+    ],
     plugins: [
       new webpack.ProvidePlugin({
         $: "jquery",
