@@ -1,11 +1,11 @@
 <div ng-if="isLandscape()" id="allExhibits" style="margin-top: 20vh; margin-left: 10vw; width: 80vw; display: -webkit-flex; display: flex;  -webkit-flex-direction: row; flex-direction: row; flex-wrap: wrap;" infinite-scroll='loadMore()' infinite-scroll-distance='2' infinite-scroll-immediate-check='false'>
-  <div ng-repeat="exhibit in allExhibits" style="width: 10vw; margin-right: 1vw; margin-top: 1vh; max-height: 25vh;" ui-sref="details({projTitle: exhibit.project.title, projId: exhibit.projectId, exhibitId: exhibit.id})">
+  <div ng-repeat="exhibit in allExhibits" style="width: 10vw; margin-right: 1vw; margin-top: 1vh; height: 25vh;" ui-sref="details({projTitle: exhibit.project.title, projId: exhibit.projectId, exhibitId: exhibit.id})">
   <img style="object-fit:contain; height: 100%; width: 100%;" ng-src="{{exhibit.thumbnail}}">
   </div>
 </div>
 
 <div ng-if="!isLandscape()" id="allExhibits" style="margin-top: 20vh; margin-left: 10vw; width: 80vw; display: -webkit-flex; display: flex;  -webkit-flex-direction: row; flex-direction: row; flex-wrap: wrap;" infinite-scroll='loadMore()' infinite-scroll-distance='2' infinite-scroll-immediate-check='false'>
-  <div ng-repeat="exhibit in allExhibits" style="width: 25vw; margin-right: 1vw; margin-top: 1vh; max-height: 25vh;" ui-sref="details({projTitle: exhibit.project.title, projId: exhibit.projectId, exhibitId: exhibit.id})">
+  <div ng-repeat="exhibit in allExhibits" style="width: 25vw; margin-right: 1vw; margin-top: 1vh; height: 25vh;" ui-sref="details({projTitle: exhibit.project.title, projId: exhibit.projectId, exhibitId: exhibit.id})">
   <img style="object-fit:contain; height: 100%; width: 100%;" ng-src="{{exhibit.thumbnail}}">
   </div>
 </div>
