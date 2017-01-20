@@ -14,7 +14,21 @@ app.config($stateProvider => {
 
 app.controller('allExCtrl', function(exhibits, $scope){
 
-  $scope.exhibits = _.shuffle(exhibits);
+  $scope.isLandscape = function () {
+    return $(window).width() >= $(window).height();
+  }
+
+  let chunkedExhibits = _.chunk(_.shuffle(exhibits), 15);
+
+    $scope.allExhibits = chunkedExhibits.shift();
+
+    $scope.loadMore = _.debounce(() => {
+      if (chunkedExhibits.length) {
+        $scope.allExhibits = [...$scope.allExhibits, ...chunkedExhibits.shift()];
+      }
+      $scope.$evalAsync();
+    }, 250);
+
 
 });
 
