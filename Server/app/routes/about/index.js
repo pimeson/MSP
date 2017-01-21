@@ -32,7 +32,11 @@ const storage = multer.diskStorage({
 router.post('/aboutHtml', multer({
   storage: storage
 }).single('file'), function (req, res, next) {
-  fs.unlinkSync('./public/about/about.html')
+  try {
+    fs.unlinkSync('./public/about/about.html')
+  } catch (error) {
+    console.log('no file found');
+  }
   fs.renameSync(req.file.path, './public/about/about.html');
   res.sendStatus(204);
 })
