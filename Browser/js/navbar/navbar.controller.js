@@ -55,13 +55,11 @@ module.exports = function (app) {
         //   document.body.scrollLeft = document.documentElement.scrollLeft = $rootScope.scrollX
         // }
       } else if ((fromState.name === 'details' && toState.name === 'gallery') || (fromState.name === 'about' && toState.name === 'gallery') || (fromState.name === 'allExhibits' && toState.name === 'gallery')) {
-        console.log('kewl', $rootScope.currGalPosY, $rootScope.currGalPosX)
-        document.body.scrollTop = document.documentElement.scrollTop =  $rootScope.currGalPosY;
+        $(window).scrollTop($rootScope.currGalPosY);
         //document.body.scrollLeft = document.documentElement.scrollLeft =  $rootScope.currGalPosX;
       }
       else if ((fromState.name === 'gallery' && toState.name === 'home') || (fromState.name === 'about' && toState.name === 'home')  || (fromState.name === 'details' && toState.name === 'home') || (fromState.name === 'allExhibits' && toState.name === 'home')) {
-         console.log('kewl', $rootScope.currHomePosY, $rootScope.currHomePosX)
-        document.body.scrollTop = document.documentElement.scrollTop =  $rootScope.currHomePosY;
+        $(window).scrollTop($rootScope.currHomePosY);
         //document.body.scrollLeft = document.documentElement.scrollLeft =  $rootScope.currHomePosX;
       }
       
