@@ -1,5 +1,5 @@
 module.exports = function (app) {
-  app.controller('NavbarCtrl', function ($scope, $rootScope, $state, $window) {
+  app.controller('NavbarCtrl', function ($scope, $rootScope, $state, $window, $timeout) {
 
 
     function isLandscape () {
@@ -55,11 +55,11 @@ module.exports = function (app) {
         //   document.body.scrollLeft = document.documentElement.scrollLeft = $rootScope.scrollX
         // }
       } else if ((fromState.name === 'details' && toState.name === 'gallery') || (fromState.name === 'about' && toState.name === 'gallery') || (fromState.name === 'allExhibits' && toState.name === 'gallery')) {
-        $(window).scrollTop($rootScope.currGalPosY);
+        $timeout($(window).scrollTop($rootScope.currGalPosY), 0);
         //document.body.scrollLeft = document.documentElement.scrollLeft =  $rootScope.currGalPosX;
       }
       else if ((fromState.name === 'gallery' && toState.name === 'home') || (fromState.name === 'about' && toState.name === 'home')  || (fromState.name === 'details' && toState.name === 'home') || (fromState.name === 'allExhibits' && toState.name === 'home')) {
-        $(window).scrollTop($rootScope.currHomePosY);
+        $timeout($(window).scrollTop($rootScope.currHomePosY), 0);
         //document.body.scrollLeft = document.documentElement.scrollLeft =  $rootScope.currHomePosX;
       }
       
