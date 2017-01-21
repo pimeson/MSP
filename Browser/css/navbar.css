@@ -97,7 +97,7 @@ a {
     position: fixed;
     left: 0;
     bottom: 0;
-    margin: 2vh 1vh;
+    margin: 1vh 1vw;
     overflow: hidden;
     -webkit-transform: rotate(-46deg);
     transform: rotate(-46deg);
@@ -121,7 +121,12 @@ a {
   }
 }
 
+#zenzer {
+    height: 4vh;
+  }
+
 @media only screen and (orientation: portrait) {
+  
   .navTitle {
     display: block;
     overflow: hidden;
@@ -206,7 +211,7 @@ a {
     position: fixed;
     left: 0;
     bottom: 0;
-    margin: 2vh 1vh;
+    margin: 1vh 2vw;
     overflow: hidden;
     -webkit-transform: rotate(-46deg);
     transform: rotate(-46deg);

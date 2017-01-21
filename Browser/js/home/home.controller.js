@@ -16,6 +16,10 @@ app.controller('homeCtrl', function ($scope, $state, $rootScope, allProjects) {
   $scope.iframeHeight = iframeHeight;
 
   $scope.isFF = 'MozAppearance' in document.documentElement.style;
+  $scope.isChrome = window.chrome;
+  let chrome   = navigator.userAgent.indexOf('Chrome') > -1;
+  $scope.isSafari = navigator.userAgent.indexOf("Safari") > -1;
+  if ((chrome) && ($scope.isSafari)) $scope.isSafari = false;
 
   $scope.isLandscape = function () {
     return $(window).width() >= $(window).height();

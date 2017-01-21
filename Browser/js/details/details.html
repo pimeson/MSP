@@ -1,37 +1,33 @@
 <img ng-if="isLandscape()" id="backArrow" ng-click="backToGallery()" src="barrow.png"></img>
 <div class="detailsSection">
- 
-    <div class=bar>
-      <div class="galleryBar noscroll">
-        <div class="galleryImg" ng-repeat="altView in altViews">
-          <img ng-click="changeToAltView(altView)" class="galleryPic" ng-src="{{altView.showing ? exhibit.thumbnail  : altView.thumbnail}}">
-        </div>
-        </div>
-    </div>
-   <div id="mainPicContainer">
-        
-    <img ng-show="!showVideo" class="cloudzoom unselectable" id="mainPic" ng-src="{{currImage.thumbnail}}">
-    <div ng-show="showVideo" id="exhibitVideo"></div>
-      
-    </div>
-   
-    <article id='target' class="desc">
-      <h2 ng-click="collapse()" ng-if="isLandscape()" id="projTitle">{{collapsed ? 'Project Description +' : 'Project Description -'}}</h2>
-      <section ng-if="isLandscape()" id="projDesc">
-        <div ng-show="hover && !showVideo" style='height: 70vh; margin-top: 2.5vh; overflow-x: hidden !Important'></div>
-        <div ng-show="!collapsed">
-          <p style="text-align: left" ng-repeat="paragraph in projDesc track by $index"> {{::paragraph}} </p>
-        </div>
-      </section>
-      <div id=picDescContainer>
-        <div id="picDesc" >
-          <p ng-repeat="exDesc in exhibit.description track by $index">{{::exDesc}}</p>
-        </div>
-        <div id="picDetails">
-          <ul id="picSpecs">
-            <li ng-repeat="spec in exhibit.specs track by $index">{{::spec}}</li>
-          </ul>
-        </div>
+  <div class=bar>
+    <div class="galleryBar noscroll">
+      <div class="galleryImg" ng-repeat="altView in altViews">
+        <img ng-click="changeToAltView(altView)" class="galleryPic" ng-src="{{altView.showing ? exhibit.thumbnail  : altView.thumbnail}}">
       </div>
-    </article>
+    </div>
   </div>
+  <div id="mainPicContainer">
+    <img ng-show="!showVideo && exhibit.type === 'Picture'" class="cloudzoom unselectable" id="mainPic" ng-src="{{currImage.thumbnail}}">
+    <div ng-show="showVideo || exhibit.type === 'Video'" id="exhibitVideo"></div>
+  </div>
+  <article id='target' class="desc">
+    <h2 ng-click="collapse()" ng-if="isLandscape()" id="projTitle">{{collapsed ? 'Project Description +' : 'Project Description -'}}</h2>
+    <section ng-if="isLandscape()" id="projDesc">
+      <div ng-show="hover && !showVideo" style='height: 70vh; margin-top: 2.5vh; overflow-x: hidden !Important'></div>
+      <div ng-show="!collapsed">
+        <p style="text-align: left" ng-repeat="paragraph in projDesc track by $index"> {{::paragraph}} </p>
+      </div>
+    </section>
+    <div id=picDescContainer>
+      <div id="picDesc">
+        <p ng-repeat="exDesc in exhibit.description track by $index">{{::exDesc}}</p>
+      </div>
+      <div id="picDetails">
+        <ul id="picSpecs">
+          <li ng-repeat="spec in exhibit.specs track by $index">{{::spec}}</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+</div>

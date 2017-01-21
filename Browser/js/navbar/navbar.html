@@ -3,8 +3,9 @@
   </title>
   <!--<div ng-if="!isLandscape()" class="navTitle" ui-sref="home"><p id="firstName">MATTHEW</p><p> SPIEGELMAN</p>
   </div>-->
-  <a class="info" ui-sref="about" ng-show="!back">Info</a>
-  <img id="waves" src="wavy.png" ng-click="goBack()" ng-show="back">
-  <a class="news" ui-sref="allExhibits">All</a>
+  <a class="info" ui-sref="about" ng-if="!back">Info</a>
+  <img id="waves" src="wavy.png" ng-click="goBack()" ng-if="back">
+  <a class="news" ui-sref="allExhibits" ng-if="!backEx">All</a>
+  <img class="news" id="zenzer" src="zenzercircle.png" ng-if="backEx" ng-click="goBack()">
   <a href="https://www.instagram.com/matthewspiegelman/" target="_blank" class="gram">gram</a>
 </div>

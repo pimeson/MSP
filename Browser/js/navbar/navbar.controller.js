@@ -28,12 +28,12 @@ module.exports = function (app) {
 
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams, options) {
       if (fromState.name === 'home') {
-        $rootScope.currHomePosX = document.body.scrollLeft + $(window).width();
-        $rootScope.currHomePosY = document.body.scrollTop;
+        $rootScope.currHomePosX = window.pageXOffset || document.documentElement.scrollLeft
+        $rootScope.currHomePosY = window.pageYOffset || document.documentElement.scrollTop
       }
       if (fromState.name === 'gallery') {
-        $rootScope.currGalPosX = document.body.scrollLeft + $(window).width();
-        $rootScope.currGalPosY = document.body.scrollTop;
+        $rootScope.currGalPosX = window.pageXOffset || document.documentElement.scrollLeft
+        $rootScope.currGalPosY = window.pageYOffset || document.documentElement.scrollTop
       }
     })
 
@@ -44,7 +44,7 @@ module.exports = function (app) {
         top: ''
       })
       console.log(toState, fromState);
-      if ((toState.name === 'gallery' && fromState.name === 'home') || (toState.name === 'details' && fromState.name === 'gallery')) {
+      if ((toState.name === 'gallery' && fromState.name === 'home') || toState.name === 'details' || toState.name === 'allExhibits' || toState.name === 'about') {
         //console.log(fromState.name, fromState.name !== 'details')
         // if (fromState.name !== 'details' && fromState.name !== 'about') {
         //   console.log("Triggering")
@@ -54,15 +54,15 @@ module.exports = function (app) {
         //   document.body.scrollTop = document.documentElement.scrollTop = $rootScope.scrollY
         //   document.body.scrollLeft = document.documentElement.scrollLeft = $rootScope.scrollX
         // }
-      } else if ((fromState.name === 'details' && toState.name === 'gallery') || (fromState.name === 'about' && toState.name === 'gallery')) {
+      } else if ((fromState.name === 'details' && toState.name === 'gallery') || (fromState.name === 'about' && toState.name === 'gallery') || (fromState.name === 'allExhibits' && toState.name === 'gallery')) {
         console.log('kewl', $rootScope.currGalPosY, $rootScope.currGalPosX)
         document.body.scrollTop = document.documentElement.scrollTop =  $rootScope.currGalPosY;
-        document.body.scrollLeft = document.documentElement.scrollLeft =  $rootScope.currGalPosX;
+        //document.body.scrollLeft = document.documentElement.scrollLeft =  $rootScope.currGalPosX;
       }
-      else if ((fromState.name === 'gallery' && toState.name === 'home') || (fromState.name === 'about' && toState.name === 'home')  || (fromState.name === 'details' && toState.name === 'home')) {
+      else if ((fromState.name === 'gallery' && toState.name === 'home') || (fromState.name === 'about' && toState.name === 'home')  || (fromState.name === 'details' && toState.name === 'home') || (fromState.name === 'allExhibits' && toState.name === 'home')) {
          console.log('kewl', $rootScope.currHomePosY, $rootScope.currHomePosX)
         document.body.scrollTop = document.documentElement.scrollTop =  $rootScope.currHomePosY;
-        document.body.scrollLeft = document.documentElement.scrollLeft =  $rootScope.currHomePosX;
+        //document.body.scrollLeft = document.documentElement.scrollLeft =  $rootScope.currHomePosX;
       }
       
       if (toState.name === 'about') {
@@ -70,6 +70,15 @@ module.exports = function (app) {
       } else {
         $scope.back = false;
       }
+
+      if (toState.name === 'allExhibits') {
+        $scope.backEx = true;
+      } else {
+        $scope.backEx = false;
+      }
+
+
+
       $scope.$evalAsync();
     })
 

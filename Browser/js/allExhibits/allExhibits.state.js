@@ -1,24 +1,26 @@
-module.exports = function(app) {
-app.config($stateProvider => {
-  $stateProvider.state('allExhibits', {
-    url: '/all',
-    templateUrl: '/js/allExhibits/allExhibits.html',
-    controller: 'allExCtrl',
-    resolve: {
-      exhibits: function ($stateParams, exhibitFactory) {
-        return exhibitFactory.findAll();
+module.exports = function (app) {
+  app.config($stateProvider => {
+    $stateProvider.state('allExhibits', {
+      url: '/all',
+      templateUrl: '/js/allExhibits/allExhibits.html',
+      controller: 'allExCtrl',
+      resolve: {
+        exhibits: function ($stateParams, exhibitFactory) {
+          return exhibitFactory.findAll();
+        }
       }
-    }
+    })
   })
-})
 
-app.controller('allExCtrl', function(exhibits, $scope){
+  app.controller('allExCtrl', function (exhibits, $scope, $state) {
 
-  $scope.isLandscape = function () {
-    return $(window).width() >= $(window).height();
-  }
+    $scope.isLandscape = function () {
+      return $(window).width() >= $(window).height();
+    }
 
-  let chunkedExhibits = _.chunk(_.shuffle(exhibits.filter(exhibit => exhibit.project.display)), 15);
+
+
+    let chunkedExhibits = $scope.isLandscape() ? _.chunk(_.shuffle(exhibits.filter(exhibit => exhibit.project.display)), 21) : _.chunk(_.shuffle(exhibits.filter(exhibit => exhibit.project.display)), 12);
 
     $scope.allExhibits = chunkedExhibits.shift();
 
@@ -29,8 +31,16 @@ app.controller('allExCtrl', function(exhibits, $scope){
       $scope.$evalAsync();
     }, 250);
 
+    $scope.goToExhibit = (project, exhibit) => {
+      if(exhibit.type === 'Picture'){
+      $state.go('details', {projTitle: project.title, projId: project.id, exhibitId: exhibit.id})
+      } else if (exhibit.type === 'Video'){
+        $state.go('gallery', {projId: project.id})
+      }
+    }
 
-});
+
+  });
 
 
 
