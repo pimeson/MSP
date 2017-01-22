@@ -2,7 +2,7 @@ module.exports = function (app) {
   app.controller('NavbarCtrl', function ($scope, $rootScope, $state, $window, $timeout) {
 
 
-    function isLandscape () {
+    function isLandscape() {
       return $(window).width() >= $(window).height();
     }
 
@@ -21,7 +21,7 @@ module.exports = function (app) {
     $(window).on('resize', _.debounce(() => {
       //Need to check if mobile
       console.log('resized!')
-      if(isLandscape()){
+      if (isLandscape()) {
         $state.reload();
       }
     }, 250));
@@ -56,16 +56,45 @@ module.exports = function (app) {
         // }
       } else if ((fromState.name === 'details' && toState.name === 'gallery') || (fromState.name === 'about' && toState.name === 'gallery') || (fromState.name === 'allExhibits' && toState.name === 'gallery')) {
         angular.element(document).ready(function () {
-        $timeout($(window).scrollTop($rootScope.currGalPosY), 1000)});
-        
+          $('body').imagesLoaded()
+            .always(function (instance) {
+              console.log('all images loaded');
+            })
+            .done(function (instance) {
+              console.log('all images successfully loaded');
+              $(window).scrollTop($rootScope.currGalPosY)
+            })
+            .fail(function () {
+              console.log('all images loaded, at least one is broken');
+            })
+            .progress(function (instance, image) {
+              var result = image.isLoaded ? 'loaded' : 'broken';
+              console.log('image is ' + result + ' for ' + image.img.src);
+            });
+        });
+
         //document.body.scrollLeft = document.documentElement.scrollLeft =  $rootScope.currGalPosX;
-      }
-      else if ((fromState.name === 'gallery' && toState.name === 'home') || (fromState.name === 'about' && toState.name === 'home')  || (fromState.name === 'details' && toState.name === 'home') || (fromState.name === 'allExhibits' && toState.name === 'home')) {
-         angular.element(document).ready(function () {
-        $timeout($(window).scrollTop($rootScope.currHomePosY), 1000)});
+      } else if ((fromState.name === 'gallery' && toState.name === 'home') || (fromState.name === 'about' && toState.name === 'home') || (fromState.name === 'details' && toState.name === 'home') || (fromState.name === 'allExhibits' && toState.name === 'home')) {
+        angular.element(document).ready(function () {
+          $('body').imagesLoaded()
+            .always(function (instance) {
+              console.log('all images loaded');
+            })
+            .done(function (instance) {
+              console.log('all images successfully loaded');
+              $(window).scrollTop($rootScope.currHomePosY);
+            })
+            .fail(function () {
+              console.log('all images loaded, at least one is broken');
+            })
+            .progress(function (instance, image) {
+              var result = image.isLoaded ? 'loaded' : 'broken';
+              console.log('image is ' + result + ' for ' + image.img.src);
+            });
+        });
         //document.body.scrollLeft = document.documentElement.scrollLeft =  $rootScope.currHomePosX;
       }
-      
+
       if (toState.name === 'about') {
         $scope.back = true;
       } else {
