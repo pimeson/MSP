@@ -18,11 +18,14 @@ module.exports = function (app) {
 
     $scope.back = false;
 
+    let landscapeToPortrait = true;
+
     $(window).on('resize', _.debounce(() => {
       //Need to check if mobile
       console.log('resized!')
-      if (isLandscape()) {
+      if (isLandscape() || landscapeToPortrait) {
         $state.reload();
+        landscapeToPortrait = !landscapeToPortrait;
       }
     }, 250));
 

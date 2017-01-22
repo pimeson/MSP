@@ -172,6 +172,15 @@ a#backToGallery {
 }
 
 @media only screen and (orientation: portrait) {
+  #galTitle{
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+    height: 8vh;
+  }
   #target {
     height: 35vh;
     margin-top: 2.5vh;
