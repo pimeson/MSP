@@ -79,10 +79,11 @@ module.exports = function (app) {
           $('body').imagesLoaded()
             .always(function (instance) {
               console.log('all images loaded');
+              $timeout($(window).scrollTop($rootScope.currHomePosY), 1000);
             })
             .done(function (instance) {
-              console.log('all images successfully loaded');
-              $(window).scrollTop($rootScope.currHomePosY);
+              console.log('all images successfully loaded, this is the current position: ', $rootScope.currHomePosY);
+              $timeout($(window).scrollTop($rootScope.currHomePosY), 1000);
             })
             .fail(function () {
               console.log('all images loaded, at least one is broken');

@@ -46,19 +46,19 @@ app.controller('homeCtrl', function ($scope, $state, $rootScope, allProjects) {
     })
 
   //if (!$scope.isLandscape()) {
-    let chunkedProjects = _.chunk(allProjects, 10);
+    // let chunkedProjects = _.chunk(allProjects, 10);
 
-    $scope.allProjects = chunkedProjects.shift();
+    // $scope.allProjects = chunkedProjects.shift();
 
-    $scope.loadMore = _.debounce(() => {
-      if (chunkedProjects.length) {
-        $scope.allProjects = [...$scope.allProjects, ...chunkedProjects.shift()];
-      }
-      $scope.$evalAsync();
-    }, 250);
+    // $scope.loadMore = _.debounce(() => {
+    //   if (chunkedProjects.length) {
+    //     $scope.allProjects = [...$scope.allProjects, ...chunkedProjects.shift()];
+    //   }
+    //   $scope.$evalAsync();
+    // }, 250);
   //}
   // else {
-  //   $scope.allProjects = allProjects;
+    $scope.allProjects = allProjects;
   // }
 
   $rootScope.$state = $state;
