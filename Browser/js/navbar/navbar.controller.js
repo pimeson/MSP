@@ -56,13 +56,13 @@ module.exports = function (app) {
         // }
       } else if ((fromState.name === 'details' && toState.name === 'gallery') || (fromState.name === 'about' && toState.name === 'gallery') || (fromState.name === 'allExhibits' && toState.name === 'gallery')) {
         angular.element(document).ready(function () {
-        $(window).scrollTop($rootScope.currGalPosY)});
+        $timeout($(window).scrollTop($rootScope.currGalPosY), 1000)});
         
         //document.body.scrollLeft = document.documentElement.scrollLeft =  $rootScope.currGalPosX;
       }
       else if ((fromState.name === 'gallery' && toState.name === 'home') || (fromState.name === 'about' && toState.name === 'home')  || (fromState.name === 'details' && toState.name === 'home') || (fromState.name === 'allExhibits' && toState.name === 'home')) {
          angular.element(document).ready(function () {
-        $(window).scrollTop($rootScope.currHomePosY)});
+        $timeout($(window).scrollTop($rootScope.currGalPosY), 1000)});
         //document.body.scrollLeft = document.documentElement.scrollLeft =  $rootScope.currHomePosX;
       }
       
