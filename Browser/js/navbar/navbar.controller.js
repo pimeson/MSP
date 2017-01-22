@@ -62,7 +62,7 @@ module.exports = function (app) {
       }
       else if ((fromState.name === 'gallery' && toState.name === 'home') || (fromState.name === 'about' && toState.name === 'home')  || (fromState.name === 'details' && toState.name === 'home') || (fromState.name === 'allExhibits' && toState.name === 'home')) {
          angular.element(document).ready(function () {
-        $timeout($(window).scrollTop($rootScope.currGalPosY), 1000)});
+        $timeout($(window).scrollTop($rootScope.currHomePosY), 1000)});
         //document.body.scrollLeft = document.documentElement.scrollLeft =  $rootScope.currHomePosX;
       }
       
