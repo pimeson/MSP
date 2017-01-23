@@ -170,7 +170,7 @@ p#showGalDesc {
   }
   #lastSpacer {
     width: 5vw;
-    height: 100vh
+    /*height: 100vh*/
   }
   .galDesc {
     position: fixed;

@@ -97,7 +97,7 @@ a {
     position: fixed;
     left: 0;
     bottom: 0;
-    margin: 1vh 1vw;
+    margin: 1vh 1vh;
     overflow: hidden;
     -webkit-transform: rotate(-46deg);
     transform: rotate(-46deg);
