@@ -4,6 +4,8 @@ app.controller('DetailsCtrl', function ($scope, $rootScope, exhibit, project, $s
 
   let activeZoom;
 
+  $scope.isFF = 'MozAppearance' in document.documentElement.style;
+
   if (activeZoom) {
     activeZoom.destroy();
   }

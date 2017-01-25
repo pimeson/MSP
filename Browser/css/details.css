@@ -6,9 +6,7 @@
   display: none;
 }
 
-#target {
-  overflow: scroll !important;
-}
+
 
 h2 {
   font-family: 'Geometric415';
@@ -85,18 +83,21 @@ a#backToGallery {
   #target {
     display: -webkit-flex;
     -webkit-flex-direction: column;
+    overflow: hidden;
   }
   h2#projTitle:hover {
     color:  #8503FF;
   }
   #picDesc {
+    /*margin-right: -16px;*/
     width: 100%;
     max-height: 25vh;
     overflow-y: scroll;
   }
   #projDesc {
     height: 45vh;
-    overflow-y: overlay;
+    overflow-y: scroll;
+    /*margin-right: -16px;*/
     margin-bottom: 10px;
   }
   #picDescContainer {
@@ -118,6 +119,7 @@ a#backToGallery {
     display:flex;
     -webkit-flex-direction: column;
     flex-direction: column;
+    overflow: hidden;
   }
   .galleryBar {
     -js-display: flex; 
@@ -279,4 +281,7 @@ a#backToGallery {
     margin-right: 10px;
     height: 15vh;
   }
+  #target {
+  overflow: scroll !important;
+}
 }
