@@ -1,12 +1,12 @@
 #galTitle {
   font-family: 'Geometric415';
   text-align: center;
-  color: #8503FF;
+  color: black;
   outline: none;
 }
 
 #galTitle:hover {
-  color: black;
+  color: #8503FF;
 }
 
 #galleryPics {
