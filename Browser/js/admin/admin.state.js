@@ -20,14 +20,13 @@ app.config($stateProvider => {
 
 app.controller('adminCtrl', function ($scope, projectFactory, projects, Upload, $state, downloads, fileFactory, AuthService) {
 
-  projects.sort((x, y) => x.order > y.order ? 1 : -1)
-  $scope.projects = projects.sort((x, y) => x-y);
+  $scope.projects = projects.sort((x, y) => x.order-y.order);
   $scope.downloads = downloads;
 
   $scope.findAll = () => {
     projectFactory.findAll()
       .then(projects => {
-        $scope.projects = projects.sort((x,y) => x-y);
+        $scope.projects = projects.sort((x,y) => x.order-y.order);
         $scope.$evalAsync();
       })
   }
