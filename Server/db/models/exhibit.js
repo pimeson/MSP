@@ -37,7 +37,10 @@ const Exhibit = db.define('exhibit', {
     type: Sequelize.INTEGER,
   },
   height: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
+  },
+  fileSize: {
+    type: Sequelize.INTEGER,
   }
 }, {
   getterMethods: {

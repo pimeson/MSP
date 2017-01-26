@@ -25,7 +25,7 @@
 <div id="adminExhibits">
   <div class="adminExhibit" ng-repeat="exhibit in exhibits">
     <img ui-sref="exhibitManagement({projId: project.id, id: exhibit.id})" class="exhibitImages" ng-src="{{exhibit.thumbnail}}">
-    <p>{{$index+1}} {{exhibit.title}}</p>
+    <p>{{$index+1}} {{exhibit.fileName}} {{(exhibit.fileSize/ 1000000.0+"").slice(0,4)}} MB</p>
     <a ng-click="deleteExhibit(exhibit.id)">delete</a>
   </div>
 </div>

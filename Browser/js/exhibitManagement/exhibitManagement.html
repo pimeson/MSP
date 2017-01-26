@@ -33,7 +33,7 @@
     <md-button class="md-raised" ng-click="addAltVideo()">Add Alt Video</md-button>
     <ul>
       <li ng-repeat="altView in exhibit.altViews">
-        {{$index + 1}} {{altView.title}} <a ng-click="deleteAltView(altView.id)">x</a>
+        {{$index + 1}} {{altView.videoUrl || altView.title}} <a ng-click="deleteAltView(altView.id)">x</a>
       </li>
     </ul>
   </div>

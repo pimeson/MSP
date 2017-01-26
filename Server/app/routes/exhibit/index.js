@@ -11,6 +11,7 @@ const _ = require('lodash');
 const rp = require('request-promise');
 const Vimeo = require('vimeo').Vimeo;
 const adminTest = require('../../configure/authorization').adminTest;
+const promiseStat = bluebird.promisify(fs.stat);
 require('dotenv').config()
 
 const adminPriv = function (req, res, next) {
@@ -57,9 +58,11 @@ router.post('/', multer({
   fs.renameSync(req.file.path, newPath, () => console.log('done!'));
   fs.createReadStream(newPath).pipe(transformer).toFile(miniPath)
     .then(() => {
-      return sizeOf(miniPath)
+      let sizing = sizeOf(miniPath);
+      let fileSize = promiseStat(newPath);
+      return Promise.all([sizing, fileSize]);
     })
-    .then((measuringMini) => {
+    .then(measuring => {
       let exBody = {
         title: req.body.title,
         type: 'Picture',
@@ -68,8 +71,9 @@ router.post('/', multer({
         imageSrc: newPath,
         specs: req.body.specs,
         projectId: req.body.projId,
-        width: measuringMini.width,
-        height: measuringMini.height
+        width: measuring[0].width,
+        height: measuring[0].height,
+        fileSize: measuring[1].size
       }
       return Exhibit.create(exBody);
     })
