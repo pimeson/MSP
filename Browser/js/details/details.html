@@ -1,6 +1,6 @@
 <img ng-if="isLandscape()" id="backArrow" ng-click="backToGallery()" src="barrow.png"></img>
 <div class="detailsSection">
-  <div class="bar">
+  <div class="bar" style="margin-right: 5vw;">
     <div class="galleryBar noscroll" ng-style="{'margin-right': isFF ? '-16px' : 0}">
       <div class="galleryImg" ng-repeat="altView in altViews">
         <img ng-click="changeToAltView(altView)" class="galleryPic" ng-src="{{altView.showing ? exhibit.thumbnail  : altView.thumbnail}}">

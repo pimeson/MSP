@@ -121,10 +121,20 @@ app.controller('DetailsCtrl', function ($scope, $rootScope, exhibit, project, $s
             .then(() => console.log("loaded other video!"));
           //If player does not exist...
         } else {
-          let width = $scope.isLandscape() ? 640 : 320;
+          let width = () => {
+            if($scope.isLandscape()){
+              if ($(window).width() > 1200){
+                return 640;
+              } else {
+                return 480;
+              }
+            } else {
+              return 320;
+            }
+          }
           const exhibitOptions = {
             id: alt.videoUrl.slice(alt.videoUrl.lastIndexOf('/') + 1),
-            width: width,
+            width: width(),
             loop: true
           }
           player = new Vimeo.Player('exhibitVideo', exhibitOptions);
