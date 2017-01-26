@@ -41,7 +41,7 @@ app.controller('projectMgmtCtrl', function ($scope, Upload, projectFactory, $sta
       exDesc = [];
     }
     Upload.upload({
-      url: 'http://localhost:1337/api/exhibit/',
+      url: 'http://matthewspiegelman.com/api/exhibit/',
       data: {
         type: 'Picture',
         file: file,

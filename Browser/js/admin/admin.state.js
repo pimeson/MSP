@@ -47,7 +47,7 @@ app.controller('adminCtrl', function ($scope, projectFactory, projects, Upload, 
 
   $scope.uploadAboutHtml = (file) => {
     Upload.upload({
-      url: 'http://localhost:1337/api/about/aboutHtml',
+      url: 'http://matthewspiegelman.com/api/about/aboutHtml',
       data: {
         file: file
       }
@@ -64,7 +64,7 @@ app.controller('adminCtrl', function ($scope, projectFactory, projects, Upload, 
 
   $scope.uploadPortrait = (file) => {
     Upload.upload({
-      url: 'http://localhost:1337/api/about/aboutPortrait',
+      url: 'http://matthewspiegelman.com/api/about/aboutPortrait',
       data: {
         file: file
       }
@@ -78,7 +78,7 @@ app.controller('adminCtrl', function ($scope, projectFactory, projects, Upload, 
     $scope.$evalAsync();
     if ($scope.dlTitle) {
       Upload.upload({
-        url: 'http://localhost:1337/api/about/upload',
+        url: 'http://matthewspiegelman.com/api/about/upload',
         data: {
           file: file,
           title: $scope.dlTitle
