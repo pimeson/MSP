@@ -169,6 +169,7 @@ app.controller('DetailsCtrl', function ($scope, $rootScope, exhibit, project, $s
   $rootScope.$on('$stateChangeStart',
     function (event, toState, toParams, fromState, fromParams, options) {
       if (activeZoom) {
+        activeZoom.close();
         activeZoom.destroy();
       }
     })

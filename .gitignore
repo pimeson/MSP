@@ -6,3 +6,4 @@ coverage
 .env
 Browser/js/bundle.js
 public/uploads
+public/about
