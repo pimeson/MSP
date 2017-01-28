@@ -205,7 +205,7 @@ a#backToGallery {
     display:flex;
     -webkit-flex-direction: column;
     flex-direction: column;
-    width: 75vw;
+    width: 80vw;
   }
   #mainPicContainer {
     max-width: 85vw;
