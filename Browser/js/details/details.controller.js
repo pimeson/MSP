@@ -22,6 +22,12 @@ app.controller('DetailsCtrl', function ($scope, $rootScope, exhibit, project, $s
   //description is collapsed by default
   $scope.collapsed = true;
 
+  $scope.toggleDescPortrait = false;
+  $scope.togglePortrait = () => {
+    $scope.toggleDescPortrait = !$scope.toggleDescPortrait;
+  }
+  
+
 
   $scope.collapse = () => {
     $scope.collapsed = !$scope.collapsed;

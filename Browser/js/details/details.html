@@ -1,4 +1,25 @@
 <img ng-if="isLandscape()" id="backArrow" ng-click="backToGallery()" src="barrow.png"></img>
+ <h6 ng-if="!isLandscape()" style="text-decoration: underline;
+    position: absolute;
+    top: 3vh;
+    width: 100%;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    outline: none;" ng-click="togglePortrait()">{{toggleDescPortrait ? 'Tap Description to Close' : 'PROJECT DESCRIPTION'}}</h6>
+        <section ng-if="toggleDescPortrait && !isLandscape()" class="noscroll" style="margin-top: 32%;
+    width: 80%;
+    margin-left: 10%;
+    position: absolute;
+    background: white;
+    opacity: .85;
+    height: 70vh;
+    overflow-y: scroll;" ng-click="togglePortrait()">
+      <div ng-show="!showVideo" style='margin-top: 2.5vh; overflow-x: hidden !Important'></div>
+        <p style="text-align: left" ng-repeat="paragraph in projDesc track by $index"> {{::paragraph}} </p>
+      </div>
+    </section>
 <div class="detailsSection">
   <div class="bar" style="padding-right: 5vw;">
     <div class="galleryBar noscroll" ng-style="{'margin-right': isFF ? '-16px' : 0}">

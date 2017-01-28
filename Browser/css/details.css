@@ -16,6 +16,7 @@ h2 {
 p {
   font-family: 'Geometric415';
   font-size: 12px;
+  overflow-wrap: break-word;
 }
 
 li {
