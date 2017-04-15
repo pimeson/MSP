@@ -81,7 +81,7 @@ router.post('/', multer({
     .catch(next);
 })
 
-router.post('/video', adminPriv, function (req, res, next) {
+router.post('/video', function (req, res, next) {
 
   let vidId = req.body.videoUrl.slice(req.body.videoUrl.lastIndexOf('/') + 1)
   console.log(vidId);

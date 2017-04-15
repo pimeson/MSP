@@ -1,4 +1,5 @@
 module.exports = function (app) {
+  
   app.config($stateProvider => {
     $stateProvider.state('allExhibits', {
       url: '/all',
@@ -17,8 +18,6 @@ module.exports = function (app) {
     $scope.isLandscape = function () {
       return $(window).width() >= $(window).height();
     }
-
-
 
     let chunkedExhibits = $scope.isLandscape() ? _.chunk(_.shuffle(exhibits.filter(exhibit => exhibit.project.display)), 21) : _.chunk(_.shuffle(exhibits.filter(exhibit => exhibit.project.display)), 12);
 
@@ -41,7 +40,5 @@ module.exports = function (app) {
 
 
   });
-
-
 
 }
