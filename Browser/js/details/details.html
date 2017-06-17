@@ -18,7 +18,7 @@
     overflow-y: scroll;" ng-click="togglePortrait()">
       <div ng-show="!showVideo" style='margin-top: 2.5vh; overflow-x: hidden !Important'></div>
         <p style="margin: 0px 10px 0px 10px; text-align: left" ng-repeat="paragraph in projDesc track by $index"> {{::paragraph}} </p>
-        <form ng-if="project.id===25" style="display: flex; flex-direction: column; align-items: center;" action="https://www.paypal.com/cgi-bin/webscr"
+        <form ng-if="project.id===26" style="display: flex; flex-direction: column; align-items: center;" action="https://www.paypal.com/cgi-bin/webscr"
       method="post" target="_top">
       <input type="hidden" name="cmd" value="_s-xclick">
       <input type="hidden" name="hosted_button_id" value="7ZCEPHZQJ49NG">
@@ -58,7 +58,7 @@
     <section ng-if="isLandscape()" class="noscroll" id="projDesc" >
       <div ng-show="hover && !showVideo" style='height: 70vh; margin-top: 2.5vh; overflow-x: hidden !Important'></div>
         <p style="text-align: left" ng-repeat="paragraph in projDesc track by $index"> {{::paragraph}} </p>
-        <form ng-if="project.id===25" style="display: flex; flex-direction: column; align-items: center;" action="https://www.paypal.com/cgi-bin/webscr"
+        <form ng-if="project.id===26" style="display: flex; flex-direction: column; align-items: center;" action="https://www.paypal.com/cgi-bin/webscr"
       method="post" target="_top">
       <input type="hidden" name="cmd" value="_s-xclick">
       <input type="hidden" name="hosted_button_id" value="7ZCEPHZQJ49NG">
