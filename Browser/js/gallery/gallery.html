@@ -1,11 +1,32 @@
 <container>
-  <h3 id="galTitle" style="text-align: center" class="unselectable" ng-mouseenter="hideDesc && toggleTitle()" ng-click="toggleTitle()" ng-style="{'color': isLandscape() ? 'black' : 'purple', 'text-decoration': isLandscape() ? 'none' : 'underline'}">{{title()}}</h3>
-  <div class="galDesc noscroll" ng-show="!hideDesc" ng-style="{'margin-top': isLandscape() ? 7 + 'vh' : scrollPosYFixed + iframeHeight * .15}" ng-click="toggleTitle()">
+  <h3 id="galTitle" style="text-align: center" class="unselectable" ng-mouseenter="hideDesc && toggleTitle()" ng-click="toggleTitle()"
+    ng-style="{'color': isLandscape() ? 'black' : 'purple', 'text-decoration': isLandscape() ? 'none' : 'underline'}">{{title()}}</h3>
+  <div class="galDesc noscroll" ng-show="!hideDesc" ng-style="{'margin-top': isLandscape() ? 7 + 'vh' : scrollPosYFixed + iframeHeight * .15}">
     <span id="galText" class="noscroll">
             <p ng-repeat="desc in description track by $index" class="galParagraph">
               {{::desc}}
             </p>
           </span>
+    <form ng-if="project.id===25" style="display: flex; flex-direction: column; align-items: center;" action="https://www.paypal.com/cgi-bin/webscr"
+      method="post" target="_top">
+      <input type="hidden" name="cmd" value="_s-xclick">
+      <input type="hidden" name="hosted_button_id" value="7ZCEPHZQJ49NG">
+      <table>
+        <tr>
+          <td><input type="hidden" name="on0" value="JAMS">JAMS</td>
+        </tr>
+        <tr>
+          <td><select style="width: 25vw;" name="os0">
+	<option value="JAMS book only">JAMS book only $32.00 USD</option>
+	<option value="JAMS book with Limited Edition Print">JAMS book with Limited Edition Print $80.00 USD</option>
+</select> </td>
+        </tr>
+      </table>
+      <input type="hidden" name="currency_code" value="USD">
+      <input type="image" style="width:25vw; border:0; align-self: center;" src="https://i.imgur.com/xyLh8vp.png" border="0" name="submit"
+        alt="PayPal - The safer, easier way to pay online!">
+      <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+    </form>
   </div>
   <div id="gallery">
     <table id="initialSpacer"></table>
@@ -36,14 +57,17 @@
           </ul>
         </span>
     </div>
-      </div>
+  </div>
 
-    <div ng-if="!isLandscape()" class="galImage">
-        <img ng-if="exhibit.type === 'Picture' " class="galImages" ng-class="{current : exhibit.selected}" ng-src="{{exhibit.thumbnail}}">
-        <iframe ng-if="exhibit.type === 'Video' && isLandscape()" ng-src="{{exhibit.video | trusted}}" height = "{{iframeHeight * .82}}" width = "{{iframeHeight * .82 * 16/9}}"  frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-        <iframe ng-if="exhibit.type === 'Video' && !isLandscape()" ng-src="{{exhibit.video | trusted}}" height = "{{iframeWidth * .85 * (9/16)}}" width = "{{iframeWidth * .85}}"  frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-         <div class="exhibitGalDesc noscroll" style="margin-top: 5px; height: 5vh;">
-        <span ng-if="!project.detailsEnabled" style="-js-display: flex; display:flex; flex-direction: row; flex-wrap: wrap; margin-bottom : -3px; width: 94%; margin-left: 3%;" ng-repeat="desc in exhibit.description">
+  <div ng-if="!isLandscape()" class="galImage">
+    <img ng-if="exhibit.type === 'Picture' " class="galImages" ng-class="{current : exhibit.selected}" ng-src="{{exhibit.thumbnail}}">
+    <iframe ng-if="exhibit.type === 'Video' && isLandscape()" ng-src="{{exhibit.video | trusted}}" height="{{iframeHeight * .82}}"
+      width="{{iframeHeight * .82 * 16/9}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    <iframe ng-if="exhibit.type === 'Video' && !isLandscape()" ng-src="{{exhibit.video | trusted}}" height="{{iframeWidth * .85 * (9/16)}}"
+      width="{{iframeWidth * .85}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    <div class="exhibitGalDesc noscroll" style="margin-top: 5px; height: 5vh;">
+      <span ng-if="!project.detailsEnabled" style="-js-display: flex; display:flex; flex-direction: row; flex-wrap: wrap; margin-bottom : -3px; width: 94%; margin-left: 3%;"
+        ng-repeat="desc in exhibit.description">
           <ul id="exDescs">
           <li>{{desc[0]}}</li>
           <li>{{desc[1]}}</li>
@@ -51,7 +75,7 @@
           </ul>
         </span>
     </div>
-    </div>
+  </div>
 
   </div>
   </div>
