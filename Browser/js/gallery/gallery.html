@@ -7,7 +7,7 @@
               {{::desc}}
             </p>
           </span>
-    <form ng-if="project.id===26" style="display: flex; flex-direction: column; align-items: center;" action="https://www.paypal.com/cgi-bin/webscr"
+    <form ng-if="project.id===26" style="display: flex; flex-direction: column; align-items: center; margin: 0 1vw 0 1vw;" action="https://www.paypal.com/cgi-bin/webscr"
       method="post" target="_top">
       <input type="hidden" name="cmd" value="_s-xclick">
       <input type="hidden" name="hosted_button_id" value="7ZCEPHZQJ49NG">
@@ -29,21 +29,21 @@
     <table id="initialSpacer"></table>
     
     <div id="galleryPics">
-      <table ng-if="project.id!==26" id="initialSpacer"></table>
-       <form ng-if="project.id===26" style="display: flex; flex-direction: column; align-items: center; justify-content: center;" action="https://www.paypal.com/cgi-bin/webscr"
+      <table ng-if="project.id!==26 && isLandscape()" id="initialSpacer"></table>
+       <form ng-if="project.id===26" style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 1vw 0 1vw" ng-style="{'margin-top': isLandscape() ? 0+ 'vh' : 10 +'vh'}" action="https://www.paypal.com/cgi-bin/webscr"
       method="post" target="_top">
       <input type="hidden" name="cmd" value="_s-xclick">
       <input type="hidden" name="hosted_button_id" value="7ZCEPHZQJ49NG">
       <table>
         <tr>
-          <td><select style="width: 15vw;" name="os0">
+          <td><select ng-style="{width: isLandscape() ? '15vw' : '55vw'}" name="os0">
 	<option value="JAMS book only">JAMS book only $32.00 USD</option>
 	<option value="JAMS book with Limited Edition Print">JAMS book with Limited Edition Print $80.00 USD</option>
 </select> </td>
         </tr>
       </table>
       <input type="hidden" name="currency_code" value="USD">
-      <input type="image" style="width:15vw; border:0; align-self: center;" src="https://i.imgur.com/xyLh8vp.png" border="0" name="submit"
+      <input type="image" style="border:0; align-self: center;" ng-style="{width: isLandscape() ? '15vw' : '45vw'}"src="https://i.imgur.com/xyLh8vp.png" border="0" name="submit"
         alt="PayPal - The safer, easier way to pay online!">
       <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
     </form>
