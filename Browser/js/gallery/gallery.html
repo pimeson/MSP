@@ -1,14 +1,18 @@
 <container>
-  <h3 id="galTitle" style="text-align: center" class="unselectable" ng-mouseenter="hideDesc && toggleTitle()" ng-click="toggleTitle()"
-    ng-style="{'color': isLandscape() ? 'black' : 'purple', 'text-decoration': isLandscape() ? 'none' : 'underline'}">{{title()}}</h3>
-  <div class="galDesc noscroll" ng-show="!hideDesc" ng-style="{'margin-top': isLandscape() ? 7 + 'vh' : scrollPosYFixed + iframeHeight * .15}">
+  <h3 id="galTitle" style="text-align: center" class="unselectable" ng-mouseenter="hideDesc && toggleTitle()"
+    ng-click="toggleTitle()"
+    ng-style="{'color': isLandscape() ? 'black' : 'purple', 'text-decoration': isLandscape() ? 'none' : 'underline'}">
+    {{title()}}</h3>
+  <div class="galDesc noscroll" ng-show="!hideDesc"
+    ng-style="{'margin-top': isLandscape() ? 7 + 'vh' : scrollPosYFixed + iframeHeight * .15}">
     <span id="galText" class="noscroll">
-            <p ng-repeat="desc in description track by $index" class="galParagraph">
-              {{::desc}}
-            </p>
-          </span>
-    <form ng-if="project.id===26" style="display: flex; flex-direction: column; align-items: center; margin: 0 1vw 0 1vw;" action="https://www.paypal.com/cgi-bin/webscr"
-      method="post" target="_top">
+      <p ng-repeat="desc in description track by $index" class="galParagraph">
+        {{::desc}}
+      </p>
+    </span>
+    <form ng-if="project.id===26"
+      style="display: flex; flex-direction: column; align-items: center; margin: 0 1vw 0 1vw;"
+      action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
       <input type="hidden" name="cmd" value="_s-xclick">
       <input type="hidden" name="hosted_button_id" value="7ZCEPHZQJ49NG">
       <table>
@@ -19,17 +23,20 @@
           <td>
             <select name="os0">
               <option value="JAMS book only">JAMS book only $32.00 USD</option>
-              <option value="JAMS book with Limited Edition Print">JAMS book with Limited Edition Print $100.00 USD</option>
+              <option value="JAMS book with Limited Edition Print">JAMS book with Limited Edition Print $100.00 USD
+              </option>
             </select>
           </td>
         </tr>
       </table>
       <input type="hidden" name="currency_code" value="USD">
-      <input type="image" style="width:25vw; border:0; align-self: center;" src="https://i.imgur.com/xyLh8vp.png" border="0" name="submit"
-        alt="PayPal - The safer, easier way to pay online!">
+      <input type="image" style="width:25vw; border:0; align-self: center;" src="https://i.imgur.com/xyLh8vp.png"
+        border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
       <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
     </form>
-    <form ng-if="project.id===1" style="display: flex; flex-direction: column; align-items: center; margin: 0 1vw 0 1vw;" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <form ng-if="project.id===1"
+      style="display: flex; flex-direction: column; align-items: center; margin: 0 1vw 0 1vw;"
+      action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
       <input type="hidden" name="cmd" value="_s-xclick">
       <input type="hidden" name="hosted_button_id" value="SSCNTH33SBSUL">
       <table>
@@ -52,81 +59,140 @@
         </tr>
       </table>
       <input type="hidden" name="currency_code" value="USD">
-      <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+      <input style="border: none;" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_SM.gif"
+        border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
       <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
     </form>
   </div>
   <div id="gallery">
     <table id="initialSpacer"></table>
-    
+
     <div id="galleryPics">
       <table ng-if="project.id!==26 && isLandscape()" id="initialSpacer"></table>
-       <form ng-if="project.id===26" style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 1vw 0 1vw" ng-style="{'margin-top': isLandscape() ? 0+ 'vh' : 10 +'vh'}" action="https://www.paypal.com/cgi-bin/webscr"
-      method="post" target="_top">
-      <input type="hidden" name="cmd" value="_s-xclick">
-      <input type="hidden" name="hosted_button_id" value="7ZCEPHZQJ49NG">
-     <table>
-<tr><td><input type="hidden" name="on0" value="JAMS">JAMS</td></tr><tr><td><select name="os0">
-        <option value="JAMS book only">JAMS book only $32.00 USD</option>
-        <option value="JAMS book with Limited Edition Print">JAMS book with Limited Edition Print $100.00 USD</option>
-
-
-</select> </td></tr>
-</table>
-      <input type="hidden" name="currency_code" value="USD">
-      <input type="image" style="border:0; align-self: center;" ng-style="{width: isLandscape() ? '15vw' : '45vw'}"src="https://i.imgur.com/xyLh8vp.png" border="0" name="submit"
-        alt="PayPal - The safer, easier way to pay online!">
-      <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-    </form>
+      <form ng-if="project.id===26"
+        style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 1vw 0 1vw"
+        ng-style="{'margin-top': isLandscape() ? 0+ 'vh' : 10 +'vh'}" action="https://www.paypal.com/cgi-bin/webscr"
+        method="post" target="_top">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="7ZCEPHZQJ49NG">
+        <table>
+          <tr>
+            <td><input type="hidden" name="on0" value="JAMS">JAMS</td>
+          </tr>
+          <tr>
+            <td>
+              <select name="os0">
+                <option value="JAMS book only">JAMS book only $32.00 USD</option>
+                <option value="JAMS book with Limited Edition Print">JAMS book with Limited Edition Print $100.00 USD
+                </option>
+              </select>
+            </td>
+          </tr>
+        </table>
+        <input type="hidden" name="currency_code" value="USD">
+        <input type="image" style="border:0; align-self: center;" ng-style="{width: isLandscape() ? '15vw' : '45vw'}"
+          src="https://i.imgur.com/xyLh8vp.png" border="0" name="submit"
+          alt="PayPal - The safer, easier way to pay online!">
+        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+      </form>
+      <form ng-if="project.id===1"
+        style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 1vw 0 1vw"
+        ng-style="{'margin-top': isLandscape() ? 0+ 'vh' : 10 +'vh'}" action="https://www.paypal.com/cgi-bin/webscr"
+        method="post" target="_top">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="SSCNTH33SBSUL">
+        <table>
+          <tr>
+            <td><input type="hidden" name="on0" value="Transmitter">Buy Transmitter</td>
+          </tr>
+          <tr>
+            <td>
+              <input type="hidden" name="on0" value="How Many Copies?">How Many Copies?
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <select name="os0">
+                <option value="1 copy">1 copy $50.00 USD</option>
+                <option value="2 copies">2 copies $100.00 USD</option>
+                <option value="3 copies">3 copies $130.00 USD</option>
+              </select>
+            </td>
+          </tr>
+        </table>
+        <input type="hidden" name="currency_code" value="USD">
+        <input style="border: none;" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_SM.gif"
+          border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+      </form>
       <span class="galContainer" ng-repeat="exhibit in exhibits">
-      
-      <div class="galImageContainer"  ng-mouseenter="isLandscape() && hoverSelect(exhibit)" ng-mouseleave="isLandscape() && hoverLeave(exhibit)">
-        
-      <div ng-if="isLandscape() && exhibit.type !== 'Video'" style="position: absolute; clip: rect(auto, auto, auto, auto);" ng-style="{width: exhibit.width/exhibit.height * iframeHeight * .82, height: iframeHeight * .82, cursor: project.detailsEnabled ? 'pointer' : 'default'}" ng-click="goToDetails(exhibit)">
-         <title style="color: white;" class="navTitle" ui-sref="home">MATTHEW SPIEGELMAN</title>
-      </div>
 
-      <div ng-if="!isLandscape() && exhibit.type !== 'Video'" style="position: absolute; clip: rect(auto, auto, auto, auto); left: 12.5vw; margin-top: 2vh;" ng-style="{width: iframeWidth * .75, height: iframeWidth * .75 * exhibit.height/exhibit.width}" ng-click="goToDetails(exhibit)">
-         <title style="color: white;" class="navTitle" ui-sref="home">MATTHEW SPIEGELMAN</title>
-      </div>
+        <div class="galImageContainer" ng-mouseenter="isLandscape() && hoverSelect(exhibit)"
+          ng-mouseleave="isLandscape() && hoverLeave(exhibit)">
 
-      <div ng-if="isLandscape()" class="galImage" ng-style="{width: exhibit.width/exhibit.height * iframeHeight * .82}">
-        <img ng-if="exhibit.type === 'Picture' " class="galImages" ng-class="{current : exhibit.selected}" ng-src="{{exhibit.thumbnail}}">
-        <iframe ng-if="exhibit.type === 'Video' && isLandscape()" ng-src="{{exhibit.video | trusted}}" height = "{{iframeHeight * .82}}" width = "{{iframeHeight * .82 * 16/9}}"  frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-        <iframe ng-if="exhibit.type === 'Video' && !isLandscape()" ng-src="{{exhibit.video | trusted}}" height = "{{iframeWidth * .85 * (9/16)}}" width = "{{iframeWidth * .85}}"  frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-         <div class="exhibitGalDesc" ng-show="exhibit.showDesc">
-        <span style="-js-display: flex; display:flex; flex-direction: row; flex-wrap: wrap; margin-bottom : -3px; width: 100%;" ng-repeat="desc in exhibit.description">
-          <ul id="exDescs">
-          <li>{{desc[0]}}</li>
-          <li>{{desc[1]}}</li>
-          <li>{{desc[2]}}</li>
-          </ul>
-        </span>
+          <div ng-if="isLandscape() && exhibit.type !== 'Video'"
+            style="position: absolute; clip: rect(auto, auto, auto, auto);"
+            ng-style="{width: exhibit.width/exhibit.height * iframeHeight * .82, height: iframeHeight * .82, cursor: project.detailsEnabled ? 'pointer' : 'default'}"
+            ng-click="goToDetails(exhibit)">
+            <title style="color: white;" class="navTitle" ui-sref="home">MATTHEW SPIEGELMAN</title>
+          </div>
+
+          <div ng-if="!isLandscape() && exhibit.type !== 'Video'"
+            style="position: absolute; clip: rect(auto, auto, auto, auto); left: 12.5vw; margin-top: 2vh;"
+            ng-style="{width: iframeWidth * .75, height: iframeWidth * .75 * exhibit.height/exhibit.width}"
+            ng-click="goToDetails(exhibit)">
+            <title style="color: white;" class="navTitle" ui-sref="home">MATTHEW SPIEGELMAN</title>
+          </div>
+
+          <div ng-if="isLandscape()" class="galImage"
+            ng-style="{width: exhibit.width/exhibit.height * iframeHeight * .82}">
+            <img ng-if="exhibit.type === 'Picture' " class="galImages" ng-class="{current : exhibit.selected}"
+              ng-src="{{exhibit.thumbnail}}">
+            <iframe ng-if="exhibit.type === 'Video' && isLandscape()" ng-src="{{exhibit.video | trusted}}"
+              height="{{iframeHeight * .82}}" width="{{iframeHeight * .82 * 16/9}}" frameborder="0"
+              webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <iframe ng-if="exhibit.type === 'Video' && !isLandscape()" ng-src="{{exhibit.video | trusted}}"
+              height="{{iframeWidth * .85 * (9/16)}}" width="{{iframeWidth * .85}}" frameborder="0"
+              webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <div class="exhibitGalDesc" ng-show="exhibit.showDesc">
+              <span
+                style="-js-display: flex; display:flex; flex-direction: row; flex-wrap: wrap; margin-bottom : -3px; width: 100%;"
+                ng-repeat="desc in exhibit.description">
+                <ul id="exDescs">
+                  <li>{{desc[0]}}</li>
+                  <li>{{desc[1]}}</li>
+                  <li>{{desc[2]}}</li>
+                </ul>
+              </span>
+            </div>
+          </div>
+
+          <div ng-if="!isLandscape()" class="galImage">
+            <img ng-if="exhibit.type === 'Picture' " class="galImages" ng-class="{current : exhibit.selected}"
+              ng-src="{{exhibit.thumbnail}}">
+            <iframe ng-if="exhibit.type === 'Video' && isLandscape()" ng-src="{{exhibit.video | trusted}}"
+              height="{{iframeHeight * .82}}" width="{{iframeHeight * .82 * 16/9}}" frameborder="0"
+              webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <iframe ng-if="exhibit.type === 'Video' && !isLandscape()" ng-src="{{exhibit.video | trusted}}"
+              height="{{iframeWidth * .85 * (9/16)}}" width="{{iframeWidth * .85}}" frameborder="0"
+              webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <div class="exhibitGalDesc noscroll" style="margin-top: 5px; height: 5vh;">
+              <span ng-if="!project.detailsEnabled"
+                style="-js-display: flex; display:flex; flex-direction: row; flex-wrap: wrap; margin-bottom : -3px; width: 94%; margin-left: 3%;"
+                ng-repeat="desc in exhibit.description">
+                <ul id="exDescs">
+                  <li>{{desc[0]}}</li>
+                  <li>{{desc[1]}}</li>
+                  <li>{{desc[2]}}</li>
+                </ul>
+              </span>
+            </div>
+          </div>
+
+        </div>
     </div>
-  </div>
-
-  <div ng-if="!isLandscape()" class="galImage">
-    <img ng-if="exhibit.type === 'Picture' " class="galImages" ng-class="{current : exhibit.selected}" ng-src="{{exhibit.thumbnail}}">
-    <iframe ng-if="exhibit.type === 'Video' && isLandscape()" ng-src="{{exhibit.video | trusted}}" height="{{iframeHeight * .82}}"
-      width="{{iframeHeight * .82 * 16/9}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-    <iframe ng-if="exhibit.type === 'Video' && !isLandscape()" ng-src="{{exhibit.video | trusted}}" height="{{iframeWidth * .85 * (9/16)}}"
-      width="{{iframeWidth * .85}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-    <div class="exhibitGalDesc noscroll" style="margin-top: 5px; height: 5vh;">
-      <span ng-if="!project.detailsEnabled" style="-js-display: flex; display:flex; flex-direction: row; flex-wrap: wrap; margin-bottom : -3px; width: 94%; margin-left: 3%;"
-        ng-repeat="desc in exhibit.description">
-          <ul id="exDescs">
-          <li>{{desc[0]}}</li>
-          <li>{{desc[1]}}</li>
-          <li>{{desc[2]}}</li>
-          </ul>
-        </span>
-    </div>
-  </div>
-
-  </div>
-  </div>
-  </span>
-  <table id="lastSpacer"></table>
+    </span>
+    <table id="lastSpacer"></table>
   </div>
   </div>
   </div>
