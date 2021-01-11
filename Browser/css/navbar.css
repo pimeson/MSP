@@ -253,3 +253,16 @@ img#waves {
   height: 5vh;
   margin: 2vh 2vh;
 }
+
+#shop-link {
+  position: fixed;
+  top: 50vh;
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+  margin-left: 10px;
+  color: black;
+}
+
+#shop-link:hover{
+  color:#8503FF;
+}
