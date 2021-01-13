@@ -45,6 +45,7 @@ module.exports = function (app) {
           top: ''
         }).scrollTop($scope.scrollPosYFixed);
       } else if (!$scope.isLandscape() && $scope.toggleDescPortrait) {
+        console.log("I should be here!:", scrollPosY)
         $('body').css({
           overflow: 'hidden',
           width: '100vw',
@@ -114,6 +115,7 @@ module.exports = function (app) {
       //Stop video from playing when not visible
       if (player) {
         player.pause()
+          .then(() => console.log("paused!"));
       }
 
       //If a user had clicked an alt view and wants to go back to the original view.
@@ -128,9 +130,9 @@ module.exports = function (app) {
       } else {
         //Loops over altviews and makes sure that they are not active. All off.
         $scope.altViews.map(altView => {
-          altView.showing = false;
-        })
-        //set the altview that you selected, one on.
+            altView.showing = false;
+          })
+          //set the altview that you selected, one on.
         alt.showing = true;
 
         //Altviews have two types- Picture and Video
@@ -150,6 +152,7 @@ module.exports = function (app) {
           makes sure if player exists, change the video for the player*/
           if (player) {
             player.loadVideo(alt.videoUrl.slice(alt.videoUrl.lastIndexOf('/') + 1))
+              .then(() => console.log("loaded other video!"));
             //If player does not exist...
           } else {
             let width = () => {

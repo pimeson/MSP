@@ -12,7 +12,7 @@ module.exports = function (app) {
         let scrollPosY, scrollPosX;
 
         $document.on('scroll', () => {
-            $scope.$apply(() => {
+            $scope.$apply( () => {
                 scrollPosY = $window.scrollY;
                 scrollPosX = $window.scrollX;
                 $scope.scrollY = scrollPosY;
@@ -25,21 +25,23 @@ module.exports = function (app) {
         $scope.toggleTitle = () => {
             $scope.hideDesc = !$scope.hideDesc;
             if (!$scope.isLandscape() && $scope.hideDesc) {
-                $('body').css({
-                    overflow: '',
-                    position: '',
-                    top: ''
-                }).scrollTop($scope.scrollPosYFixed);
+                    $('body').css({
+                        overflow: '',
+                        position: '',
+                        top: ''
+                    }).scrollTop($scope.scrollPosYFixed);
             } else if (!$scope.isLandscape() && !$scope.hideDesc) {
-                $('body').css({
-                    overflow: 'hidden',
-                    width: '100vw',
-                    position: 'fixed',
-                    top: -scrollPosY + 'px'
-                });
-                $scope.scrollPosYFixed = scrollPosY;
+                 console.log("I should be here!:", scrollPosY)
+                    $('body').css({
+                        overflow: 'hidden',
+                        width: '100vw',
+                        position: 'fixed',
+                        top: -scrollPosY + 'px'
+                    });
+                    $scope.scrollPosYFixed = scrollPosY;
             }
             $scope.$evalAsync();
+            console.log(scrollPosY);
         }
 
         $scope.title = () => {
@@ -52,6 +54,7 @@ module.exports = function (app) {
 
         $scope.project = project;
         $scope.description = project.description;
+        console.log(exhibits);
         $scope.exhibits = exhibits
             .sort((x, y) => x.order > y.order ? 1 : -1)
             .map((exhibit) => {
