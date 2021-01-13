@@ -10,8 +10,6 @@ module.exports = function (app) {
 
     $scope.state = $rootScope.$state;
 
-    console.log('this is what is in state', $scope.state)
-
     $scope.goBack = $rootScope.goBack;
 
     $scope.currWidth = $(window).width();
@@ -24,7 +22,6 @@ module.exports = function (app) {
 
     $(window).on('resize', _.debounce(() => {
       //Need to check if mobile
-      console.log('resized!')
       if (isLandscape() || landscapeToPortrait) {
         $state.reload();
         landscapeToPortrait = !landscapeToPortrait;
@@ -48,7 +45,6 @@ module.exports = function (app) {
         position: '',
         top: ''
       })
-      console.log(toState, fromState);
 
       if (toState.name === 'details') {
         $scope.shouldRenderShopLink = false;

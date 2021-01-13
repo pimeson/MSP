@@ -12,7 +12,7 @@ module.exports = function (app) {
         let scrollPosY, scrollPosX;
 
         $document.on('scroll', () => {
-            $scope.$apply( () => {
+            $scope.$apply(() => {
                 scrollPosY = $window.scrollY;
                 scrollPosX = $window.scrollX;
                 $scope.scrollY = scrollPosY;
@@ -25,23 +25,21 @@ module.exports = function (app) {
         $scope.toggleTitle = () => {
             $scope.hideDesc = !$scope.hideDesc;
             if (!$scope.isLandscape() && $scope.hideDesc) {
-                    $('body').css({
-                        overflow: '',
-                        position: '',
-                        top: ''
-                    }).scrollTop($scope.scrollPosYFixed);
+                $('body').css({
+                    overflow: '',
+                    position: '',
+                    top: ''
+                }).scrollTop($scope.scrollPosYFixed);
             } else if (!$scope.isLandscape() && !$scope.hideDesc) {
-                 console.log("I should be here!:", scrollPosY)
-                    $('body').css({
-                        overflow: 'hidden',
-                        width: '100vw',
-                        position: 'fixed',
-                        top: -scrollPosY + 'px'
-                    });
-                    $scope.scrollPosYFixed = scrollPosY;
+                $('body').css({
+                    overflow: 'hidden',
+                    width: '100vw',
+                    position: 'fixed',
+                    top: -scrollPosY + 'px'
+                });
+                $scope.scrollPosYFixed = scrollPosY;
             }
             $scope.$evalAsync();
-            console.log(scrollPosY);
         }
 
         $scope.title = () => {
