@@ -18,6 +18,8 @@ module.exports = function (app) {
 
     $scope.back = false;
 
+    $scope.shouldRenderShopLink = $scope.$state.name !== 'details'
+
     let landscapeToPortrait = true;
 
     $(window).on('resize', _.debounce(() => {
@@ -66,7 +68,7 @@ module.exports = function (app) {
             .done(function (instance) {
               console.log('all images successfully loaded');
               $(window).scrollTop($rootScope.currGalPosY)
-              if(!isLandscape()){
+              if (!isLandscape()) {
                 $timeout($(window).scrollTop($rootScope.currGalPosY), 1000);
               } else {
                 $timeout($(window).scrollLeft($rootScope.currGalPosX), 1000);
@@ -87,7 +89,7 @@ module.exports = function (app) {
           $('body').imagesLoaded()
             .always(function (instance) {
               console.log('all images loaded');
-              if(!isLandscape()){
+              if (!isLandscape()) {
                 $timeout($(window).scrollTop($rootScope.currHomePosY), 1000);
               } else {
                 $timeout($(window).scrollLeft($rootScope.currHomePosX), 1000);
@@ -95,7 +97,7 @@ module.exports = function (app) {
             })
             .done(function (instance) {
               console.log('all images successfully loaded, this is the current position: ', $rootScope.currHomePosY);
-              if(!isLandscape()){
+              if (!isLandscape()) {
                 $timeout($(window).scrollTop($rootScope.currHomePosY), 1000);
               } else {
                 $timeout($(window).scrollLeft($rootScope.currHomePosX), 1000);
