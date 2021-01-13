@@ -10,7 +10,6 @@ module.exports = function (app) {
 
     $scope.state = $rootScope.$state;
 
-    console.log('this is what is in state', $scope.state)
 
     $scope.goBack = $rootScope.goBack;
 
@@ -24,7 +23,6 @@ module.exports = function (app) {
 
     $(window).on('resize', _.debounce(() => {
       //Need to check if mobile
-      console.log('resized!')
       if (isLandscape() || landscapeToPortrait) {
         $state.reload();
         landscapeToPortrait = !landscapeToPortrait;
@@ -48,7 +46,6 @@ module.exports = function (app) {
         position: '',
         top: ''
       })
-      console.log(toState, fromState);
 
       if (toState.name === 'details') {
         $scope.shouldRenderShopLink = false;
@@ -57,9 +54,7 @@ module.exports = function (app) {
       }
 
       if ((toState.name === 'gallery' && fromState.name === 'home') || toState.name === 'details' || toState.name === 'allExhibits' || toState.name === 'about') {
-        //console.log(fromState.name, fromState.name !== 'details')
         // if (fromState.name !== 'details' && fromState.name !== 'about') {
-        //   console.log("Triggering")
         document.body.scrollTop = document.documentElement.scrollTop = 0;
         document.body.scrollLeft = document.documentElement.scrollLeft = 0;
         // } else {
@@ -70,10 +65,8 @@ module.exports = function (app) {
         angular.element(document).ready(function () {
           $('body').imagesLoaded()
             .always(function (instance) {
-              console.log('all images loaded');
             })
             .done(function (instance) {
-              console.log('all images successfully loaded');
               $(window).scrollTop($rootScope.currGalPosY)
               if (!isLandscape()) {
                 $timeout($(window).scrollTop($rootScope.currGalPosY), 1000);
@@ -82,11 +75,9 @@ module.exports = function (app) {
               }
             })
             .fail(function () {
-              console.log('all images loaded, at least one is broken');
             })
             .progress(function (instance, image) {
               var result = image.isLoaded ? 'loaded' : 'broken';
-              console.log('image is ' + result + ' for ' + image.img.src);
             });
         });
 
@@ -95,7 +86,6 @@ module.exports = function (app) {
         angular.element(document).ready(function () {
           $('body').imagesLoaded()
             .always(function (instance) {
-              console.log('all images loaded');
               if (!isLandscape()) {
                 $timeout($(window).scrollTop($rootScope.currHomePosY), 1000);
               } else {
@@ -103,7 +93,6 @@ module.exports = function (app) {
               }
             })
             .done(function (instance) {
-              console.log('all images successfully loaded, this is the current position: ', $rootScope.currHomePosY);
               if (!isLandscape()) {
                 $timeout($(window).scrollTop($rootScope.currHomePosY), 1000);
               } else {
@@ -111,11 +100,9 @@ module.exports = function (app) {
               }
             })
             .fail(function () {
-              console.log('all images loaded, at least one is broken');
             })
             .progress(function (instance, image) {
               var result = image.isLoaded ? 'loaded' : 'broken';
-              console.log('image is ' + result + ' for ' + image.img.src);
             });
         });
         //document.body.scrollLeft = document.documentElement.scrollLeft =  $rootScope.currHomePosX;
