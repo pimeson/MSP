@@ -1,7 +1,7 @@
 <div id="TitleBox">
   <title  ng-if="state!==home" class="navTitle" ui-sref="home">MATTHEW SPIEGELMAN
   </title>
-  <a ng-if="state.name!==details" class="nav-title" id="shop-link" href="https://www.secretoffice.biz/" target="_blank">SHOP</a>
+  <a ng-if="shouldRenderShopLink" class="nav-title" id="shop-link" href="https://www.secretoffice.biz/" target="_blank">SHOP</a>
   <!--<div ng-if="!isLandscape()" class="navTitle" ui-sref="home"><p id="firstName">MATTHEW</p><p> SPIEGELMAN</p>
   </div>-->
   <a class="info" ui-sref="about" ng-if="!back">Info</a>

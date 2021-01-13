@@ -18,6 +18,8 @@ module.exports = function (app) {
 
     $scope.back = false;
 
+    $scope.shouldRenderShopLink = true;
+
     let landscapeToPortrait = true;
 
     $(window).on('resize', _.debounce(() => {
@@ -47,6 +49,13 @@ module.exports = function (app) {
         top: ''
       })
       console.log(toState, fromState);
+
+      if (toState.name === 'details') {
+        $scope.shouldRenderShopLink = true;
+      } else {
+        $scope.shouldRenderShopLink = false;
+      }
+
       if ((toState.name === 'gallery' && fromState.name === 'home') || toState.name === 'details' || toState.name === 'allExhibits' || toState.name === 'about') {
         //console.log(fromState.name, fromState.name !== 'details')
         // if (fromState.name !== 'details' && fromState.name !== 'about') {
