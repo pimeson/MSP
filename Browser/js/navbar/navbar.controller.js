@@ -51,9 +51,9 @@ module.exports = function (app) {
       console.log(toState, fromState);
 
       if (toState.name === 'details') {
-        $scope.shouldRenderShopLink = true;
-      } else {
         $scope.shouldRenderShopLink = false;
+      } else {
+        $scope.shouldRenderShopLink = true;
       }
 
       if ((toState.name === 'gallery' && fromState.name === 'home') || toState.name === 'details' || toState.name === 'allExhibits' || toState.name === 'about') {
