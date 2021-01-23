@@ -2,7 +2,7 @@ module.exports = function (app) {
 
   app.config($stateProvider => {
     $stateProvider.state('gallery', {
-      url: '/project/:projId',
+      url: '/project/:projTitle',
       controller: 'GalleryCtrl',
       templateUrl: 'js/gallery/gallery.html',
       resolve: {
