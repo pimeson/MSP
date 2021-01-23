@@ -1,5 +1,5 @@
 module.exports = function (app) {
-
+  
   app.config($stateProvider => {
     $stateProvider.state('allExhibits', {
       url: '/all',
@@ -31,10 +31,10 @@ module.exports = function (app) {
     }, 250);
 
     $scope.goToExhibit = (project, exhibit) => {
-      if (exhibit.type === 'Picture') {
-        $state.go('details', { projTitle: project.title, projId: project.id, exhibitId: exhibit.id })
-      } else if (exhibit.type === 'Video') {
-        $state.go('gallery', { projId: project.id, projTitle: project.title.replaceAll(" ", "_") })
+      if(exhibit.type === 'Picture'){
+      $state.go('details', {projTitle: project.title, projId: project.id, exhibitId: exhibit.id})
+      } else if (exhibit.type === 'Video'){
+        $state.go('gallery', {projId: project.id})
       }
     }
 
