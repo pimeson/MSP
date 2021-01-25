@@ -2,15 +2,16 @@ module.exports = function (app) {
 
   app.config($stateProvider => {
     $stateProvider.state('gallery', {
-      url: '/project/:projId',
+      url: '/project/:projTitle',
       controller: 'GalleryCtrl',
       templateUrl: 'js/gallery/gallery.html',
       resolve: {
         exhibits: function ($stateParams, exhibitFactory) {
-          return exhibitFactory.findAllByProjectId($stateParams.projId);
+          return exhibitFactory.findAllByProjectName($stateParams.projTitle);
         },
         project: function ($stateParams, projectFactory) {
-          return projectFactory.findById($stateParams.projId);
+          console.log($stateParams)
+          return projectFactory.findByName($stateParams.projTitle);
         }
       }
     })

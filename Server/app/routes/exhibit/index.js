@@ -126,7 +126,7 @@ router.post('/video', function (req, res, next) {
 
 router.get('/', function (req, res, next) {
   Exhibit.findAll({
-    include:[Project]
+    include: [Project]
   })
     .then(findingExhibits => res.send(findingExhibits))
     .catch(next);
@@ -134,23 +134,42 @@ router.get('/', function (req, res, next) {
 
 router.get('/project/:id', function (req, res, next) {
   Exhibit.findAll({
-      where: {
-        projectId: req.params.id
-      }
-    })
+    where: {
+      projectId: req.params.id
+    }
+  })
     .then(findingExhibits => res.send(findingExhibits))
+    .catch(next);
+})
+
+router.get('/project', function (req, res, next) {
+  const projectTitle = req.query.title
+  console.log({ projectTitle })
+
+  Exhibit.findAll({
+    include: [{
+      model: Project,
+      where: {
+        title: projectTitle
+      }
+    }],
+  })
+    .then(findingExhibits => {
+      console.log({ findingExhibits })
+      return res.send(findingExhibits)
+    })
     .catch(next);
 })
 
 router.get('/:id/withAltViews', function (req, res, next) {
   Exhibit.findAll(
 
-      {
-        include: [AltView],
-        where: {
-          id: req.params.id
-        }
-      })
+    {
+      include: [AltView],
+      where: {
+        id: req.params.id
+      }
+    })
     .then(findingExhibits => res.send(findingExhibits))
     .catch(next);
 })
@@ -163,21 +182,21 @@ router.get('/:id', function (req, res, next) {
 
 router.delete('/:id', adminPriv, function (req, res, next) {
   Exhibit.destroy({
-      where: {
-        id: req.params.id
-      },
-      individualHooks: true
-    })
+    where: {
+      id: req.params.id
+    },
+    individualHooks: true
+  })
     .then(deletingExhibit => res.sendStatus(204))
     .catch(next);
 })
 
 router.put('/:id', adminPriv, function (req, res, next) {
   Exhibit.update(req.body, {
-      where: {
-        id: req.params.id
-      }
-    })
+    where: {
+      id: req.params.id
+    }
+  })
     .then(updating => res.sendStatus(200))
     .catch(next)
 })
@@ -185,12 +204,12 @@ router.put('/:id', adminPriv, function (req, res, next) {
 router.put('/order/:projectId/:id/:posOne/:posTwo', adminPriv, function (req, res, next) {
   console.log(req.params);
   Exhibit.update({
-      order: req.params.posTwo
-    }, {
-      where: {
-        id: req.params.id
-      }
-    })
+    order: req.params.posTwo
+  }, {
+    where: {
+      id: req.params.id
+    }
+  })
     .then(findingExhibit => {
       console.log(req.params.projectId);
       return Exhibit.findAll({
