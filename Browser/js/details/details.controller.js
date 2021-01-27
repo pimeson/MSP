@@ -75,7 +75,8 @@ module.exports = function (app) {
 
 
     $scope.backToGallery = () => $state.go('gallery', {
-      projId: exhibit[0].projectId
+      projId: exhibit[0].projectId,
+      projTitle: $stateParams.projTitle.replaceAll(" ", "_")
     });
 
     //Square zoom options for CloudZoom
@@ -130,9 +131,9 @@ module.exports = function (app) {
       } else {
         //Loops over altviews and makes sure that they are not active. All off.
         $scope.altViews.map(altView => {
-            altView.showing = false;
-          })
-          //set the altview that you selected, one on.
+          altView.showing = false;
+        })
+        //set the altview that you selected, one on.
         alt.showing = true;
 
         //Altviews have two types- Picture and Video

@@ -52,7 +52,6 @@ module.exports = function (app) {
 
         $scope.project = project;
         $scope.description = project.description;
-        console.log(exhibits);
         $scope.exhibits = exhibits
             .sort((x, y) => x.order > y.order ? 1 : -1)
             .map((exhibit) => {
@@ -87,7 +86,7 @@ module.exports = function (app) {
         $scope.goToDetails = (exhibit) => {
             if (project.detailsEnabled) {
                 $state.go('details', {
-                    projTitle: project.title,
+                    projTitle: project.title.replaceAll(" ", "_"),
                     projId: project.id,
                     exhibitId: exhibit.id
                 })

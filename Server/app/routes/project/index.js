@@ -41,7 +41,6 @@ router.post('/', adminPriv, function (req, res, next) {
 
 router.get('/', function (req, res, next) {
   if (!isEmpty(req.query)) {
-    console.log("YO")
     const projectTitle = req.query.projectTitle
     console.log({ projectTitle })
     Project.find({

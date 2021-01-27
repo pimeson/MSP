@@ -6,7 +6,7 @@
       <div id="portraitLanding" ng-if="!isLandscape()">
         <h5 style="text-align: center; margin-top: -10vh; margin-bottom: 10vh;">PROJECTS</h5>
         <section ng-repeat="project in allProjects">
-          <div class="pattern" ui-sref="gallery({projId: project.id, projTitle: project.title})">
+          <div class="pattern" ui-sref="gallery({projId: project.id, projTitle: project.title.replaceAll(' ', '_')})">
             <div class="projectPanel">
               <div id="hoverOverlay" style="position: absolute; clip: rect(auto, auto, auto, auto);" ng-style="{width: iframeWidth * .68, height: project.height, 'margin-left': isSafari ? '6vw' : '0', 'margin-top': isChrome ? '-3vh' : 0}">
                 <title ng-style="{'font-style': isChrome ? '900' : 'normal'}" style="color: white;" class="navTitle" ui-sref="home">MATTHEW SPIEGELMAN</title>
@@ -24,7 +24,7 @@
       <!--For landscape mode, images display horizontally-->
       <div style="display: -webkit-flex; display:flex; -webkit-flex-direction: row; flex-direction:row" ng-if="isLandscape()">
         <section style="-webkit-flex-shrink: 0;" ng-repeat="project in allProjects">
-          <div class="pattern" ui-sref="gallery({projId: project.id, projTitle: project.title})"  ng-style="{width: isLandscape() && project.width}" >
+          <div class="pattern" ui-sref="gallery({projId: project.id, projTitle: project.title.replaceAll(' ', '_')})"  ng-style="{width: isLandscape() && project.width}" >
             <div class="projectPanel" ng-style="{width: isLandscape() && project.width}">
               <div id="hoverOverlay" style="position: absolute; height: 87.5vh; clip: rect(auto, auto, auto, auto)" ng-style="{width: project.width * .975, 'margin-left': isFF ? -.5 * project.width : 0}">
                 <title ng-style="{'font-weight': isChrome ? '900' : 'normal'}" style="color: white;" class="navTitle" ui-sref="home">MATTHEW SPIEGELMAN</title>

@@ -7,11 +7,15 @@ module.exports = function (app) {
       templateUrl: 'js/gallery/gallery.html',
       resolve: {
         exhibits: function ($stateParams, exhibitFactory) {
-          return exhibitFactory.findAllByProjectName($stateParams.projTitle);
+          const newProjectTitle = $stateParams.projTitle.replaceAll("_", " ")
+          console.log({ newProjectTitle })
+          return exhibitFactory.findAllByProjectName(newProjectTitle);
         },
         project: function ($stateParams, projectFactory) {
-          console.log($stateParams)
-          return projectFactory.findByName($stateParams.projTitle);
+          console.log("HELLO?")
+          const newProjectTitle = $stateParams.projTitle.replaceAll("_", " ")
+          console.log({ newProjectTitle })
+          return projectFactory.findByName(newProjectTitle);
         }
       }
     })

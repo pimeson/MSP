@@ -154,10 +154,7 @@ router.get('/project', function (req, res, next) {
       }
     }],
   })
-    .then(findingExhibits => {
-      console.log({ findingExhibits })
-      return res.send(findingExhibits)
-    })
+    .then(findingExhibits => res.send(findingExhibits))
     .catch(next);
 })
 
