@@ -8,13 +8,10 @@ module.exports = function (app) {
       resolve: {
         exhibits: function ($stateParams, exhibitFactory) {
           const newProjectTitle = $stateParams.projTitle.replaceAll("_", " ")
-          console.log({ newProjectTitle })
           return exhibitFactory.findAllByProjectName(newProjectTitle);
         },
         project: function ($stateParams, projectFactory) {
-          console.log("HELLO?")
           const newProjectTitle = $stateParams.projTitle.replaceAll("_", " ")
-          console.log({ newProjectTitle })
           return projectFactory.findByName(newProjectTitle);
         }
       }

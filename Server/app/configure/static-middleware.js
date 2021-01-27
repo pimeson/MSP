@@ -6,8 +6,6 @@ module.exports = (app) => {
 
   const root = app.getValue('projectRoot');
 
-  console.log('THis is the roooooot ', root, path.join(root, './node_modules'));
-
   const npmPath = path.join(root, './node_modules/');
   const publicPath = path.join(root, './public/');
   const browserPath = path.join(root, './Browser/');
