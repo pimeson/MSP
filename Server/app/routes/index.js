@@ -9,8 +9,9 @@ router.use('/exhibit', require('./exhibit'));
 router.use('/upload', require('./upload'));
 router.use('/altView', require('./altView'));
 router.use('/about', require('./about'));
+router.use('/links', require('./links'));
 
-router.use( (req, res, next) => {
+router.use((req, res, next) => {
   let err = new Error('Not found.');
   err.status = 404;
   next(err);
