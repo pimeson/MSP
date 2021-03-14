@@ -13,62 +13,62 @@ const ngInfiniteScroll = require('ng-infinite-scroll');
 const app = angular.module('MSP', ['ui.router', 'ngAnimate', 'ngMaterial', 'ngFileUpload', 'angular-loading-bar', 'auth', 'infinite-scroll']);
 
 
-app.config( function($urlRouterProvider, $locationProvider) {
+app.config(function ($urlRouterProvider, $locationProvider) {
 
   $locationProvider.html5Mode(true);
 
   $urlRouterProvider.otherwise('/');
 
- }); 
+});
 
- app.run(function($state, $rootScope, $window){
+app.run(function ($state, $rootScope, $window) {
 
-   $rootScope.$state = $state;
+  $rootScope.$state = $state;
 
-   $rootScope.goBack = function(){
+  $rootScope.goBack = function () {
     $window.history.back();
   }
 
- })
+})
 
- app.run(function ($rootScope, AuthService, $state) {
+app.run(function ($rootScope, AuthService, $state) {
 
-   const stateRequiresAuth = (state) => {
-     return state.data && state.data.authenticate;
-   }
+  const stateRequiresAuth = (state) => {
+    return state.data && state.data.authenticate;
+  }
 
-   $rootScope.$on('$stateChangeStart', function (event, toState, toParams){
+  $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
 
-   if(!stateRequiresAuth(toState)){
-     return;
-   }
+    if (!stateRequiresAuth(toState)) {
+      return;
+    }
 
-   if(AuthService.isAuthenticated()) {
-     return;
-   }
+    if (AuthService.isAuthenticated()) {
+      return;
+    }
 
-   event.preventDefault();
+    event.preventDefault();
 
-   AuthService.getLoggedInUser()
-   .then( user => {
-     if(user) $state.go(toState.name, toParams) 
-     else $state.go('login');
-   })
-   });
+    AuthService.getLoggedInUser()
+      .then(user => {
+        if (user) $state.go(toState.name, toParams)
+        else $state.go('login');
+      })
+  });
 
 
- });
+});
 
- app.run(function($rootScope, $location, $window){
-     $rootScope
-        .$on('$stateChangeSuccess',
-            function(event){
- 
-                if (!$window.ga)
-                    return;
- 
-                $window.ga('send', 'pageview', { page: $location.path() });
-        });
+app.run(function ($rootScope, $location, $window) {
+  $rootScope
+    .$on('$stateChangeSuccess',
+      function (event) {
+
+        if (!$window.ga)
+          return;
+
+        $window.ga('send', 'pageview', { page: $location.path() });
+      });
 });
 
 require('./about')(app);

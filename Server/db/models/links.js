@@ -11,9 +11,6 @@ const Links = db.define('links', {
   type: {
     type: Sequelize.TEXT
   },
-  dirName: {
-    type: Sequelize.TEXT
-  },
   dirPath: {
     type: Sequelize.TEXT
   },

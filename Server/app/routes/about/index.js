@@ -5,17 +5,17 @@ const bluebird = require('bluebird');
 const fs = require('fs');
 const sharp = require('sharp');
 const adminTest = require('../../configure/authorization').adminTest;
+const multer = require('multer');
 
 module.exports = router;
 
-const multer = require('multer');
 
-const adminPriv =  function (req, res, next) {
-    if (!adminTest(req)) {
-        res.sendStatus(401);
-    } else {
-        next();
-    }
+const adminPriv = function (req, res, next) {
+  if (!adminTest(req)) {
+    res.sendStatus(401);
+  } else {
+    next();
+  }
 }
 
 const storage = multer.diskStorage({
@@ -44,30 +44,30 @@ router.post('/aboutHtml', multer({
 router.post('/upload', multer({
   storage: storage
 }).single('file'), function (req, res, next) {
-  Download.create({title: req.body.title, fileName: req.file.originalname, filePath: req.file.path})
-  .then(creatingDownload => {
-    res.sendStatus(204);
-  })
-  .catch(next);
+  Download.create({ title: req.body.title, fileName: req.file.originalname, filePath: req.file.path })
+    .then(creatingDownload => {
+      res.sendStatus(204);
+    })
+    .catch(next);
 })
 
-router.get('/downloads', function(req, res, next){
+router.get('/downloads', function (req, res, next) {
   Download.findAll()
-  .then(findingDownloads => res.send(findingDownloads))
-  .catch(next);
+    .then(findingDownloads => res.send(findingDownloads))
+    .catch(next);
 })
 
-router.delete('/downloads/:id', function(req, res, next){
+router.delete('/downloads/:id', function (req, res, next) {
   Download.destroy({
     where: {
       id: req.params.id
     },
     individualHooks: true
   })
-  .then(deletingDownload => {
-    res.sendStatus(204);
-  })
-  .catch(next)
+    .then(deletingDownload => {
+      res.sendStatus(204);
+    })
+    .catch(next)
 })
 
 router.post('/aboutPortrait', multer({
@@ -76,8 +76,8 @@ router.post('/aboutPortrait', multer({
   const transformer = sharp().resize(2000).max()
   let unlinkAsync = bluebird.promisify(fs.unlink);
   unlinkAsync('./public/about/portrait/portrait.jpg')
-  .then( deletingPortrait => {
-    return fs.createReadStream(req.file.path).pipe(transformer).toFile('./public/about/portrait/portrait.jpg')
-  })
-  .then( updatingPortrait => res.sendStatus(204));
+    .then(deletingPortrait => {
+      return fs.createReadStream(req.file.path).pipe(transformer).toFile('./public/about/portrait/portrait.jpg')
+    })
+    .then(updatingPortrait => res.sendStatus(204));
 })

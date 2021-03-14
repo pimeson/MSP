@@ -24,6 +24,46 @@
     <md-button class="md-raised" ng-click="switchProjPos(pos1, pos2)">Move Project</md-button>
   </div>
 
+  <div id="linkPanel">
+    <h1>Manage Links</h1>
+    <form name="linkForm" id="linkForm" style="display: flex; flex-direction: column;">
+      <div style="display: flex;">
+        <md-input-container>
+          <label for="linkTitle">link title</label>
+          <input type="text" name="linkTitle" ng-model="linkTitle"></input>
+        </md-input-container>
+        <md-input-container>
+          <md-select ng-model="linkType" placeholder="Select a link type">
+            <md-option ng-value=""></md-option>
+            <md-option ng-repeat="option in ['PDF', 'Link', 'Video']" ng-value="option">{{ option }}</md-option>
+          </md-select>
+        </md-input-container>
+      </div>
+      <md-input-container ng-if="linkType === 'Link'">
+        <label for="linkURL">URL</label>
+        <input type="text" name="linkURL" ng-model="linkURL"></input>
+      </md-input-container>
+      <md-button ngf-select="uploadPDF($file)">Upload PDF</md-button>
+      <md-calendar ng-model="linkDate"></md-calendar>
+    </form>
+    <md-button class="md-raised" ng-click="makeLink(linkTitle, linkType, linkDate)">Make Link</md-button>
+    <ol>
+      <li ng-repeat="link in links">
+        {{link.date | date}}
+        {{link.title}}
+        <md-button class="md-raised" ng-click="setVisibility(link.id, !link.display)">{{ link.display ? 'Disable Link' : 'Enable Link' }}</md-button>
+        <md-button class="md-raised" ng-click="deleteLink(link.id)">Delete Link</md-button>
+      </li>
+    </ol>
+    <!-- TODO: Add type dropdown
+    TODO: Add upload pdf button if type selected is PDF
+    TODO: Add upload image if type is Link
+    TODO: Add Hide btn
+    TODO: Add the ability to delete
+    TODO: Add Ability to add a date to the links / sort by date -->
+  </div>
+</div>
+
   <div id="aboutPanel">
     <h1>Manage About Page</h1>
     <a id="downloadLink" target="_self" href="/about/about.html" download="about.html">Download current about page</a>
@@ -41,5 +81,6 @@
       </li>
     </ul>
   </div>
-</div>
+
+  
 <a id="logout" ng-click="logOff()">Log Out</a>

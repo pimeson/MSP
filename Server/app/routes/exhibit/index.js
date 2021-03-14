@@ -27,13 +27,6 @@ const lib = new Vimeo(process.env.VIMEO_ID, process.env.VIMEO_CLIENT, process.en
 
 module.exports = router;
 
-const streamToPromise = stream => {
-  return new Promise(function (resolve, reject) {
-    stream.on("end", resolve);
-    stream.on("error", reject);
-  });
-}
-
 const multer = require('multer');
 
 const storage = multer.diskStorage({
@@ -207,7 +200,7 @@ router.put('/order/:projectId/:id/:posOne/:posTwo', adminPriv, function (req, re
       id: req.params.id
     }
   })
-    .then(findingExhibit => {
+    .then(() => {
       console.log(req.params.projectId);
       return Exhibit.findAll({
         where: {
@@ -219,7 +212,7 @@ router.put('/order/:projectId/:id/:posOne/:posTwo', adminPriv, function (req, re
       })
     })
     .then(findingExhibits => {
-      let reorderingExhibits = findingExhibits.map(foundExhibit => {
+      findingExhibits.forEach(foundExhibit => {
         if (req.params.posOne < foundExhibit.order) {
           if (foundExhibit.order <= req.params.posTwo) {
             foundExhibit.order--;
@@ -233,7 +226,7 @@ router.put('/order/:projectId/:id/:posOne/:posTwo', adminPriv, function (req, re
         }
       })
     })
-    .then(reorderingExhibits => res.sendStatus(201))
+    .then(() => res.sendStatus(201))
     .catch(err => {
       console.log(err);
     })
