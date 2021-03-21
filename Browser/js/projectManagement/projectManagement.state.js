@@ -41,7 +41,7 @@ module.exports = function (app) {
         exDesc = [];
       }
       Upload.upload({
-        url: 'http://matthewspiegelman.com/api/exhibit/',
+        url: 'http://matthewspiegelman.com/api/exhibit',
         data: {
           type: 'Picture',
           file: file,

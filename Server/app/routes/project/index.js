@@ -2,11 +2,10 @@
 const router = require('express').Router(); // eslint-disable-line new-cap
 const Project = require('../../../db/models/project');
 const Exhibit = require('../../../db/models/exhibit');
-module.exports = router;
 const _ = require('lodash');
 const fs = require('fs');
-const adminTest = require('../../configure/authorization').adminTest;
 const { isEmpty } = require('lodash');
+const adminTest = require('../../configure/authorization').adminTest;
 
 const adminPriv = function (req, res, next) {
   if (!adminTest(req)) {
@@ -137,3 +136,5 @@ router.put('/order/:projectId/:posOne/:posTwo', adminPriv, function (req, res, n
     })
 
 });
+
+module.exports = router;

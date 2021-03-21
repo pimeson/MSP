@@ -1,11 +1,8 @@
 'use strict';
 const router = require('express').Router(); // eslint-disable-line new-cap
 const Links = require('../../../db/models/links');
-const fs = require('fs');
 const adminTest = require('../../configure/authorization').adminTest;
 const multer = require('multer');
-const sequelize = require('sequelize');
-const e = require('express');
 
 const adminPriv = function (req, res, next) {
     if (!adminTest(req)) {
@@ -91,7 +88,6 @@ router.delete('/', (req, res, next) => {
 
 router.put('/:id/order', (req, res, next) => {
     const id = req.params.id
-    const body = req.body
     const newPos = req.body.newPos
     const currPos = req.body.currPos
 
@@ -159,6 +155,8 @@ router.put('/:id/order', (req, res, next) => {
 
 
 })
+
+router.use(adminPriv)
 
 module.exports = router;
 
