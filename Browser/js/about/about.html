@@ -1,12 +1,9 @@
 <div class="about-page">
   <div class="links">
-    <div class="link-list">
+    <!-- Landscape View -->
+    <div class="link-list" ng-if="isLandscape()">
       <div class="linkSection" ng-repeat="link in links">
-        <a
-          class="link-title"
-          ng-class="activeLink == link.id && link-title:active"
-          ng-click="setActiveLink(link.id)"
-        >
+        <a class="link-title" ng-click="setActiveLink(link.id)">
           {{ link.title }}
           <span ng-if="link.type == 'Link'" class="material-icons md-12"
             >link</span
@@ -35,20 +32,39 @@
         </div>
       </div>
     </div>
-  </div>
-  <div id="portraitAndLinks">
-    <div id="portraitContainer">
-      <img id="portrait" src="/about/portrait/portrait.jpg" alt="potrait" />
+    <!-- Portrait View -->
+    <div class="link-list" ng-if="!isLandscape()">
+      <div class="linkSection" ng-repeat="link in links">
+        <a
+          class="link-title"
+          target="_blank"
+          ng-href="{{link.type == 'PDF' ? link.dirPath.slice(7) : link.url}}"
+        >
+          {{ link.title }}
+          <span ng-if="link.type == 'Link'" class="material-icons md-12"
+            >link</span
+          >
+          <span ng-if="link.type == 'PDF'" class="material-icons md-12"
+            >picture_as_pdf</span
+          >
+        </a>
+      </div>
     </div>
-    <section class="portrait-text">
-      <p>
-        Matthew Spiegelman is an artist making photographs, books, and objects.
-      </p>
-      <p>
-        He is an Associate Professor of Photography at Parsons The New School
-        since 2011.
-      </p>
-      <p>You are currently reading this while visiting his website.</p>
-    </section>
+    <div id="portraitAndLinks">
+      <div id="portraitContainer">
+        <img id="portrait" src="/about/portrait/portrait.jpg" alt="potrait" />
+      </div>
+      <section class="portrait-text">
+        <p>
+          Matthew Spiegelman is an artist making photographs, books, and
+          objects.
+        </p>
+        <p>
+          He is an Associate Professor of Photography at Parsons The New School
+          since 2011.
+        </p>
+        <p>You are currently reading this while visiting his website.</p>
+      </section>
+    </div>
   </div>
 </div>

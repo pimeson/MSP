@@ -7,3 +7,4 @@ coverage
 Browser/js/bundle.js
 public/uploads
 public/about
+**/*/bundle.js

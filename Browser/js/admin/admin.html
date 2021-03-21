@@ -40,13 +40,12 @@
         </md-input-container>
       </div>
       <md-input-container ng-if="linkType === 'Link'">
-        <label for="linkURL">URL</label>
-        <input type="text" name="linkURL" ng-model="linkURL"></input>
+        <label for="url">URL</label>
+        <input type="text" name="url" ng-model="linkData.url"></input>
       </md-input-container>
-      <md-calendar ng-model="linkDate"></md-calendar>
       <br></br>
       <md-button ng-disabled="!linkTitle" ng-show="linkType == 'PDF'" class="md-raised" ngf-select="uploadFile($file, 'PDF')">Upload PDF</md-button>
-      <md-button ng-disabled="!linkTitle" ng-show="linkType == 'Link'" class="md-raised" ngf-select="uploadFile($file, 'Link')">Upload Image</md-button>
+      <md-button ng-disabled="!linkTitle" ng-show="linkType == 'Link'" class="md-raised" ngf-select="uploadFile($file, 'Link', linkData.url)">Upload Image</md-button>
     </form>
     <!-- <md-button class="md-raised" ng-click="makeLink(linkTitle, linkType, linkDate)">Make Link</md-button> -->
     <br></br>

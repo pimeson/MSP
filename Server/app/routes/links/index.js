@@ -30,6 +30,7 @@ router.post('/',
         storage: storage
     }).single('file'), (req, res, next) => {
         req.body.dirPath = req.file.path
+        console.log(req.body)
         Links.create(req.body)
             .then(() => res.sendStatus(204))
             .catch(next)

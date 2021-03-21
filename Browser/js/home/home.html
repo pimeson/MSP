@@ -8,7 +8,7 @@
         <section ng-repeat="project in allProjects">
           <div class="pattern" ui-sref="gallery({projId: project.id, projTitle: project.title.replaceAll(' ', '_')})">
             <div class="projectPanel">
-              <div id="hoverOverlay" style="position: absolute; clip: rect(auto, auto, auto, auto);" ng-style="{width: iframeWidth * .68, height: project.height, 'margin-left': isSafari ? '6vw' : '0', 'margin-top': isChrome ? '-3vh' : 0}">
+              <div id="hoverOverlay" style="position: absolute; clip: rect(auto, auto, auto, auto);" ng-style="{width: iframeWidth * .68, height: project.height}">
                 <title ng-style="{'font-style': isChrome ? '900' : 'normal'}" style="color: white;" class="navTitle" ui-sref="home">MATTHEW SPIEGELMAN</title>
               </div>
               <img id="proj-{{$index}}" class="projects" ng-src="{{project.exhibits[project.num].type==='Picture' ? project.exhibits[project.num].thumbnail : project.exhibits[project.num].imageSrc}}">

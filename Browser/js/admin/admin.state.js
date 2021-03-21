@@ -142,11 +142,15 @@ module.exports = function (app) {
       linkFactory.deleteLinkByID(id).then(() => $state.reload())
     }
 
-    $scope.uploadFile = (file, type) => {
+    $scope.linkData = {}
+
+    $scope.uploadFile = (file, type, url) => {
 
       //TODO: Disable if no date/title
       $scope.$evalAsync();
       if (!file) return;
+
+      console.log({ url })
 
       Upload.upload({
         url: 'http://localhost:1337/api/links',
@@ -154,7 +158,7 @@ module.exports = function (app) {
           file: file,
           title: $scope.linkTitle,
           type,
-          url: $scope.linkURL
+          url
         }
       }).then(resp => {
         console.log('Success ' + resp.config.data + 'uploaded. Response: ' + resp.data);

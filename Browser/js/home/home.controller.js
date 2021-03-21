@@ -1,14 +1,6 @@
 module.exports = function (app) {
   app.controller('homeCtrl', function ($scope, $state, $rootScope, allProjects) {
 
-    // $(document).ready(() => {
-    //   $('.navTitle').clipthru({
-    //     autoUpdate: true,
-    //     autoUpdateInterval: 30,
-    //     debug: true
-    //   })
-    // })
-
     //get initial frame height from window obj to scale widths appropriately
     let iframeHeight = $(window).height();
     let iframeWidth = $(window).width();
@@ -41,21 +33,7 @@ module.exports = function (app) {
         return project;
       })
 
-    //if (!$scope.isLandscape()) {
-    // let chunkedProjects = _.chunk(allProjects, 10);
-
-    // $scope.allProjects = chunkedProjects.shift();
-
-    // $scope.loadMore = _.debounce(() => {
-    //   if (chunkedProjects.length) {
-    //     $scope.allProjects = [...$scope.allProjects, ...chunkedProjects.shift()];
-    //   }
-    //   $scope.$evalAsync();
-    // }, 250);
-    //}
-    // else {
     $scope.allProjects = allProjects;
-    // }
 
     $rootScope.$state = $state;
 
@@ -76,26 +54,6 @@ module.exports = function (app) {
       project.exhibits[num].type === 'Picture' ? project.currImage = project.exhibits[num].thumbnail : project.currImage = project.exhibits[num].imageSrc;
       $scope.$evalAsync();
     }
-
-    // $scope.swipeLeftDecrement = (project, maxNum) => {
-    //   if (project.num > 0) {
-    //     project.num -= 1;
-    //   } else {
-    //     project.num = maxNum - 1;
-    //   }
-    //   $scope.$evalAsync();
-    // }
-
-    // $scope.swipeRightIncrement = (project, maxNum) => {
-    //   if (project.num < maxNum - 1) {
-    //     project.num += 1;
-    //   } else {
-    //     project.num = 0;
-    //   }
-    //   $scope.$evalAsync();
-    // }
-
-    let loaded = false;
 
   })
 }
