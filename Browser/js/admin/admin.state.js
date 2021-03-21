@@ -174,6 +174,8 @@ module.exports = function (app) {
     };
 
     $scope.setPosition = (id, currPos, newPos) => {
+      if (newPos > $scope.links.length) return
+
       linkFactory.setPosition(id, currPos, newPos).then(() => $state.reload())
     }
 
