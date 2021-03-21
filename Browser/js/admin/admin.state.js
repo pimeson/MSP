@@ -125,7 +125,7 @@ module.exports = function (app) {
 
 
     console.log({ links })
-    $scope.links = links
+    $scope.links = links.sort((l1, l2) => l1.order - l2.order)
 
     $scope.makeLink = (title, type, date) => {
       if (!title || !type || !date) return
@@ -172,6 +172,10 @@ module.exports = function (app) {
         }
       })
     };
+
+    $scope.setPosition = (id, currPos, newPos) => {
+      linkFactory.setPosition(id, currPos, newPos).then(() => $state.reload())
+    }
 
   })
 }

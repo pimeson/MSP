@@ -108,7 +108,7 @@ router.put('/order/:projectId/:posOne/:posTwo', adminPriv, function (req, res, n
       id: req.params.projectId
     }
   })
-    .then(findingProject => {
+    .then(() => {
       return Project.findAll({
         where: {
           id: {
@@ -118,7 +118,7 @@ router.put('/order/:projectId/:posOne/:posTwo', adminPriv, function (req, res, n
       })
     })
     .then(findingProjects => {
-      let reorderingProjects = findingProjects.map(foundProject => {
+      findingProjects.forEach(foundProject => {
         if (req.params.posOne < foundProject.order) {
           if (foundProject.order <= req.params.posTwo) {
             foundProject.order--;
@@ -131,7 +131,7 @@ router.put('/order/:projectId/:posOne/:posTwo', adminPriv, function (req, res, n
         return foundProject.save();
       })
     })
-    .then(reorderingProjects => res.sendStatus(201))
+    .then(() => res.sendStatus(201))
     .catch(err => {
       console.log(err);
     })

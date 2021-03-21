@@ -23,6 +23,10 @@ module.exports = function (app) {
             return $http.put(`/api/links/${id}/visibility`, { isVisible: visibility })
         }
 
+        link.setPosition = (id, currPos, newPos) => {
+            return $http.put(`/api/links/${id}/order`, { currPos, newPos })
+        }
+
         return link;
 
     })

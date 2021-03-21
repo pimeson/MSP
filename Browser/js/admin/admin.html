@@ -55,6 +55,10 @@
         {{link.title}}
         <md-button class="md-raised" ng-click="setVisibility(link.id, !link.display)">{{ link.display ? 'Disable Link' : 'Enable Link' }}</md-button>
         <md-button class="md-raised" ng-click="deleteLink(link.id)">Delete Link</md-button>
+        <md-input-container>
+          <input type="number" ng-model="newPosition"></input>
+          <md-button class="md-raised" ng-click="setPosition(link.id, link.order, newPosition)">Set Position</md-button>
+        </md-input-container>
       </li>
     </ol>
     <!-- TODO: Add type dropdown

@@ -9,7 +9,7 @@ module.exports = function (app) {
     }
 
     $scope.downloads = downloads;
-    $scope.links = links.sort((a, b) => new Date(a.date) > new Date(b.date) ? 1 : -1)
+    $scope.links = links.filter(l => l.display).sort((l1, l2) => l2 - l1)
 
     $scope.activeLink = null
 

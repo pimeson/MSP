@@ -4,6 +4,8 @@ const Links = require('../../../db/models/links');
 const fs = require('fs');
 const adminTest = require('../../configure/authorization').adminTest;
 const multer = require('multer');
+const sequelize = require('sequelize');
+const e = require('express');
 
 const adminPriv = function (req, res, next) {
     if (!adminTest(req)) {
@@ -85,6 +87,77 @@ router.delete('/', (req, res, next) => {
             })
         }
     }).catch(next)
+})
+
+router.put('/:id/order', (req, res, next) => {
+    const id = req.params.id
+    const body = req.body
+    const newPos = req.body.newPos
+    const currPos = req.body.currPos
+
+    if (!id || isNaN(id)) {
+        res.sendStatus(400)
+
+        return
+    }
+
+    if (newPos === currPos) {
+        res.send(204)
+
+        return
+    }
+
+    if (currPos > newPos) {
+        Links.findAll({
+            where: {
+                order: {
+                    lt: currPos,
+                    gte: newPos
+                }
+            }
+        }).then(foundLinks => {
+            const updatingLinks = foundLinks.map(l => {
+                l.order++
+                return l.save()
+            })
+            return Promise.all(updatingLinks)
+        }).then(() => {
+            Links.update({
+                order: newPos
+            },
+                {
+                    where: {
+                        id
+                    }
+                })
+        }).then(() => res.sendStatus(204)).catch(next)
+    } else {
+        Links.findAll({
+            where: {
+                order: {
+                    gt: currPos,
+                    lte: newPos
+                }
+            }
+        }).then(foundLinks => {
+            const updatingLinks = foundLinks.map(l => {
+                l.order--
+                return l.save()
+            })
+            return Promise.all(updatingLinks)
+        }).then(() => {
+            Links.update({
+                order: newPos
+            },
+                {
+                    where: {
+                        id
+                    }
+                })
+        }).then(() => res.sendStatus(204)).catch(next)
+    }
+
+
 })
 
 module.exports = router;

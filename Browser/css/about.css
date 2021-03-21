@@ -114,6 +114,10 @@
     top: 15vh;
     flex-basis: 20%;
   }
+
+  .linkSection {
+    margin-right: 25px;
+  }
   #portraitContainer {
     max-width: 30vw;
     margin-bottom: 2vh;
