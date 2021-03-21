@@ -1,5 +1,5 @@
 <div id="AdminPanel">
-  <div id="projectPanel" style="">
+  <div id="projectPanel">
     <h1>Manage Projects</h1>
     <form name="projectForm" id="projectForm">
       <md-input-container><label>project title</label><input type="text" name="projTitle" ng-model="projTitle"></md-input-container>
@@ -43,10 +43,13 @@
         <label for="linkURL">URL</label>
         <input type="text" name="linkURL" ng-model="linkURL"></input>
       </md-input-container>
-      <md-button ngf-select="uploadPDF($file)">Upload PDF</md-button>
       <md-calendar ng-model="linkDate"></md-calendar>
+      <br></br>
+      <md-button ng-disabled="!linkTitle" ng-show="linkType == 'PDF'" class="md-raised" ngf-select="uploadFile($file, 'PDF')">Upload PDF</md-button>
+      <md-button ng-disabled="!linkTitle" ng-show="linkType == 'Link'" class="md-raised" ngf-select="uploadFile($file, 'Link')">Upload Image</md-button>
     </form>
-    <md-button class="md-raised" ng-click="makeLink(linkTitle, linkType, linkDate)">Make Link</md-button>
+    <!-- <md-button class="md-raised" ng-click="makeLink(linkTitle, linkType, linkDate)">Make Link</md-button> -->
+    <br></br>
     <ol>
       <li ng-repeat="link in links">
         {{link.date | date}}
@@ -64,23 +67,4 @@
   </div>
 </div>
 
-  <div id="aboutPanel">
-    <h1>Manage About Page</h1>
-    <a id="downloadLink" target="_self" href="/about/about.html" download="about.html">Download current about page</a>
-    <md-button class="md-raised" ngf-select="uploadAboutHtml($file)" ngf-accept="'.html'">Update About Page</md-button>
-    <div id="portraitContainer">
-      <img id="portrait" ng-src="/about/portrait/portrait.jpg" alt="portrait">
-    </div>
-    <md-button class="md-raised" ngf-select="uploadPortrait($file)">Update Portrait</md-button>
-    <h3>Manage Downloads</h3>
-     <md-input-container><label>new download title</label><input type="text" name="dlTitle" ng-model="dlTitle"></md-input-container>
-    <md-button class="md-raised" ngf-select="newDownload($file)">Add Download</md-button>
-    <ul>
-      <li ng-repeat="download in downloads">
-        {{download.title}} <a ng-click="deleteDl(download.id)">X</a>
-      </li>
-    </ul>
-  </div>
-
-  
 <a id="logout" ng-click="logOff()">Log Out</a>

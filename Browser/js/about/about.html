@@ -1,0 +1,54 @@
+<div class="about-page">
+  <div class="links">
+    <div class="link-list">
+      <div class="linkSection" ng-repeat="link in links">
+        <a
+          class="link-title"
+          ng-class="activeLink == link.id && link-title:active"
+          ng-click="setActiveLink(link.id)"
+        >
+          {{ link.title }}
+          <span ng-if="link.type == 'Link'" class="material-icons md-12"
+            >link</span
+          >
+          <span ng-if="link.type == 'PDF'" class="material-icons md-12"
+            >picture_as_pdf</span
+          >
+        </a>
+        <div ng-if="activeLink == link.id">
+          <iframe
+            ng-if="link.type == 'PDF'"
+            ng-src="{{link.dirPath.slice(7)}}"
+            style="width: 50vw; height: 75vh"
+          >
+          </iframe>
+          <p ng-if="link.type == 'Link'">
+            Click the image to visit the webpage.
+          </p>
+          <a ng-href="{{link.url}}" target="_blank">
+            <img
+              class="link-image"
+              ng-if="link.type == 'Link'"
+              ng-src="{{link.dirPath.slice(7)}}"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="portraitAndLinks">
+    <div id="portraitContainer">
+      <img id="portrait" src="/about/portrait/portrait.jpg" alt="potrait" />
+    </div>
+    <section class="portrait-text">
+      <p>
+        Matthew Spiegelman is an artist making photographs, books, and objects.
+      </p>
+      <p>
+        He is an Associate Professor of Photography at Parsons The New School
+        since 2011.
+      </p>
+      <p>You are currently reading this while visiting his website.</p>
+    </section>
+  </div>
+</div>

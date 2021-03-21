@@ -1,15 +1,21 @@
 #about,
 #bio,
 #CV {
-  -js-display: flex; 
+  -js-display: flex;
   display: -webkit-flex;
-  display:flex;
+  display: flex;
   -webkit-flex-direction: column;
   flex-direction: column;
   -webkit-justify-content: flex-start;
   justify-content: flex-start;
   -webkit-align-items: flex-start;
   align-items: flex-start;
+}
+
+.about-page{
+  display: flex;
+  justify-content: center;
+  padding: 100px;
 }
 
 #CV {
@@ -19,9 +25,9 @@
 }
 
 #portraitAndLinks {
-  -js-display: flex; 
+  -js-display: flex;
   display: -webkit-flex;
-  display:flex;
+  display: flex;
   -webkit-flex-direction: column;
   flex-direction: column;
 }
@@ -37,40 +43,41 @@
 
 #AdminPanel {
   padding-top: 15vh;
-  -js-display: flex; 
+  -js-display: flex;
   display: -webkit-flex;
-  display:flex;
+  display: flex;
   -webkit-flex-direction: row;
   flex-direction: row;
+  margin-bottom: 50px;
 }
 
 #projectPanel {
-  -js-display: flex; 
+  -js-display: flex;
   display: -webkit-flex;
-  display:flex;
-  -webkit-flex-direction: column;  
+  display: flex;
+  -webkit-flex-direction: column;
   flex-direction: column;
   -webkit-align-items: center;
   align-items: center;
-  flex-grow: .5;
+  flex-grow: 0.5;
 }
 
 #aboutPanel {
-  -js-display: flex; 
+  -js-display: flex;
   display: -webkit-flex;
-  display:flex;
-  -webkit-flex-direction: column;  
+  display: flex;
+  -webkit-flex-direction: column;
   flex-direction: column;
   -webkit-align-items: center;
   align-items: center;
-  -webkit-flex-grow: .5;
-  flex-grow: .5;
+  -webkit-flex-grow: 0.5;
+  flex-grow: 0.5;
 }
 
 #adminExhibits {
-  -js-display: flex; 
+  -js-display: flex;
   display: -webkit-flex;
-  display:flex;
+  display: flex;
   -webkit-flex-direction: row;
   flex-direction: row;
   -webkit-flex-wrap: wrap;
@@ -87,9 +94,9 @@
 
 .adminExhibit {
   height: 25vh;
-  -js-display: flex; 
+  -js-display: flex;
   display: -webkit-flex;
-  display:flex;
+  display: flex;
   -webkit-flex-direction: column;
   flex-direction: column;
   -webkit-align-items: center;
@@ -103,13 +110,16 @@
     margin-left: 10vw;
   }
   #portraitAndLinks {
-    position: fixed;
     right: 10vw;
     top: 15vh;
+    flex-basis: 20%;
   }
   #portraitContainer {
     max-width: 30vw;
     margin-bottom: 2vh;
+  }
+  .links {
+    flex: 1;
   }
 }
 
@@ -126,15 +136,14 @@
     -webkit-align-self: center;
     align-self: center;
     -webkit-order: 1;
-    order: 1
+    order: 1;
   }
   #about,
   #bio,
-  #CV,
-  {
-    -js-display: flex; 
+  #CV {
+    -js-display: flex;
     display: -webkit-flex;
-    display:flex;
+    display: flex;
     -webkit-direction: column;
     flex-direction: column;
     -webkit-justify-content: flex-start;
@@ -142,4 +151,42 @@
     -webkit-align-items: center;
     align-items: center;
   }
+}
+
+.links {
+  display: flex;
+  flex: 1;
+  font-size: 2.5em;
+  padding: 100px;
+}
+
+.linkSection {
+  display: flex;
+  flex-direction: column;
+  outline: none;
+}
+
+.link-list{
+  display: flex;
+  flex-direction: column;
+}
+
+.link-title {
+  color: black;
+  text-decoration: underline;
+  text-decoration-color: #F415FE;
+}
+
+.link-image {
+  width: 100%;
+  object-fit: contain;
+}
+
+.linkSection>.material-icons{
+  text-decoration: none;
+  color: grey;
+}
+
+.portrait-text>p {
+  font-size: 1.5em;
 }

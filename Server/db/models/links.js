@@ -23,6 +23,9 @@ const Links = db.define('links', {
   },
   date: {
     type: Sequelize.TIME
+  },
+  url: {
+    type: Sequelize.TEXT
   }
 });
 

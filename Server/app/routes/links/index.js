@@ -25,14 +25,7 @@ const storage = multer.diskStorage({
     }
 })
 
-
-router.post(
-    '/',
-    (req, res, next) => {
-        Links.create(req.body).then(() => res.sendStatus(204)).catch(next)
-    })
-
-router.post('/pdf',
+router.post('/',
     multer({
         storage: storage
     }).single('file'), (req, res, next) => {

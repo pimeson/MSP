@@ -142,28 +142,21 @@ module.exports = function (app) {
       linkFactory.deleteLinkByID(id).then(() => $state.reload())
     }
 
-    $scope.uploadPDF = (file) => {
+    $scope.uploadFile = (file, type) => {
+
+      //TODO: Disable if no date/title
       $scope.$evalAsync();
       if (!file) return;
 
       Upload.upload({
-        url: 'https://localhost:1337/v1/api/links/pdf',
+        url: 'http://localhost:1337/api/links',
         data: {
           file: file,
           title: $scope.linkTitle,
-          type: 'PDF'
+          type,
+          url: $scope.linkURL
         }
       }).then(resp => {
-        /*sample config:
-        { fieldname: 'file',
-        originalname: 'tumblr_oe4cfyH9XA1qeh7fdo9_1280.jpg',
-        encoding: '7bit',
-        mimetype: 'image/jpeg',
-        destination: './public/uploads/',
-        filename: 'file-1480376741574.jpg',
-        path: 'public/uploads/file-1480376741574.jpg',
-        size: 547530 }*/
-        $scope.exForm = {};
         console.log('Success ' + resp.config.data + 'uploaded. Response: ' + resp.data);
         $state.reload();
       }, (resp) => {
