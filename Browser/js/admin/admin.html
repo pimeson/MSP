@@ -53,12 +53,14 @@
       <li ng-repeat="link in links">
         {{link.date | date}}
         {{link.title}}
-        <md-button class="md-raised" ng-click="setVisibility(link.id, !link.display)">{{ link.display ? 'Disable Link' : 'Enable Link' }}</md-button>
-        <md-button class="md-raised" ng-click="deleteLink(link.id)">Delete Link</md-button>
-        <md-input-container style="display: flex;">
-          <input type="number" ng-model="newPosition"></input>
-          <md-button class="md-raised ml-1" ng-click="setPosition(link.id, link.order, newPosition)">Set Position</md-button>
-        </md-input-container>
+        <div>
+          <md-input-container>
+            <md-button ng-click="setPosition(link.id, link.order, newPosition)">Set Position</md-button>
+            <input placeholder="New Position" style="width: 100px" type="number" ng-model="newPosition"></input>
+          </md-input-container>
+          <md-button ng-click="setVisibility(link.id, !link.display)">{{ link.display ? 'Disable Link' : 'Enable Link' }}</md-button>
+          <md-button ng-click="deleteLink(link.id)">Delete Link</md-button>
+        </div>
       </li>
     </ol>
     <!-- TODO: Add type dropdown
