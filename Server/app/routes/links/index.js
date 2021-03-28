@@ -96,11 +96,29 @@ router.delete('/', (req, res, next) => {
         return
     }
 
-    Links.destroy({
+    Links.find({
         where: {
             id
         }
-    }).then((destroyed) => {
+    }).then((found) => {
+        return found.destroy().then(() =>
+            Links.findAll({
+                where: {
+                    order: {
+                        $gt: found.order
+                    }
+                }
+            })
+                .then(reordering => {
+                    console.log({ reordering })
+                    let updatingLinks = reordering.map(ul => {
+                        ul.order--;
+                        return ul.save();
+                    })
+                    return Promise.all(updatingLinks);
+                })
+        )
+    }).then(destroyed => {
         if (destroyed === 0) {
             res.sendStatus(204)
         } else {

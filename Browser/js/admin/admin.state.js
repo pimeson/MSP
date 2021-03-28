@@ -49,7 +49,7 @@ module.exports = function (app) {
 
     $scope.uploadAboutHtml = (file) => {
       Upload.upload({
-        url: 'http://matthewspiegelman.com/api/about/aboutHtml',
+        url: '/api/about/aboutHtml',
         data: {
           file: file
         }
@@ -66,7 +66,7 @@ module.exports = function (app) {
 
     $scope.uploadPortrait = (file) => {
       Upload.upload({
-        url: 'http://matthewspiegelman.com/api/about/aboutPortrait',
+        url: '/api/about/aboutPortrait',
         data: {
           file: file
         }
@@ -80,7 +80,7 @@ module.exports = function (app) {
       $scope.$evalAsync();
       if ($scope.dlTitle) {
         Upload.upload({
-          url: 'http://matthewspiegelman.com/api/about/upload',
+          url: '/api/about/upload',
           data: {
             file: file,
             title: $scope.dlTitle
@@ -150,7 +150,7 @@ module.exports = function (app) {
       if (!file) return;
 
       Upload.upload({
-        url: `http://matthewspiegelman.com/api/links/${id}/file`,
+        url: `/api/links/${id}/file`,
         data: {
           file
         }
@@ -167,7 +167,7 @@ module.exports = function (app) {
       })
     };
 
-    $scope.uploadFile = (file, type, url) => {
+    $scope.uploadFile = (file, type, url, position) => {
 
       //TODO: Disable if no date/title
       $scope.$evalAsync();
@@ -176,12 +176,13 @@ module.exports = function (app) {
       console.log({ url })
 
       Upload.upload({
-        url: 'http://matthewspiegelman.com/api/links',
+        url: '/api/links',
         data: {
           file: file,
           title: $scope.linkTitle,
           type,
-          url
+          url,
+          order: $scope.links.length + 1
         }
       }).then(resp => {
         console.log('Success ' + resp.config.data + 'uploaded. Response: ' + resp.data);
