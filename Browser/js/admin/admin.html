@@ -51,13 +51,17 @@
     <br></br>
     <ol>
       <li ng-repeat="link in links">
-        {{link.date | date}}
-        {{link.title}}
+        {{link.title}},
+        &nbsp;
+        Display:&nbsp;{{link.display ? "showing" : "hidden"}}
+        &nbsp;
+        <a ng-href="{{link.dirPath.slice(7)}}" target="_blank" download>Download Current File</a>
         <div>
           <md-input-container>
             <md-button ng-click="setPosition(link.id, link.order, newPosition)">Set Position</md-button>
             <input placeholder="New Position" style="width: 100px" type="number" ng-model="newPosition"></input>
           </md-input-container>
+          <md-button ngf-select="updateFile($file, link.id)">Update File</md-button>
           <md-button ng-click="setVisibility(link.id, !link.display)">{{ link.display ? 'Disable Link' : 'Enable Link' }}</md-button>
           <md-button ng-click="deleteLink(link.id)">Delete Link</md-button>
         </div>

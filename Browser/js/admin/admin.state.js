@@ -144,6 +144,29 @@ module.exports = function (app) {
 
     $scope.linkData = {}
 
+    $scope.updateFile = (file, id) => {
+
+      $scope.$evalAsync();
+      if (!file) return;
+
+      Upload.upload({
+        url: `http://localhost:1337/api/links/${id}/file`,
+        data: {
+          file
+        }
+      }).then(resp => {
+        console.log('Success ' + resp.config.data + 'uploaded. Response: ' + resp.data);
+        $state.reload();
+      }, (resp) => {
+        console.log('Error status: ' + resp.status);
+      }, (evt) => {
+        if (evt.config.data.file) {
+          var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+          console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+        }
+      })
+    };
+
     $scope.uploadFile = (file, type, url) => {
 
       //TODO: Disable if no date/title
@@ -174,7 +197,7 @@ module.exports = function (app) {
     };
 
     $scope.setPosition = (id, currPos, newPos) => {
-      if (newPos > $scope.links.length) return
+      if (newPos > $scope.links.length || newPos < 1 || currPos === newPos) return
 
       linkFactory.setPosition(id, currPos, newPos).then(() => $state.reload())
     }

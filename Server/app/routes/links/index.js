@@ -35,6 +35,31 @@ router.post('/',
             .catch(next)
     })
 
+router.post('/:id/file',
+    multer({
+        storage: storage
+    }).single('file'), (req, res, next) => {
+        const id = req.params.id
+
+        if (!id || isNaN(id)) {
+            res.sendStatus(400)
+
+            return
+        }
+
+        // TODO: Add delete after update
+
+        Links.update({
+            dirPath: req.file.path
+        }, {
+            where: {
+                id
+            }
+        })
+            .then(() => res.sendStatus(204))
+            .catch(next)
+    })
+
 router.get('/', (req, res, next) => {
     Links.findAll({
         order: [
