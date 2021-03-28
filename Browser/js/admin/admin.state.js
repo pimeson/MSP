@@ -150,7 +150,7 @@ module.exports = function (app) {
       if (!file) return;
 
       Upload.upload({
-        url: `http://localhost:1337/api/links/${id}/file`,
+        url: `http://matthewspiegelman.com/api/links/${id}/file`,
         data: {
           file
         }
@@ -176,7 +176,7 @@ module.exports = function (app) {
       console.log({ url })
 
       Upload.upload({
-        url: 'http://localhost:1337/api/links',
+        url: 'http://matthewspiegelman.com/api/links',
         data: {
           file: file,
           title: $scope.linkTitle,
