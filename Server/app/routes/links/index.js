@@ -25,6 +25,13 @@ const storage = multer.diskStorage({
 })
 
 router.post('/',
+    (req, res, next) => {
+        Links.create(req.body)
+            .then(() => res.sendStatus(204))
+            .catch(next)
+    })
+
+router.post('/file',
     multer({
         storage: storage
     }).single('file'), (req, res, next) => {

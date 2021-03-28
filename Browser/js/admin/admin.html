@@ -35,7 +35,7 @@
         <md-input-container>
           <md-select ng-model="linkType" placeholder="Select a link type">
             <md-option ng-value=""></md-option>
-            <md-option ng-repeat="option in ['PDF', 'Link']" ng-value="option">{{ option }}</md-option>
+            <md-option ng-repeat="option in ['PDF', 'Link', 'Video']" ng-value="option">{{ option }}</md-option>
           </md-select>
         </md-input-container>
       </div>
@@ -43,9 +43,20 @@
         <label for="url">URL</label>
         <input type="text" name="url" ng-model="linkData.url"></input>
       </md-input-container>
+      <md-input-container ng-if="linkType === 'Video'">
+        <label for="youtube">Youtube Video ID</label>
+        <input ng-disabled="linkData.vimeo" type="text" name="youtube" ng-model="linkData.youtube"></input>
+        <br></br>
+      </md-input-container>
+      <br></br>
+      <md-input-container ng-if="linkType === 'Video'">
+        <label for="vimeo">Vimeo Video ID</label>
+        <input ng-disabled="linkData.youtube" type="text" name="vimeo" ng-model="linkData.vimeo"></input>
+      </md-input-container>
       <br></br>
       <md-button ng-disabled="!linkTitle" ng-show="linkType == 'PDF'" class="md-raised" ngf-select="uploadFile($file, 'PDF')">Upload PDF</md-button>
       <md-button ng-disabled="!linkTitle" ng-show="linkType == 'Link'" class="md-raised" ngf-select="uploadFile($file, 'Link', linkData.url)">Upload Image</md-button>
+      <md-button ng-disabled="!linkTitle || (!linkData.vimeo && !linkData.youtube)" ng-show="linkType == 'Video'" class="md-raised" ng-click="makeVideoLink(linkTitle)">Add Video Link</md-button>
     </form>
     <!-- <md-button class="md-raised" ng-click="makeLink(linkTitle, linkType, linkDate)">Make Link</md-button> -->
     <br></br>
@@ -55,13 +66,13 @@
         &nbsp;
         Display:&nbsp;{{link.display ? "showing" : "hidden"}}
         &nbsp;
-        <a ng-href="{{link.dirPath.slice(7)}}" target="_blank" download>Download Current File</a>
+        <a ng-if="link.type === 'Image' || link.type === 'PDF'" ng-href="{{link.dirPath.slice(7)}}" target="_blank" download>Download Current File</a>
         <div>
           <md-input-container>
             <md-button ng-click="setPosition(link.id, link.order, newPosition)">Set Position</md-button>
             <input placeholder="New Position" style="width: 100px" type="number" ng-model="newPosition"></input>
           </md-input-container>
-          <md-button ngf-select="updateFile($file, link.id)">Update File</md-button>
+          <md-button ng-if="link.type === 'Image' || link.type === 'PDF'" ngf-select="updateFile($file, link.id)">Update File</md-button>
           <md-button ng-click="setVisibility(link.id, !link.display)">{{ link.display ? 'Disable Link' : 'Enable Link' }}</md-button>
           <md-button ng-click="deleteLink(link.id)">Delete Link</md-button>
         </div>

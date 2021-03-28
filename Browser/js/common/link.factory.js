@@ -19,6 +19,11 @@ module.exports = function (app) {
                 .then(res => res.data);
         }
 
+        link.createFile = link => {
+            return $http.post('/api/links/file', link)
+                .then(res => res.data);
+        }
+
         link.setVisibility = (id, visibility) => {
             return $http.put(`/api/links/${id}/visibility`, { isVisible: visibility })
         }

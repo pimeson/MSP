@@ -11,6 +11,11 @@
           <span ng-if="link.type == 'PDF'" class="material-icons md-12"
             >picture_as_pdf</span
           >
+          <span
+            ng-if="link.type == 'VimeoVideo' || link.type === 'YoutubeVideo'"
+            class="material-icons md-12"
+            >video_library</span
+          >
         </a>
         <div ng-if="activeLink == link.id">
           <iframe
@@ -19,15 +24,21 @@
             style="width: 50vw; height: 75vh"
           >
           </iframe>
+          <iframe
+            ng-if="link.type === 'YoutubeVideo' || link.type === 'VimeoVideo'"
+            width="640"
+            height="467"
+            ng-src="{{link.url}}"
+            frameborder="0"
+            allow="autoplay; encrypted-media"
+            allowfullscreen
+          >
+          </iframe>
           <p ng-if="link.type == 'Link'">
             Click the image to visit the webpage.
           </p>
-          <a ng-href="{{link.url}}" target="_blank">
-            <img
-              class="link-image"
-              ng-if="link.type == 'Link'"
-              ng-src="{{link.dirPath.slice(7)}}"
-            />
+          <a ng-if="link.type == 'Link'" ng-href="{{link.url}}" target="_blank">
+            <img class="link-image" ng-src="{{link.dirPath.slice(7)}}" />
           </a>
         </div>
       </div>
@@ -46,6 +57,11 @@
           >
           <span ng-if="link.type == 'PDF'" class="material-icons md-12"
             >picture_as_pdf</span
+          >
+          <span
+            ng-if="link.type == 'VimeoVideo' || link.type === 'YoutubeVideo'"
+            class="material-icons md-12"
+            >video_library</span
           >
         </a>
       </div>

@@ -13,11 +13,20 @@ const ngInfiniteScroll = require('ng-infinite-scroll');
 const app = angular.module('MSP', ['ui.router', 'ngAnimate', 'ngMaterial', 'ngFileUpload', 'angular-loading-bar', 'auth', 'infinite-scroll']);
 
 
-app.config(function ($urlRouterProvider, $locationProvider) {
+app.config(function ($urlRouterProvider, $locationProvider, $sceDelegateProvider) {
 
   $locationProvider.html5Mode(true);
 
   $urlRouterProvider.otherwise('/');
+
+  $sceDelegateProvider.resourceUrlWhitelist([
+    // Allow same origin resource loads.
+    'self',
+    // Allow loading from our assets domain. **.
+    'https://www.youtube.com/**',
+    'https://www.vimeo.com/**',
+    'https://player.vimeo.com/**'
+  ]);
 
 });
 

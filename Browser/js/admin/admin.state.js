@@ -47,52 +47,6 @@ module.exports = function (app) {
       }
     };
 
-    $scope.uploadAboutHtml = (file) => {
-      Upload.upload({
-        url: '/api/about/aboutHtml',
-        data: {
-          file: file
-        }
-      }).then((res) => {
-        alert("Updated new about page!");
-      })
-    }
-
-    $scope.submitAboutPage = () => {
-      if ($scope.form.file.$valid && $scope.file) {
-        $scope.uploadAboutHtml($scope.file)
-      }
-    };
-
-    $scope.uploadPortrait = (file) => {
-      Upload.upload({
-        url: '/api/about/aboutPortrait',
-        data: {
-          file: file
-        }
-      }).then((res) => {
-        alert("Updated portrait! Please refresh the page to see the new portrait.");
-        $state.reload();
-      })
-    }
-
-    $scope.newDownload = (file) => {
-      $scope.$evalAsync();
-      if ($scope.dlTitle) {
-        Upload.upload({
-          url: '/api/about/upload',
-          data: {
-            file: file,
-            title: $scope.dlTitle
-          }
-        }).then((res) => {
-          $state.reload();
-        })
-      } else {
-        alert('No empty title names allowed.')
-      }
-    }
-
     $scope.deleteDl = (id) => {
       fileFactory.deleteDlById(id)
         .then(deletingFile => $state.reload())
@@ -123,12 +77,10 @@ module.exports = function (app) {
         })
     }
 
-
-    console.log({ links })
     $scope.links = links.sort((l1, l2) => l1.order - l2.order)
 
-    $scope.makeLink = (title, type, date) => {
-      if (!title || !type || !date) return
+    $scope.makeLink = (title, type) => {
+      if (!title || !type) return
 
       linkFactory.create({ title, type, date }).then(() => $state.reload());
     }
@@ -167,16 +119,15 @@ module.exports = function (app) {
       })
     };
 
-    $scope.uploadFile = (file, type, url, position) => {
+    $scope.uploadFile = (file, type, url) => {
 
-      //TODO: Disable if no date/title
       $scope.$evalAsync();
       if (!file) return;
 
       console.log({ url })
 
       Upload.upload({
-        url: '/api/links',
+        url: '/api/links/file',
         data: {
           file: file,
           title: $scope.linkTitle,
@@ -196,6 +147,20 @@ module.exports = function (app) {
         }
       })
     };
+
+    $scope.makeVideoLink = (linkTitle) => {
+      let type;
+      let url;
+      if ($scope.linkData.youtube) {
+        type = "YoutubeVideo"
+        url = `https://www.youtube.com/embed/${$scope.linkData.youtube}`
+      } else if ($scope.linkData.vimeo) {
+        type = "VimeoVideo"
+        url = `https://player.vimeo.com/video/${$scope.linkData.vimeo}`
+      }
+
+      linkFactory.create({ title: linkTitle, type, url, order: $scope.links.length }).then(() => $state.reload());
+    }
 
     $scope.setPosition = (id, currPos, newPos) => {
       if (newPos > $scope.links.length || newPos < 1 || currPos === newPos) return
