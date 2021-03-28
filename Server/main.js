@@ -21,10 +21,10 @@ if (isProd) {
 const createApplication = () => {
   const app = require('./app')(db);
 
-  if (isProd) {
-    const helmet = require("helmet");
-    app.use(helmet())
-  }
+  // if (isProd) {
+  //   const helmet = require("helmet");
+  //   app.use(helmet())
+  // }
 
   server.on('request', app);
 }
