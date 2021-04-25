@@ -55,7 +55,8 @@
       </md-input-container>
       <br></br>
       <md-button ng-disabled="!linkTitle" ng-show="linkType == 'PDF'" class="md-raised" ngf-select="uploadFile($file, 'PDF')">Upload PDF</md-button>
-      <md-button ng-disabled="!linkTitle" ng-show="linkType == 'Link'" class="md-raised" ngf-select="uploadFile($file, 'Link', linkData.url)">Upload Image</md-button>
+      <md-button ng-disabled="!linkTitle" ng-show="linkType == 'Link'" class="md-raised" ng-click="makeLink(linkTitle, 'Link', linkData.url)">Create Link</md-button>
+      <md-button ng-disabled="!linkTitle" ng-show="linkType == 'Link'" class="md-raised" ngf-select="uploadFile($file, 'Link', linkData.url)">Create Link with Image</md-button>
       <md-button ng-disabled="!linkTitle || (!linkData.vimeo && !linkData.youtube)" ng-show="linkType == 'Video'" class="md-raised" ng-click="makeVideoLink(linkTitle)">Add Video Link</md-button>
     </form>
     <!-- <md-button class="md-raised" ng-click="makeLink(linkTitle, linkType, linkDate)">Make Link</md-button> -->

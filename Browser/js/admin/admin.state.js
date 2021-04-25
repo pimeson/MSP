@@ -79,10 +79,10 @@ module.exports = function (app) {
 
     $scope.links = links.sort((l1, l2) => l1.order - l2.order)
 
-    $scope.makeLink = (title, type) => {
+    $scope.makeLink = (title, type, url) => {
       if (!title || !type) return
 
-      linkFactory.create({ title, type, date }).then(() => $state.reload());
+      linkFactory.create({ title, type, url, order: $scope.links.length + 1 }).then(() => $state.reload());
     }
 
     $scope.setVisibility = (id, isVisible) => {

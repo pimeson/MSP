@@ -239,10 +239,10 @@ a {
   }
 }
 
-a:hover,
-a:visited,
-a:link,
-a:active {
+#TitleBox>a:hover,
+#TitleBox>a:visited,
+#TitleBox>a:link,
+#TitleBox>a:active {
   cursor: pointer;
   text-decoration: none;
 }
