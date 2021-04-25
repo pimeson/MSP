@@ -188,7 +188,7 @@
   }
 
   a.link-title {
-    font-size: 1.1em;
+    font-size: .8em;
     text-decoration: underline !important;
     text-decoration-color: #F415FE !important;
   }
@@ -218,6 +218,7 @@
   text-decoration: underline;
   text-decoration-color: #F415FE;
   cursor: pointer;
+  font-size: .8em;
 }
 
 .link-image {
